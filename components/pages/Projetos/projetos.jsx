@@ -6,7 +6,7 @@ export const Projetos = ({ image, title, description, href }) => {
   return (
     <div className="relative flex flex-col items-center justify-end shadow-md shadow-foreground rounded-2xl max-w-sm h-60 w-full md:h-64 md:min-w-80 overflow-hidden hover:scale-105 hover:shadow-lg transition cursor-pointer">
         <div
-          className="absolute inset-0 bg-center bg-cover blur-xs scale-110"
+          className="absolute inset-0 bg-center bg-cover blur-xs  scale-110"
           style={{
             backgroundImage: `url(${image})`,
           }}

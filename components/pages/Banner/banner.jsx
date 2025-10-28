@@ -2,10 +2,11 @@
 import { Button } from "@/components/ui/button";
 import { UserRound, PanelsTopLeft } from "lucide-react";
 import { motion } from "motion/react"
+import Link from "next/link";
 
 export function Banner() {
     return (
-        <section className="w-full min-h-screen bg-cover bg-center dark:bg-[url('/wallpaper-dark.png')] bg-[url('/wallpaper-light.jpg')] p-5 md:p-10">
+        <section id="banner" className="w-full min-h-screen bg-cover bg-center dark:bg-[url('/wallpaper-dark.png')] bg-[url('/wallpaper-light.jpg')] p-5 md:p-10">
             <motion.div
                 initial={{ x: 600, scale: 0.5 }}
                 whileInView={{ x: 0, scale: 1, transition: { duration: 0.8 } }}
@@ -41,14 +42,15 @@ export function Banner() {
                                 <UserRound className="size-4 md:size-5" />
                                 <span>Entre em contato</span>
                             </Button>
-
+                            <Link href="#projetos">
                             <Button
                                 className="flex items-center justify-center gap-2 w-40 h-10 md:w-52 md:h-12 lg:w-60"
                                 variant="outline"
-                            >
+                                >
                                 <PanelsTopLeft className="size-4 md:size-5" />
                                 <span>Ver Projetos</span>
                             </Button>
+                                </Link>
                         </div>
                     </div>
 

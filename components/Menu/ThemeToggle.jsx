@@ -7,7 +7,6 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
-    // Inicializa com a classe dark no HTML
     if (!document.documentElement.classList.contains("dark")) {
       document.documentElement.classList.add("dark");
     }
@@ -27,11 +26,11 @@ export default function ThemeToggle() {
     <button
       onClick={toggleTheme}
       className="
-        fixed top-6 right-6
+        fixed top-6 right-3
         p-4 rounded-full
-        bg-primary text-primary-foreground
+        bg-foreground text-secondary
         shadow-lg hover:scale-110 transition-transform
-        z-50
+        z-50 cursor-pointer
       "
     >
       {theme === "dark" ? <Sun /> : <Moon />}

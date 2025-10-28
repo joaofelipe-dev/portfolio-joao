@@ -5,13 +5,13 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 
 export const ProjetosPage = () => {
   const projetosArray = [
-    { image: "/wallpaper-dark.png", title: "Parallax Creator", description: "Criador de efeito Parallax", href:"https://parallax-creator.vercel.app" },
+    { image: "/parallax.png", title: "Parallax Creator", description: "Criador de efeito Parallax", href:"https://parallax-creator.vercel.app" },
     { image: "/wallpaper-dark.png", title: "Landing Page", description: "Landing Page Moderna", href:"./" },
-    { image: "/wallpaper-dark.png", title: "Projeto 3", description: "Descrição 3", href:"./" },
+    { image: "/todo.png", title: "To do List", description: "Lista de Afazeres", href:"./" },
   ];
 
   return (
-    <div className="relative min-h-screen flex flex-col overflow-hidden">
+    <div id="projetos" className="relative min-h-screen flex flex-col overflow-hidden">
       {/* Waves do topo */}
       <div className="relative w-full h-[213px] overflow-hidden">
         {/* Wave 1 - Base */}
