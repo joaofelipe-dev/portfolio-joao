@@ -9,13 +9,17 @@ export const Menu = () => {
     { nome: "Inicio", id: "banner", href: "#banner" },
     { nome: "Projetos", id: "projetos", href: "#projetos" },
     { nome: "Sobre", id: "sobre", href: "#sobre" },
+    { nome: "Contato", id: "contato", href: "#contato" },
   ];
 
-  const activeSection = useActiveSection(pages.map((p) => p.id), {
-    root: null,
-    rootMargin: "0px",
-    threshold: [0.4, 0.6],
-  });
+  const activeSection = useActiveSection(
+    pages.map((p) => p.id),
+    {
+      root: null,
+      rootMargin: "0px",
+      threshold: [0.4, 0.6],
+    }
+  );
 
   const handleClick = (e, id) => {
     e.preventDefault();
@@ -25,9 +29,9 @@ export const Menu = () => {
     history.replaceState(null, "", `#${id}`);
   };
 
-    const [hovered, setHovered] = useState(false);
+  const [hovered, setHovered] = useState(false);
   return (
-<div
+    <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className={`
@@ -51,7 +55,11 @@ export const Menu = () => {
               flex items-center justify-start gap-3 w-full
               text-secondary px-2 py-1 rounded-md
               transition-all duration-300 cursor-pointer
-              ${isActive ? "text-primary" : "text-muted-foreground hover:text-primary"}
+              ${
+                isActive
+                  ? "text-primary"
+                  : "text-muted-foreground hover:text-primary"
+              }
             `}
           >
             <Circle
@@ -64,7 +72,11 @@ export const Menu = () => {
               className={`
                 whitespace-nowrap overflow-hidden
                 transition-all duration-300
-                ${hovered ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"}
+                ${
+                  hovered
+                    ? "opacity-100 translate-x-0"
+                    : "opacity-0 -translate-x-2"
+                }
               `}
             >
               {page.nome}

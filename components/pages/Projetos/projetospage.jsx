@@ -1,17 +1,41 @@
 "use client";
 import React, { useRef } from "react";
 import { Projetos } from "./projetos";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export const ProjetosPage = () => {
   const projetosArray = [
-    { image: "/parallax.png", title: "Parallax Creator", description: "Criador de efeito Parallax", href:"https://parallax-creator.vercel.app" },
-    { image: "/wallpaper-dark.png", title: "Landing Page", description: "Landing Page Moderna", href:"./" },
-    { image: "/todo.png", title: "To do List", description: "Lista de Afazeres", href:"./" },
+    {
+      image: "/parallax.png",
+      title: "Parallax Creator",
+      description: "Criador de efeito Parallax",
+      href: "https://parallax-creator.vercel.app",
+    },
+    {
+      image: "/wallpaper-dark.png",
+      title: "Landing Page",
+      description: "Landing Page Moderna",
+      href: "./",
+    },
+    {
+      image: "/todo.png",
+      title: "To do List",
+      description: "Lista de Afazeres",
+      href: "./",
+    },
   ];
 
   return (
-    <div id="projetos" className="relative min-h-screen flex flex-col overflow-hidden">
+    <div
+      id="projetos"
+      className="relative min-h-screen flex flex-col overflow-hidden"
+    >
       {/* Waves do topo */}
       <div className="relative w-full h-[213px] overflow-hidden">
         {/* Wave 1 - Base */}
@@ -75,11 +99,12 @@ export const ProjetosPage = () => {
       {/* Conteúdo principal */}
       <main className="flex-1 relative z-10 flex flex-col justify-center items-center p-4 md:p-6 lg:p-8">
         <h1 className="text-4xl font-bold text-center">Meus Projetos</h1>
-        <h2 className="mt-5 mb-8 text-lg text-center">Veja alguns dos meus projetos criados</h2>
+        <h2 className="mt-5 mb-8 text-lg text-center">
+          Veja alguns dos meus projetos criados
+        </h2>
 
         {/* Carousel centralizado */}
         <div className="w-full max-w-6xl flex items-center justify-center gap-4 px-4">
-
           {/* Botão anterior */}
 
           {/* Carousel */}
@@ -109,7 +134,6 @@ export const ProjetosPage = () => {
           {/* Botão próximo */}
         </div>
       </main>
-
 
       {/* Waves do rodapé */}
       <div className="relative w-full h-[213px] overflow-hidden -scale-y-100 z-0 pointer-events-none">
