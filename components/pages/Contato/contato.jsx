@@ -1,4 +1,5 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -9,51 +10,97 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Github, Linkedin, Mail } from "lucide-react";
 import React from "react";
 
 export const Contato = () => {
   return (
     <section
       id="contato"
-      className="items-center text-center max-h-screen w-full"
+      className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden"
     >
-      <h1>Contato</h1>
-      <div className="mt-10 flex flex-col p-6 rounded-lg bg-cover bg-center bg-no-repeat text-white">
-        <form className="flex-col space-y-4 md:p-40">
-          <div className="space-y-1">
-            <Label>Nome</Label>
-            <Input placeholder="Ex: João da Silva"></Input>
+      {/* Conteúdo principal */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 py-8 flex flex-col items-center">
+        <h1 className="text-4xl md:text-5xl font-bold text-foreground text-center mb-2">
+          Contato
+        </h1>
+
+        <div className="w-full flex flex-col md:-mr-34 lg:flex-row gap-8 items-center justify-center">
+          {/* Formulário */}
+          <div className="w-full lg:w-1/2 max-w-2xl bg-foreground/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-foreground/20">
+            <form className="space-y-4 md:space-y-6">
+              <div className="space-y-2">
+                <Label className="text-foreground font-medium">Nome</Label>
+                <Input 
+                  placeholder="Ex: João da Silva" 
+                  className="bg-foreground/20 border-foreground/30 text-foreground placeholder:text-foreground/60"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label className="text-foreground font-medium">Email</Label>
+                <Input 
+                  placeholder="Ex: joaodasilva@email.com" 
+                  className="bg-foreground/20 border-foreground/30 text-foreground placeholder:text-foreground/60"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label className="text-foreground font-medium">Objetivo do contato</Label>
+                <Select>
+                  <SelectTrigger className="w-full bg-foreground/20 border-foreground/30 text-foreground">
+                    <SelectValue placeholder="Objetivo" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="contrato">Quero te contratar</SelectItem>
+                    <SelectItem value="sobre">Quero saber mais sobre</SelectItem>
+                    <SelectItem value="contato">Somente um contato breve</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div className="space-y-2">
+                <Label className="text-foreground font-medium">Assunto</Label>
+                <Input 
+                  placeholder="Assunto" 
+                  className="bg-foreground/20 border-foreground/30 text-foreground placeholder:text-foreground/60"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label className="text-foreground font-medium">Descrição</Label>
+                <Textarea 
+                  placeholder="Mensagem" 
+                  className="min-h-32 bg-foreground/20 border-foreground/30 text-foreground placeholder:text-foreground/60 resize-none"
+                />
+              </div>
+
+              <Button 
+                type="submit" 
+                className="w-full bg-foreground/20 hover:bg-foreground/30 text-foreground border border-foreground/30 transition-all duration-300"
+              >
+                Enviar
+              </Button>
+            </form>
           </div>
-          <div className="space-y-1">
-            <Label>Email</Label>
-            <Input placeholder="Ex: joaodasilva@email.com"></Input>
+
+          {/* Ícones de contato */}
+          <div className="w-full lg:w-auto flex lg:flex-col items-center justify-center gap-6 md:gap-8">
+            <div className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
+              <Mail size={28} />
+            </div>
+            <div className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
+              <Github size={28}/>
+            </div>
+            <div className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
+              <Linkedin size={28}/>
+            </div>
           </div>
-          <div className="space-y-1">
-            <Label>Objetivo do contato</Label>
-            <Select>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Objetivo" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="light">Quero te contratar</SelectItem>
-                <SelectItem value="dark">Quero saber mais sobre</SelectItem>
-                <SelectItem value="system">Somente um contato breve</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="space-y-1">
-            <Label>Assunto</Label>
-            <Input placeholder="Assunto"></Input>
-          </div>
-          <div className="space-y-1">
-            <Label>Descrição</Label>
-            <Textarea placeholder="Mensagem" className="min-h-30" />
-          </div>
-        </form>
+        </div>
       </div>
-      {/* Waves do rodapé */}
-      <div className="relative bottom-20 w-full h-[213px] overflow-hidden -scale-y-100 z-0 pointer-events-none">
-        {/* Wave 1 */}
+
+      {/* Waves do rodapé (invertidas) */}
+      <div className="absolute bottom-0 w-full h-32 overflow-hidden z-0 pointer-events-none -scale-y-100">
         <svg
           className="absolute inset-0 w-full h-full"
           viewBox="0 0 1440 213"
@@ -65,8 +112,6 @@ export const Contato = () => {
             className="shadow-lg shadow-blue-500/30"
           />
         </svg>
-
-        {/* Wave 2 */}
         <svg
           className="absolute inset-0 w-full h-full"
           viewBox="0 0 1440 213"
@@ -78,8 +123,6 @@ export const Contato = () => {
             className="blur-sm shadow-2xl shadow-purple-500"
           />
         </svg>
-
-        {/* Wave 3 */}
         <svg
           className="absolute inset-0 w-full h-full"
           viewBox="0 0 1440 213"
