@@ -25,7 +25,7 @@ export const Contato = () => {
           Contato
         </h1>
 
-        <div className="w-full flex flex-col md:-mr-34 lg:flex-row gap-8 items-center justify-center">
+        <div className="w-full flex flex-col lg:flex-row gap-8 items-center justify-center md:justify-around ">
           {/* Formulário */}
           <div className="w-full lg:w-1/2 max-w-2xl bg-foreground/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-foreground/20">
             <form className="space-y-4 md:space-y-6">

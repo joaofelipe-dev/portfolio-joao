@@ -8,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { GalleryHorizontal } from "lucide-react";
 
 export const ProjetosPage = () => {
   const projetosArray = [
@@ -129,10 +130,11 @@ export const ProjetosPage = () => {
               </CarouselContent>
               <CarouselNext className="flex-shrink-0 bg-white/80 hover:bg-white p-3 rounded-full z-20 border-none shadow-lg transition-colors" />
             </Carousel>
-          </div>
 
-          {/* Botão próximo */}
+          </div>
         </div>
+        <GalleryHorizontal size={30} className="text-white" />
+        <h3>Arraste para o lado</h3>
       </main>
 
       {/* Waves do rodapé */}
