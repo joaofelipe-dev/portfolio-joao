@@ -1,6 +1,5 @@
 "use client";
 import TiltedCard from "@/components/ui/TiltedCard";
-import Link from "next/link";
 import React from "react";
 
 export const Projetos = ({ image, title, description, href }) => {

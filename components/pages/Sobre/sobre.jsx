@@ -1,17 +1,9 @@
 "use client";
+import Iridescence from "@/components/ui/Iridescence";
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
 
 export const Sobre = () => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
 
   return (
     <>
@@ -80,16 +72,6 @@ export const Sobre = () => {
         id="sobre"
         className="relative snap-start min-h-screen flex flex-col items-center justify-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
       >
-        {/* Blob de fundo interativo */}
-        <div
-          className="absolute w-72 h-72 rounded-full pointer-events-none blur-2xl transition-transform duration-100"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(99,102,241,0.5), transparent 80%)",
-            transform: `translate(${mousePos.x}px, ${mousePos.y}px)`,
-            zIndex: 0,
-          }}
-        />
 
         {/* Cabeçalho */}
         <div className="relative z-10 text-center mb-8 sm:mb-12 lg:mb-16 w-full max-w-6xl">
@@ -116,7 +98,6 @@ export const Sobre = () => {
         {/* Conteúdo Principal */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 w-full max-w-6xl items-start">
           {/* Coluna Direita */}
-          {/* Coluna Esquerda*/}
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}

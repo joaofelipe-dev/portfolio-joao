@@ -6,7 +6,7 @@ import { UserRound, PanelsTopLeft } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import LogoLoop from "@/components/ui/LogoLoop"
-import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiGit, SiShadcnui } from 'react-icons/si';
+import { SiReact, SiNextdotjs, SiTailwindcss, SiGit, SiShadcnui } from 'react-icons/si';
 
 export function Banner() {
   const techLogos = [
@@ -139,7 +139,6 @@ export function Banner() {
                   copyCount={3}
                   pauseOnHover
                   scaleOnHover
-                  fadeOut
                   ariaLabel="Conhecimentos"
                 />
               </div>

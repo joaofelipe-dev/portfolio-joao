@@ -8,6 +8,7 @@ export const Menu = () => {
   const pages = [
     { nome: "Inicio", id: "banner", href: "#banner" },
     { nome: "Projetos", id: "projetos", href: "#projetos" },
+    { nome: "Skills", id: "skills", href: "#skills" },
     { nome: "Sobre", id: "sobre", href: "#sobre" },
     { nome: "Contato", id: "contato", href: "#contato" },
   ];

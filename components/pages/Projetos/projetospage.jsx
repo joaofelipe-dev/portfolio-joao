@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Projetos } from "./projetos";
 import {
   Carousel,
@@ -8,7 +8,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { GalleryHorizontal } from "lucide-react";
 
 export const ProjetosPage = () => {
   const projetosArray = [
@@ -30,9 +29,23 @@ export const ProjetosPage = () => {
       description: "Lista de Afazeres",
       href: "./",
     },
-  ];
 
-  return (
+  ];
+  const [api, setApi] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+
+    setCurrentIndex(api.selectedScrollSnap());
+
+    const onSelect = () => setCurrentIndex(api.selectedScrollSnap());
+    api.on("select", onSelect);
+
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]); return (
     <div
       id="projetos"
       className="relative min-h-screen flex flex-col overflow-hidden"
@@ -104,7 +117,6 @@ export const ProjetosPage = () => {
           Veja alguns dos meus projetos criados
         </h2>
 
-        {/* Carousel centralizado */}
         <div className="w-full max-w-6xl flex items-center justify-center gap-4 px-4">
           {/* Botão anterior */}
 
@@ -117,8 +129,10 @@ export const ProjetosPage = () => {
                 loop: true,
               }}
               orientation="horizontal"
+              setApi={setApi} 
             >
-              <CarouselPrevious className="flex-shrink-0 bg-white/80 hover:bg-white p-3 rounded-full z-20 border-none shadow-lg transition-colors" />
+              <CarouselPrevious className="shrink-0 p-3 rounded-full z-20 border-none shadow-lg transition-colors" />
+
               <CarouselContent className="h-fit p-5">
                 {projetosArray.map((item, index) => (
                   <CarouselItem key={index}>
@@ -128,15 +142,25 @@ export const ProjetosPage = () => {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselNext className="flex-shrink-0 bg-white/80 hover:bg-white p-3 rounded-full z-20 border-none shadow-lg transition-colors" />
-            </Carousel>
 
+              <CarouselNext className="shrink-0 p-3 rounded-full z-20 border-none shadow-lg transition-colors" />
+            </Carousel>
           </div>
         </div>
-        <GalleryHorizontal size={30} className="text-white" />
-        <h3>Arraste para o lado</h3>
+      <div className="flex gap-2 mt-2">
+        {projetosArray.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => api && api.scrollTo(index)} // 👈 muda o slide ao clicar
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index === currentIndex
+                ? "bg-primary scale-150 hover:bg-primary/80"
+                : "bg-foreground hover:bg-foreground/80"
+            }`}
+          />
+        ))}
+      </div>
       </main>
-
       {/* Waves do rodapé */}
       <div className="relative w-full h-[213px] overflow-hidden -scale-y-100 z-0 pointer-events-none">
         {/* Wave 1 */}
