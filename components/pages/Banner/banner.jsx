@@ -6,11 +6,15 @@ import { UserRound, PanelsTopLeft } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import LogoLoop from "@/components/ui/LogoLoop"
-import { SiReact, SiNextdotjs, SiTailwindcss, SiGit, SiShadcnui } from 'react-icons/si';
+import { SiReact, SiNextdotjs, SiTailwindcss, SiGit, SiShadcnui, SiGithub, SiHtml5, SiCss3, SiJavascript } from 'react-icons/si';
 
 export function Banner() {
   const techLogos = [
     { node: <SiReact />, title: "React", href: "https://react.dev" },
+    { node: <SiGithub />, title: "Github", href: "https://github.com" },
+    { node: <SiHtml5/>, title: "Html5", href: "" },
+    { node: <SiCss3/>, title: "Css3", href: "" },
+    { node: <SiJavascript/>, title: "JavaScript", href: "" },
     { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
     { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
     { node: <SiShadcnui />, title: "Shadcn UI", href: "https://ui.shadcn.com" },
@@ -127,14 +131,14 @@ export function Banner() {
             </div>
 
             {/* Tecnologias */}
-            <div className="flex flex-col items-center justify-end gap-6 w-full max-w-full">
+            <div className="flex flex-col items-center gap-y-20 w-full ">
               <h2 className="text-2xl md:text-3xl font-bold">Tecnologias</h2>
               <div className="w-full max-w-full overflow-hidden" style={{ height: '120px', position: 'relative' }}>
                 <LogoLoop
                   logos={techLogos}
-                  speed={100}
+                  speed={50}
                   direction="right"
-                  logoHeight={40}
+                  logoHeight={60}
                   gap={32}
                   copyCount={3}
                   pauseOnHover

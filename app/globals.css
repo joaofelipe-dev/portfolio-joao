@@ -109,6 +109,7 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.38 0.189 293.745);
+  
 }
 
 @layer base {
@@ -124,4 +125,7 @@
   h2 {
     @apply text-xl md:text-2xl font-semibold;
   }
+}
+body{
+  font-family: var(--font-geist-sans), serif;
 }
