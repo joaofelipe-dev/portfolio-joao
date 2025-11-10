@@ -80,7 +80,7 @@ export const Sobre = () => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, type: "spring" }}
             viewport={{ once: true }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 text-foreground"
+            className="text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-foreground"
           >
             Sobre Mim
           </motion.h1>
@@ -89,7 +89,7 @@ export const Sobre = () => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
             viewport={{ once: true }}
-            className="text-lg sm:text-xl md:text-2xl text-primary max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-primary max-w-2xl mx-auto"
           >
             Desenvolvedor Frontend | React | Next.js | Tailwind CSS
           </motion.h2>
