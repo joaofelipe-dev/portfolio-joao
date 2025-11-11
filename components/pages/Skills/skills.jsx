@@ -63,47 +63,16 @@ export const Skills = () => {
   return (
     <section
       id="skills"
-      className="flex flex-col space-y-10 justify-center items-center w-full min-h-screen h-screen p-5 md:p-10"
+      className="flex flex-col space-y-10 justify-center items-center w-full min-h-screen p-5 md:p-10"
     >
       <h1 className="text-4xl font-bold text-center">Conhecimentos</h1>
 
       <Card
-        className="flex flex-col gap-6 md:grid md:grid-cols-2 p-4 sm:p-6 bg-foreground/10 text-foreground text-center items-center justify-between w-full max-w-6xl mx-auto"
+        className="flex gap-6 p-4 sm:p-6 bg-foreground/10 text-foreground items-center justify-between w-full mx-auto"
       >
-        {/* --- Radar Chart --- */}
         <div className="w-full flex flex-col items-center justify-center">
-          <CardContent className="w-full flex justify-center">
-            <ChartContainer
-              config={chartConfig}
-              className="mx-auto aspect-square sm:aspect-video max-h-[300px] sm:max-h-[350px] w-full max-w-[400px]"
-            >
-              <ResponsiveContainer width="100%" height="100%">
-                <RadarChart data={chartData}>
-                  <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-                  <PolarGrid />
-                  <PolarAngleAxis
-                    dataKey="skill"
-                    tick={{ fill: "var(--foreground)", fontSize: 11, fontWeight: 500 }}
-                  />
-                  <PolarRadiusAxis
-                    domain={[0, 100]}
-                    tick={{ fill: "var(--foreground)", fontSize: 10 }}
-                  />
-                  <Radar
-                    dataKey="porcentagem"
-                    fill="var(--color-porcentagem)"
-                    fillOpacity={0.6}
-                  />
-                </RadarChart>
-              </ResponsiveContainer>
-            </ChartContainer>
-          </CardContent>
-        </div>
-
-        {/* --- Bar Chart + Ícones --- */}
-        <div className="w-full flex flex-col items-center">
           {/* 🔹 Ícones fora do gráfico */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 mt-4 sm:mt-6 w-full justify-items-center">
+          <div className="flex flex-row flex-wrap justify-around gap-4 mt-4 sm:mt-6 w-full justify-items-center">
             {chartData.map((item, i) => (
               <div
                 key={i}
@@ -117,11 +86,14 @@ export const Skills = () => {
               </div>
             ))}
           </div>
+        </div>
+        {/* --- Bar Chart    --- */}
+        <div className="w-full flex flex-col items-center col-span-2">
 
-          <CardContent className="w-full mt-4 sm:mt-6">
-            <ChartContainer config={chartConfig}>
-              <ResponsiveContainer width="100%" height={250}>
-                <BarChart data={chartData} layout="vertical" className="p-2 ">
+          <CardContent className="w-full md:w-[80%] mt-4 sm:mt-6 p-5">
+            <ChartContainer config={chartConfig} >
+              <ResponsiveContainer width="100%">
+                <BarChart data={chartData} layout="vertical" className="p-2">
                   <CartesianGrid horizontal={true} />
                   <YAxis
                     dataKey="skill"
@@ -149,12 +121,9 @@ export const Skills = () => {
 
         {/* --- Footer --- */}
         <CardFooter className="flex flex-col md:col-span-2 items-center gap-2 text-xs sm:text-sm">
-          <div className="flex gap-2 leading-none font-medium items-center">
-            Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-          </div>
-          <div className="text-muted-foreground leading-none">
-            Showing total visitors for the last 6 months
-          </div>
+          <h2 className="flex gap-2 leading-none font-medium items-center">
+            Tecnologias
+          </h2>
         </CardFooter>
       </Card>
 
