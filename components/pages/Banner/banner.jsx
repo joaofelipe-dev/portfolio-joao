@@ -12,9 +12,9 @@ export function Banner() {
   const techLogos = [
     { node: <SiReact />, title: "React", href: "https://react.dev" },
     { node: <SiGithub />, title: "Github", href: "https://github.com" },
-    { node: <SiHtml5/>, title: "Html5", href: "" },
-    { node: <SiCss3/>, title: "Css3", href: "" },
-    { node: <SiJavascript/>, title: "JavaScript", href: "" },
+    { node: <SiHtml5 />, title: "Html5", href: "" },
+    { node: <SiCss3 />, title: "Css3", href: "" },
+    { node: <SiJavascript />, title: "JavaScript", href: "" },
     { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
     { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
     { node: <SiShadcnui />, title: "Shadcn UI", href: "https://ui.shadcn.com" },
@@ -71,11 +71,13 @@ export function Banner() {
 
           {/* Botões */}
           <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 mb-16 md:mb-0">
-            <Button className="flex items-center justify-center gap-2 w-full sm:w-40 h-12 md:w-56 md:h-12 lg:w-64">
-              <UserRound className="size-4 md:size-5" />
-              <span>Entre em contato</span>
-            </Button>
-            <Link href="#projetos" className="w-full sm:w-auto">
+            <a href="#contato" className="w-full sm:w-auto">
+              <Button className="flex items-center justify-center gap-2 w-full sm:w-40 h-12 md:w-56 md:h-12 lg:w-64">
+                <UserRound className="size-4 md:size-5" />
+                <span>Entre em contato</span>
+              </Button>
+            </a>
+            <a href="#projetos" className="w-full sm:w-auto">
               <Button
                 className="flex items-center justify-center gap-2 w-full sm:w-40 h-12 md:w-52 md:h-12 lg:w-60"
                 variant="outline"
@@ -83,7 +85,7 @@ export function Banner() {
                 <PanelsTopLeft className="size-4 md:size-5" />
                 <span>Ver Projetos</span>
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </motion.div>

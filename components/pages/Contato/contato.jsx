@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -11,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Github, Linkedin, Mail } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 export const Contato = () => {
@@ -25,26 +27,26 @@ export const Contato = () => {
           Contato
         </h1>
 
-        <div className="w-full flex flex-col md:grid md:grid-cols-2 gap-5 items-center justify-center ">
+        <div className="w-full flex flex-col md:w-[50%] gap-5 items-center justify-center ">
           {/* Formulário */}
-          <div className="w-full bg-foreground/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-foreground/20">
+          <div className="w-full justify-end bg-foreground/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-foreground/20">
             <form className="space-y-4 md:space-y-6 ">
               <div className="space-y-2">
                 <Label className="text-foreground font-medium">Nome</Label>
-                <Input 
-                  placeholder="Ex: João da Silva" 
+                <Input
+                  placeholder="Ex: João da Silva"
                   className="bg-foreground/20 border-foreground/30 text-foreground placeholder:text-foreground/60"
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label className="text-foreground font-medium">Email</Label>
-                <Input 
-                  placeholder="Ex: joaodasilva@email.com" 
+                <Input
+                  placeholder="Ex: joaodasilva@email.com"
                   className="bg-foreground/20 border-foreground/30 text-foreground placeholder:text-foreground/60"
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label className="text-foreground font-medium">Objetivo do contato</Label>
                 <Select>
@@ -58,25 +60,25 @@ export const Contato = () => {
                   </SelectContent>
                 </Select>
               </div>
-              
+
               <div className="space-y-2">
                 <Label className="text-foreground font-medium">Assunto</Label>
-                <Input 
-                  placeholder="Assunto" 
+                <Input
+                  placeholder="Assunto"
                   className="bg-foreground/20 border-foreground/30 text-foreground placeholder:text-foreground/60"
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label className="text-foreground font-medium">Descrição</Label>
-                <Textarea 
-                  placeholder="Mensagem" 
+                <Textarea
+                  placeholder="Mensagem"
                   className="min-h-32 bg-foreground/20 border-foreground/30 text-foreground placeholder:text-foreground/60 resize-none"
                 />
               </div>
 
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 className="w-full bg-foreground/20 hover:bg-foreground/30 text-foreground border border-foreground/30 transition-all duration-300"
               >
                 Enviar
@@ -85,16 +87,22 @@ export const Contato = () => {
           </div>
 
           {/* Ícones de contato */}
-          <div className="w-full flex md:flex-col items-start justify-center gap-6 md:gap-8">
-            <div className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
-              <Mail size={28} />
-            </div>
-            <div className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
-              <Github size={28}/>
-            </div>
-            <div className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
-              <Linkedin size={28}/>
-            </div>
+          <div className="w-full flex items-start justify-center gap-6 md:gap-8">
+            <Link href="https://github.com/joaofelipe-dev" target="_blank">
+              <Card className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
+                <Mail size={28} />
+              </Card>
+            </Link>
+            <Link href="https://github.com/joaofelipe-dev" target="_blank">
+              <Card className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
+                <Github size={28} />
+              </Card>
+            </Link>
+            <Link href="https://www.linkedin.com/in/joao-felipedev" target="_blank">
+              <Card className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
+                <Linkedin size={28} />
+              </Card>
+            </Link>
           </div>
         </div>
       </div>
