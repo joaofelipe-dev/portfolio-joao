@@ -1,33 +1,9 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
-import {
-  ResponsiveContainer,
-  Bar,
-  BarChart,
-  CartesianGrid,
-  PolarAngleAxis,
-  PolarGrid,
-  PolarRadiusAxis,
-  Radar,
-  RadarChart,
-  XAxis,
-  YAxis,
-} from "recharts";
-
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { ButtonGroup } from "@/components/ui/button-group";
 import {
   SiCss3,
   SiGit,
@@ -41,92 +17,120 @@ import {
 } from "react-icons/si";
 
 export const Skills = () => {
-  const chartData = [
-    { skill: "React", porcentagem: 70, icon: <SiReact color="#61DAFB" /> },
-    { skill: "Tailwind", porcentagem: 70, icon: <SiTailwindcss color="#38BDF8" /> },
-    { skill: "Git", porcentagem: 70, icon: <SiGit color="#F05033" /> },
-    { skill: "HTML5", porcentagem: 80, icon: <SiHtml5 color="#E34F26" /> },
-    { skill: "CSS3", porcentagem: 75, icon: <SiCss3 color="#1572B6" /> },
-    { skill: "Github", porcentagem: 40, icon: <SiGithub color="#fff" /> },
-    { skill: "JavaScript", porcentagem: 60, icon: <SiJavascript color="#F7DF1E" /> },
-    { skill: "ShadcnUI", porcentagem: 60, icon: <SiShadcnui color="#a855f7" /> },
-    { skill: "NextJS", porcentagem: 40, icon: <SiNextdotjs color="#fff" /> },
+  const tools = [
+    {
+      nome: "React",
+      icone: <SiReact />,
+      nivel: "Básico",
+      tipo: "Frameworks & Bibliotecas",
+      href: "https://react.dev",
+    },
+    {
+      nome: "Tailwind",
+      icone: <SiTailwindcss />,
+      nivel: "Básico",
+      tipo: "Frameworks & Bibliotecas",
+      href: "https://tailwindcss.com",
+    },
+    {
+      nome: "Next.js",
+      icone: <SiNextdotjs />,
+      nivel: "Básico",
+      tipo: "Frameworks & Bibliotecas",
+      href: "https://nextjs.org",
+    },
+    {
+      nome: "JavaScript",
+      icone: <SiJavascript />,
+      nivel: "Básico",
+      tipo: "Linguagens & Core",
+      href: "/",
+    },
+    {
+      nome: "Git",
+      icone: <SiGit />,
+      nivel: "Básico",
+      tipo: "Controle de Versão",
+      href: "https://git-scm.com",
+    },
+    {
+      nome: "Shadcn UI",
+      icone: <SiShadcnui />,
+      nivel: "Básico",
+      tipo: "Estilização & UI",
+      href: "https://git-scm.com",
+    },
+    {
+      nome: "Html5",
+      icone: <SiHtml5 />,
+      nivel: "Básico",
+      tipo: "Linguagens & Core",
+      href: "https://git-scm.com",
+    },
+    {
+      nome: "Github",
+      icone: <SiGithub />,
+      nivel: "Básico",
+      tipo: "Controle de Versão",
+      href: "https://git-scm.com",
+    },
+    {
+      nome: "Css3",
+      icone: <SiCss3 />,
+      nivel: "Básico",
+      tipo: "Linguagens & Core",
+      href: "https://git-scm.com",
+    },
   ];
 
-  const chartConfig = {
-    porcentagem: {
-      label: "Porcentagem",
-      color: "var(--primary)",
-    },
-  };
+  const tiposUnicos = ["Todos", ...new Set(tools.map((tool) => tool.tipo))];
+
+  const [filtroAtivo, setFiltroAtivo] = useState("Todos");
+
+  const ferramentasFiltradas =
+    filtroAtivo === "Todos"
+      ? tools
+      : tools.filter((tool) => tool.tipo === filtroAtivo);
 
   return (
     <section
       id="skills"
-      className="flex flex-col space-y-10 justify-center items-center w-full min-h-screen p-5 md:p-10"
+      className="min-h-screen h-screen p-10 flex flex-col gap-8"
     >
-      <h1 className="text-4xl font-bold text-center">Conhecimentos</h1>
-
-      <Card
-        className="flex gap-6 p-4 sm:p-6 bg-foreground/10 text-foreground items-center justify-between w-full mx-auto"
-      >
-        <div className="w-full flex flex-col items-center justify-center">
-          {/* 🔹 Ícones fora do gráfico */}
-          <div className="flex flex-row flex-wrap justify-around gap-4 mt-4 sm:mt-6 w-full justify-items-center">
-            {chartData.map((item, i) => (
-              <div
-                key={i}
-                className="flex flex-col items-center justify-center text-xs sm:text-sm"
-              >
-                <div className="text-xl sm:text-2xl">{item.icon}</div>
-                <span className="font-medium">{item.skill}</span>
-                <span className="text-[10px] sm:text-xs text-muted-foreground">
-                  {item.porcentagem}%
-                </span>
-              </div>
-            ))}
-          </div>
+      {/* Botões de filtro */}
+      <div className="flex gap-3 justify-center">
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          {tiposUnicos.map((tipo) => (
+            <Button
+              key={tipo}
+              variant={filtroAtivo === tipo ? "default" : "outline"}
+              className="px-5 py-2 text-sm md:text-base transition-all"
+              onClick={() => setFiltroAtivo(tipo)}
+            >
+              {tipo}
+            </Button>
+          ))}
         </div>
-        {/* --- Bar Chart    --- */}
-        <div className="w-full flex flex-col items-center col-span-2">
+      </div>
 
-          <CardContent className="w-full md:w-[80%] mt-4 sm:mt-6 p-5">
-            <ChartContainer config={chartConfig} >
-              <ResponsiveContainer width="100%">
-                <BarChart data={chartData} layout="vertical" className="p-2">
-                  <CartesianGrid horizontal={true} />
-                  <YAxis
-                    dataKey="skill"
-                    type="category"
-                    tickLine={false}
-                    tickMargin={10}
-                    axisLine={false}
-                  />
-                  <XAxis dataKey="porcentagem" type="number" domain={[0, 100]} />
-                  <ChartTooltip
-                    cursor={false}
-                    content={<ChartTooltipContent indicator="line" />}
-                  />
-                  <Bar
-                    dataKey="porcentagem"
-                    layout="vertical"
-                    fill="var(--color-porcentagem)"
-                    radius={4}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
-            </ChartContainer>
-          </CardContent>
-        </div>
-
-        {/* --- Footer --- */}
-        <CardFooter className="flex flex-col md:col-span-2 items-center gap-2 text-xs sm:text-sm">
-          <h2 className="flex gap-2 leading-none font-medium items-center">
-            Tecnologias
-          </h2>
-        </CardFooter>
-      </Card>
-
+      {/* Cards filtrados */}
+      <div className="flex flex-wrap flex-auto gap-5 md:gap-x-20 justify-center items-center w-full h-full">
+        {ferramentasFiltradas.map(({ nome, icone, nivel, href }) => (
+          <a
+            href={href}
+            key={nome}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-lg font-semibold flex items-center justify-center"
+          >
+            <Card className="flex flex-col justify-around text-sm md:text-2xl items-start p-5 aspect-square min-w-30 md:w-60 dark:bg-slate-800">
+              {icone}
+              {nome}
+              <p className="text-sm text-foreground">{nivel}</p>
+            </Card>
+          </a>
+        ))}
+      </div>
     </section>
   );
 };

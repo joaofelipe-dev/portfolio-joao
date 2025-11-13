@@ -25,10 +25,10 @@ export const Contato = () => {
           Contato
         </h1>
 
-        <div className="w-full flex flex-col lg:flex-row gap-8 items-center justify-center md:justify-around ">
+        <div className="w-full flex flex-col md:grid md:grid-cols-2 gap-5 items-center justify-center ">
           {/* Formulário */}
-          <div className="w-full lg:w-1/2 max-w-2xl bg-foreground/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-foreground/20">
-            <form className="space-y-4 md:space-y-6">
+          <div className="w-full bg-foreground/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-foreground/20">
+            <form className="space-y-4 md:space-y-6 ">
               <div className="space-y-2">
                 <Label className="text-foreground font-medium">Nome</Label>
                 <Input 
@@ -85,7 +85,7 @@ export const Contato = () => {
           </div>
 
           {/* Ícones de contato */}
-          <div className="w-full lg:w-auto flex lg:flex-col items-center justify-center gap-6 md:gap-8">
+          <div className="w-full flex md:flex-col items-start justify-center gap-6 md:gap-8">
             <div className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
               <Mail size={28} />
             </div>
