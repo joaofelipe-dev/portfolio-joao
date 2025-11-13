@@ -15,20 +15,21 @@ import {
   SiShadcnui,
   SiTailwindcss,
 } from "react-icons/si";
+import Particles from "@/components/ui/Particles";
 
 export const Skills = () => {
   const tools = [
     {
       nome: "React",
       icone: <SiReact />,
-      nivel: "Básico",
+      nivel: "Intermediário",
       tipo: "Frameworks & Bibliotecas",
       href: "https://react.dev",
     },
     {
       nome: "Tailwind",
       icone: <SiTailwindcss />,
-      nivel: "Básico",
+      nivel: "Intermediário",
       tipo: "Frameworks & Bibliotecas",
       href: "https://tailwindcss.com",
     },
@@ -49,35 +50,35 @@ export const Skills = () => {
     {
       nome: "Git",
       icone: <SiGit />,
-      nivel: "Básico",
+      nivel: "Intermediário",
       tipo: "Controle de Versão",
       href: "https://git-scm.com",
     },
     {
       nome: "Shadcn UI",
       icone: <SiShadcnui />,
-      nivel: "Básico",
+      nivel: "Intermediário",
       tipo: "Estilização & UI",
       href: "https://git-scm.com",
     },
     {
       nome: "Html5",
       icone: <SiHtml5 />,
-      nivel: "Básico",
+      nivel: "Intermediário",
       tipo: "Linguagens & Core",
       href: "https://git-scm.com",
     },
     {
       nome: "Github",
       icone: <SiGithub />,
-      nivel: "Básico",
+      nivel: "Intermediário",
       tipo: "Controle de Versão",
       href: "https://git-scm.com",
     },
     {
       nome: "Css3",
       icone: <SiCss3 />,
-      nivel: "Básico",
+      nivel: "Intermediário",
       tipo: "Linguagens & Core",
       href: "https://git-scm.com",
     },
@@ -97,12 +98,13 @@ export const Skills = () => {
       id="skills"
       className="min-h-screen h-screen p-10 flex flex-col gap-8"
     >
+
       {/* Botões de filtro */}
       <div className="flex gap-3 justify-center">
         <div className="flex flex-wrap items-center justify-center gap-3">
           {tiposUnicos.map((tipo) => (
             <Button
-              key={tipo}
+            key={tipo}
               variant={filtroAtivo === tipo ? "default" : "outline"}
               className="px-5 py-2 text-sm md:text-base transition-all"
               onClick={() => setFiltroAtivo(tipo)}
@@ -117,13 +119,13 @@ export const Skills = () => {
       <div className="flex flex-wrap flex-auto gap-5 md:gap-x-20 justify-center items-center w-full h-full">
         {ferramentasFiltradas.map(({ nome, icone, nivel, href }) => (
           <a
-            href={href}
+          href={href}
             key={nome}
             target="_blank"
             rel="noopener noreferrer"
             className="text-lg font-semibold flex items-center justify-center"
           >
-            <Card className="flex flex-col justify-around text-sm md:text-2xl items-start p-5 aspect-square min-w-30 md:w-60 dark:bg-slate-800">
+            <Card className="flex flex-col justify-around text-sm md:text-2xl items-start p-5 aspect-square min-w-30 md:w-60 dark:bg-slate-800 hover:scale-110 hover:shadow-md ">
               {icone}
               {nome}
               <p className="text-sm text-foreground">{nivel}</p>
