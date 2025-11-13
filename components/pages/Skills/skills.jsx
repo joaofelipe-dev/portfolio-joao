@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ButtonGroup } from "@/components/ui/button-group";
 import {
   SiCss3,
   SiGit,
@@ -15,77 +14,21 @@ import {
   SiShadcnui,
   SiTailwindcss,
 } from "react-icons/si";
-import Particles from "@/components/ui/Particles";
 
 export const Skills = () => {
   const tools = [
-    {
-      nome: "React",
-      icone: <SiReact />,
-      nivel: "Intermediário",
-      tipo: "Frameworks & Bibliotecas",
-      href: "https://react.dev",
-    },
-    {
-      nome: "Tailwind",
-      icone: <SiTailwindcss />,
-      nivel: "Intermediário",
-      tipo: "Frameworks & Bibliotecas",
-      href: "https://tailwindcss.com",
-    },
-    {
-      nome: "Next.js",
-      icone: <SiNextdotjs />,
-      nivel: "Básico",
-      tipo: "Frameworks & Bibliotecas",
-      href: "https://nextjs.org",
-    },
-    {
-      nome: "JavaScript",
-      icone: <SiJavascript />,
-      nivel: "Básico",
-      tipo: "Linguagens & Core",
-      href: "/",
-    },
-    {
-      nome: "Git",
-      icone: <SiGit />,
-      nivel: "Intermediário",
-      tipo: "Controle de Versão",
-      href: "https://git-scm.com",
-    },
-    {
-      nome: "Shadcn UI",
-      icone: <SiShadcnui />,
-      nivel: "Intermediário",
-      tipo: "Estilização & UI",
-      href: "https://git-scm.com",
-    },
-    {
-      nome: "Html5",
-      icone: <SiHtml5 />,
-      nivel: "Intermediário",
-      tipo: "Linguagens & Core",
-      href: "https://git-scm.com",
-    },
-    {
-      nome: "Github",
-      icone: <SiGithub />,
-      nivel: "Intermediário",
-      tipo: "Controle de Versão",
-      href: "https://git-scm.com",
-    },
-    {
-      nome: "Css3",
-      icone: <SiCss3 />,
-      nivel: "Intermediário",
-      tipo: "Linguagens & Core",
-      href: "https://git-scm.com",
-    },
+    { nome: "React", icone: <SiReact />, nivel: "Intermediário", tipo: "Frameworks & Bibliotecas", href: "https://react.dev" },
+    { nome: "Tailwind", icone: <SiTailwindcss />, nivel: "Intermediário", tipo: "Frameworks & Bibliotecas", href: "https://tailwindcss.com" },
+    { nome: "Next.js", icone: <SiNextdotjs />, nivel: "Básico", tipo: "Frameworks & Bibliotecas", href: "https://nextjs.org" },
+    { nome: "JavaScript", icone: <SiJavascript />, nivel: "Básico", tipo: "Linguagens & Core", href: "/" },
+    { nome: "Git", icone: <SiGit />, nivel: "Intermediário", tipo: "Controle de Versão", href: "https://git-scm.com" },
+    { nome: "Shadcn UI", icone: <SiShadcnui />, nivel: "Intermediário", tipo: "Estilização & UI", href: "https://ui.shadcn.com" },
+    { nome: "Html5", icone: <SiHtml5 />, nivel: "Intermediário", tipo: "Linguagens & Core", href: "https://developer.mozilla.org/docs/Web/HTML" },
+    { nome: "Github", icone: <SiGithub />, nivel: "Intermediário", tipo: "Controle de Versão", href: "https://github.com" },
+    { nome: "Css3", icone: <SiCss3 />, nivel: "Intermediário", tipo: "Linguagens & Core", href: "https://developer.mozilla.org/docs/Web/CSS" },
   ];
 
   const tiposUnicos = ["Todos", ...new Set(tools.map((tool) => tool.tipo))];
-
   const [filtroAtivo, setFiltroAtivo] = useState("Todos");
 
   const ferramentasFiltradas =
@@ -96,39 +39,49 @@ export const Skills = () => {
   return (
     <section
       id="skills"
-      className="min-h-screen h-screen p-10 flex flex-col gap-8"
+      className="min-h-screen w-full p-6 md:p-10 flex flex-col gap-8"
     >
-
       {/* Botões de filtro */}
-      <div className="flex gap-3 justify-center">
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          {tiposUnicos.map((tipo) => (
-            <Button
+      <div className="flex flex-wrap gap-3 justify-center">
+        {tiposUnicos.map((tipo) => (
+          <Button
             key={tipo}
-              variant={filtroAtivo === tipo ? "default" : "outline"}
-              className="px-5 py-2 text-sm md:text-base transition-all"
-              onClick={() => setFiltroAtivo(tipo)}
-            >
-              {tipo}
-            </Button>
-          ))}
-        </div>
+            variant={filtroAtivo === tipo ? "default" : "outline"}
+            className="px-4 py-2 text-sm md:text-base transition-all"
+            onClick={() => setFiltroAtivo(tipo)}
+          >
+            {tipo}
+          </Button>
+        ))}
       </div>
 
       {/* Cards filtrados */}
-      <div className="flex flex-wrap flex-auto gap-5 md:gap-x-20 justify-center items-center w-full h-full">
+      <div
+        className="
+          grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 
+          gap-4 sm:gap-6 lg:gap-8 justify-items-center flex-1
+        "
+      >
         {ferramentasFiltradas.map(({ nome, icone, nivel, href }) => (
           <a
-          href={href}
             key={nome}
+            href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-lg font-semibold flex items-center justify-center"
+            className="w-full max-w-[140px] sm:max-w-40 md:max-w-[180px]"
           >
-            <Card className="flex flex-col justify-around text-sm md:text-2xl items-start p-5 aspect-square min-w-30 md:w-60 dark:bg-slate-800 hover:scale-110 hover:shadow-md ">
-              {icone}
-              {nome}
-              <p className="text-sm text-foreground">{nivel}</p>
+            <Card
+              className="
+                flex flex-col items-center justify-center 
+                text-xs sm:text-sm md:text-base text-center 
+                p-4 sm:p-5 aspect-square
+                dark:bg-slate-800 hover:scale-105 hover:shadow-lg 
+                transition-all duration-300
+              "
+            >
+              <div className="text-4xl sm:text-5xl mb-2">{icone}</div>
+              <h3 className="font-semibold">{nome}</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground">{nivel}</p>
             </Card>
           </a>
         ))}

@@ -7,10 +7,9 @@ export const Sobre = () => {
   return (
     <>
 
-      {/* Seção Sobre com blob interativo */}
       <section
         id="sobre"
-        className="relative snap-start min-h-screen flex flex-col items-center justify-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+        className="relative snap-start min-h-screen flex flex-col items-center justify-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8"
       >
         {/* Fundo com partículas */}
         <div className="absolute inset-0 -z-10">
