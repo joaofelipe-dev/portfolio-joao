@@ -25,25 +25,28 @@ export const Contato = () => {
     setSubmitStatus(null);
 
     const formData = new FormData(event.target);
-    
+
     try {
-      const response = await fetch("https://formsubmit.co/ajax/joaoufelipe@hotmail.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          nome: formData.get("nome"),
-          email: formData.get("email"),
-          objetivo: formData.get("objetivo"),
-          assunto: formData.get("assunto"),
-          mensagem: formData.get("mensagem"),
-          _subject: "📨 Novo contato pelo seu portfólio!",
-          _captcha: "false",
-          _template: "box"
-        })
-      });
+      const response = await fetch(
+        "https://formsubmit.co/ajax/e44555f41de2646eddab7a7928ce763f",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            nome: formData.get("nome"),
+            email: formData.get("email"),
+            objetivo: formData.get("objetivo"),
+            assunto: formData.get("assunto"),
+            mensagem: formData.get("mensagem"),
+            _subject: "📨 Novo contato pelo seu portfólio!",
+            _captcha: "false",
+            _template: "box",
+          }),
+        }
+      );
 
       if (response.ok) {
         setSubmitStatus("success");
@@ -77,17 +80,15 @@ export const Contato = () => {
                 Mensagem enviada com sucesso! Entrarei em contato em breve.
               </div>
             )}
-            
+
             {submitStatus === "error" && (
               <div className="mb-4 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 text-center">
-                Erro ao enviar mensagem. Tente novamente ou entre em contato diretamente por email.
+                Erro ao enviar mensagem. Tente novamente ou entre em contato
+                diretamente por email.
               </div>
             )}
 
-            <form
-              onSubmit={handleSubmit}
-              className="space-y-4 md:space-y-6"
-            >
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
               <div className="space-y-2">
                 <Label className="text-foreground font-medium">Nome</Label>
                 <Input
@@ -112,15 +113,21 @@ export const Contato = () => {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-foreground font-medium">Objetivo do contato</Label>
+                <Label className="text-foreground font-medium">
+                  Objetivo do contato
+                </Label>
                 <Select name="objetivo" disabled={isSubmitting}>
                   <SelectTrigger className="w-full bg-foreground/20 border-foreground/30 text-foreground">
                     <SelectValue placeholder="Objetivo" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="contrato">Quero te contratar</SelectItem>
-                    <SelectItem value="sobre">Quero saber mais sobre</SelectItem>
-                    <SelectItem value="contato">Somente um contato breve</SelectItem>
+                    <SelectItem value="sobre">
+                      Quero saber mais sobre
+                    </SelectItem>
+                    <SelectItem value="contato">
+                      Somente um contato breve
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -169,7 +176,10 @@ export const Contato = () => {
                 <Github size={28} />
               </Card>
             </Link>
-            <Link href="https://www.linkedin.com/in/joao-felipedev" target="_blank">
+            <Link
+              href="https://www.linkedin.com/in/joao-felipedev"
+              target="_blank"
+            >
               <Card className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
                 <Linkedin size={28} />
               </Card>
