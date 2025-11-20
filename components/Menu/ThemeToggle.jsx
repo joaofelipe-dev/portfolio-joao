@@ -1,4 +1,4 @@
-"use client"; // necessário para interatividade no client
+"use client";
 
 import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";

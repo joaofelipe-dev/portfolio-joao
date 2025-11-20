@@ -1,12 +1,21 @@
-'use client'
+"use client";
 import { Button } from "@/components/ui/button";
 import TextType from "@/components/ui/TextType";
 import GradientText from "@/components/ui/GradientText";
 import { UserRound, PanelsTopLeft } from "lucide-react";
 import { motion } from "motion/react";
-import Link from "next/link";
-import LogoLoop from "@/components/ui/LogoLoop"
-import { SiReact, SiNextdotjs, SiTailwindcss, SiGit, SiShadcnui, SiGithub, SiHtml5, SiCss3, SiJavascript } from 'react-icons/si';
+import LogoLoop from "@/components/ui/LogoLoop";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiGit,
+  SiShadcnui,
+  SiGithub,
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+} from "react-icons/si";
 
 export function Banner() {
   const techLogos = [
@@ -16,7 +25,11 @@ export function Banner() {
     { node: <SiCss3 />, title: "Css3", href: "" },
     { node: <SiJavascript />, title: "JavaScript", href: "" },
     { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
-    { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+    {
+      node: <SiTailwindcss />,
+      title: "Tailwind CSS",
+      href: "https://tailwindcss.com",
+    },
     { node: <SiShadcnui />, title: "Shadcn UI", href: "https://ui.shadcn.com" },
     { node: <SiGit />, title: "Git", href: "https://git-scm.com" },
   ];
@@ -135,7 +148,10 @@ export function Banner() {
             {/* Tecnologias */}
             <div className="flex flex-col items-center gap-y-20 w-full ">
               <h2 className="text-2xl md:text-3xl font-bold">Tecnologias</h2>
-              <div className="w-full max-w-full overflow-hidden" style={{ height: '120px', position: 'relative' }}>
+              <div
+                className="w-full max-w-full overflow-hidden"
+                style={{ height: "120px", position: "relative" }}
+              >
                 <LogoLoop
                   logos={techLogos}
                   speed={50}
