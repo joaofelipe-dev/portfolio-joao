@@ -13,9 +13,51 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 export const Contato = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    const formData = new FormData(event.target);
+    
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/joaoufelipe@hotmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          nome: formData.get("nome"),
+          email: formData.get("email"),
+          objetivo: formData.get("objetivo"),
+          assunto: formData.get("assunto"),
+          mensagem: formData.get("mensagem"),
+          _subject: "📨 Novo contato pelo seu portfólio!",
+          _captcha: "false",
+          _template: "box"
+        })
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        event.target.reset();
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section
       id="contato"
@@ -30,26 +72,48 @@ export const Contato = () => {
         <div className="w-full flex flex-col md:w-[50%] gap-5 items-center justify-center ">
           {/* Formulário */}
           <div className="w-full justify-end bg-foreground/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-foreground/20">
-            <form className="space-y-4 md:space-y-6 ">
+            {submitStatus === "success" && (
+              <div className="mb-4 p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-400 text-center">
+                Mensagem enviada com sucesso! Entrarei em contato em breve.
+              </div>
+            )}
+            
+            {submitStatus === "error" && (
+              <div className="mb-4 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 text-center">
+                Erro ao enviar mensagem. Tente novamente ou entre em contato diretamente por email.
+              </div>
+            )}
+
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-4 md:space-y-6"
+            >
               <div className="space-y-2">
                 <Label className="text-foreground font-medium">Nome</Label>
                 <Input
+                  name="nome"
+                  required
                   placeholder="Ex: João da Silva"
                   className="bg-foreground/20 border-foreground/30 text-foreground placeholder:text-foreground/60"
+                  disabled={isSubmitting}
                 />
               </div>
 
               <div className="space-y-2">
                 <Label className="text-foreground font-medium">Email</Label>
                 <Input
+                  name="email"
+                  type="email"
+                  required
                   placeholder="Ex: joaodasilva@email.com"
                   className="bg-foreground/20 border-foreground/30 text-foreground placeholder:text-foreground/60"
+                  disabled={isSubmitting}
                 />
               </div>
 
               <div className="space-y-2">
                 <Label className="text-foreground font-medium">Objetivo do contato</Label>
-                <Select>
+                <Select name="objetivo" disabled={isSubmitting}>
                   <SelectTrigger className="w-full bg-foreground/20 border-foreground/30 text-foreground">
                     <SelectValue placeholder="Objetivo" />
                   </SelectTrigger>
@@ -64,31 +128,38 @@ export const Contato = () => {
               <div className="space-y-2">
                 <Label className="text-foreground font-medium">Assunto</Label>
                 <Input
+                  name="assunto"
+                  required
                   placeholder="Assunto"
                   className="bg-foreground/20 border-foreground/30 text-foreground placeholder:text-foreground/60"
+                  disabled={isSubmitting}
                 />
               </div>
 
               <div className="space-y-2">
                 <Label className="text-foreground font-medium">Descrição</Label>
                 <Textarea
+                  name="mensagem"
+                  required
                   placeholder="Mensagem"
                   className="min-h-32 bg-foreground/20 border-foreground/30 text-foreground placeholder:text-foreground/60 resize-none"
+                  disabled={isSubmitting}
                 />
               </div>
 
               <Button
                 type="submit"
-                className="w-full bg-foreground/20 hover:bg-foreground/30 text-foreground border border-foreground/30 transition-all duration-300"
+                disabled={isSubmitting}
+                className="w-full bg-foreground/20 hover:bg-foreground/30 text-foreground border border-foreground/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Enviar
+                {isSubmitting ? "Enviando..." : "Enviar"}
               </Button>
             </form>
           </div>
 
           {/* Ícones de contato */}
           <div className="w-full flex items-start justify-center gap-6 md:gap-8">
-            <Link href="https://github.com/joaofelipe-dev" target="_blank">
+            <Link href="mailto:joaoufelipe@hotmail.com">
               <Card className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
                 <Mail size={28} />
               </Card>

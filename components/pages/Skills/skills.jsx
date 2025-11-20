@@ -17,15 +17,69 @@ import {
 
 export const Skills = () => {
   const tools = [
-    { nome: "React", icone: <SiReact />, nivel: "Intermediário", tipo: "Frameworks & Bibliotecas", href: "https://react.dev" },
-    { nome: "Tailwind", icone: <SiTailwindcss />, nivel: "Intermediário", tipo: "Frameworks & Bibliotecas", href: "https://tailwindcss.com" },
-    { nome: "Next.js", icone: <SiNextdotjs />, nivel: "Básico", tipo: "Frameworks & Bibliotecas", href: "https://nextjs.org" },
-    { nome: "JavaScript", icone: <SiJavascript />, nivel: "Básico", tipo: "Linguagens & Core", href: "/" },
-    { nome: "Git", icone: <SiGit />, nivel: "Intermediário", tipo: "Controle de Versão", href: "https://git-scm.com" },
-    { nome: "Shadcn UI", icone: <SiShadcnui />, nivel: "Intermediário", tipo: "Estilização & UI", href: "https://ui.shadcn.com" },
-    { nome: "Html5", icone: <SiHtml5 />, nivel: "Intermediário", tipo: "Linguagens & Core", href: "https://developer.mozilla.org/docs/Web/HTML" },
-    { nome: "Github", icone: <SiGithub />, nivel: "Intermediário", tipo: "Controle de Versão", href: "https://github.com" },
-    { nome: "Css3", icone: <SiCss3 />, nivel: "Intermediário", tipo: "Linguagens & Core", href: "https://developer.mozilla.org/docs/Web/CSS" },
+    {
+      nome: "React",
+      icone: <SiReact />,
+      nivel: "Intermediário",
+      tipo: "Frameworks & Bibliotecas",
+      href: "https://react.dev",
+    },
+    {
+      nome: "Tailwind",
+      icone: <SiTailwindcss />,
+      nivel: "Intermediário",
+      tipo: "Frameworks & Bibliotecas",
+      href: "https://tailwindcss.com",
+    },
+    {
+      nome: "Next.js",
+      icone: <SiNextdotjs />,
+      nivel: "Básico",
+      tipo: "Frameworks & Bibliotecas",
+      href: "https://nextjs.org",
+    },
+    {
+      nome: "JavaScript",
+      icone: <SiJavascript />,
+      nivel: "Básico",
+      tipo: "Linguagens & Core",
+      href: "/",
+    },
+    {
+      nome: "Git",
+      icone: <SiGit />,
+      nivel: "Intermediário",
+      tipo: "Controle de Versão",
+      href: "https://git-scm.com",
+    },
+    {
+      nome: "Shadcn UI",
+      icone: <SiShadcnui />,
+      nivel: "Intermediário",
+      tipo: "Estilização & UI",
+      href: "https://ui.shadcn.com",
+    },
+    {
+      nome: "Html5",
+      icone: <SiHtml5 />,
+      nivel: "Intermediário",
+      tipo: "Linguagens & Core",
+      href: "https://developer.mozilla.org/docs/Web/HTML",
+    },
+    {
+      nome: "Github",
+      icone: <SiGithub />,
+      nivel: "Intermediário",
+      tipo: "Controle de Versão",
+      href: "https://github.com",
+    },
+    {
+      nome: "Css3",
+      icone: <SiCss3 />,
+      nivel: "Intermediário",
+      tipo: "Linguagens & Core",
+      href: "https://developer.mozilla.org/docs/Web/CSS",
+    },
   ];
 
   const tiposUnicos = ["Todos", ...new Set(tools.map((tool) => tool.tipo))];
@@ -81,7 +135,9 @@ export const Skills = () => {
             >
               <div className="text-4xl sm:text-5xl mb-2">{icone}</div>
               <h3 className="font-semibold">{nome}</h3>
-              <p className="text-xs sm:text-sm text-muted-foreground">{nivel}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">
+                {nivel}
+              </p>
             </Card>
           </a>
         ))}

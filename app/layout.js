@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Portfólio João Felipe",
   description: "Desenvolvedor Frontend | React | Next.js | Tailwind CSS",
+    icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
