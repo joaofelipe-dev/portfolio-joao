@@ -41,7 +41,7 @@ export const Skills = () => {
     {
       nome: "JavaScript",
       icone: <SiJavascript />,
-      nivel: "Básico",
+      nivel: "Intermediário",
       tipo: "Linguagens & Core",
       href: "/",
     },
@@ -122,7 +122,7 @@ export const Skills = () => {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full max-w-[140px] sm:max-w-40 md:max-w-[180px]"
+            className="aspect-square w-full max-w-[140px] sm:max-w-40 md:max-w-[180px]"
           >
             <Card
               className="
