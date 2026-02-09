@@ -15,18 +15,18 @@ export const ProjetosPage = () => {
       image: "/parallax.png",
       title: "Parallax Creator",
       description: "Criador de efeito Parallax",
-      href: "https://parallax-creator.vercel.app",
-    },
-    {
-      image: "/wallpaper-dark.png",
-      title: "Landing Page",
-      description: "Landing Page Moderna",
       href: "./",
     },
     {
-      image: "/todo.png",
-      title: "To do List",
-      description: "Lista de Afazeres",
+      image: "/painel-vendas.png",
+      title: "Painel de Vendas",
+      description: "Dashboard e Relatório de vendas",
+      href: "./",
+    },
+    {
+      image: "/pedido-papelaria.png",
+      title: "Pedido de Papelaria",
+      description: "Sistema de pedidos para papelaria",
       href: "./",
     },
 
