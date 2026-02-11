@@ -129,7 +129,7 @@ export const ProjetosPage = () => {
                 loop: true,
               }}
               orientation="horizontal"
-              setApi={setApi} 
+              setApi={setApi}
             >
               <CarouselPrevious className="shrink-0 p-3 rounded-full z-20 border-none shadow-lg transition-colors" />
 
@@ -147,19 +147,18 @@ export const ProjetosPage = () => {
             </Carousel>
           </div>
         </div>
-      <div className="flex gap-2 mt-2">
-        {projetosArray.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => api && api.scrollTo(index)} // 👈 muda o slide ao clicar
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentIndex
+        <div className="flex gap-2 mt-2">
+          {projetosArray.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => api && api.scrollTo(index)} // 👈 muda o slide ao clicar
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex
                 ? "bg-primary scale-150 hover:bg-primary/80"
                 : "bg-foreground hover:bg-foreground/80"
-            }`}
-          />
-        ))}
-      </div>
+                }`}
+            />
+          ))}
+        </div>
       </main>
       {/* Waves do rodapé */}
       <div className="relative w-full h-[213px] overflow-hidden -scale-y-100 z-0 pointer-events-none">
