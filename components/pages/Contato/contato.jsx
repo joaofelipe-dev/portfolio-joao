@@ -68,21 +68,21 @@ export const Contato = () => {
     >
       {/* Conteúdo principal */}
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 py-8 flex flex-col items-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-foreground text-center mb-2">
-          Contato
-        </h1>
+        <h2 className="text-4xl md:text-5xl font-bold text-foreground text-center mb-2">
+          Entre em Contato
+        </h2>
 
         <div className="w-full flex flex-col md:w-[50%] gap-5 items-center justify-center ">
           {/* Formulário */}
           <div className="w-full justify-end bg-foreground/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-foreground/20">
             {submitStatus === "success" && (
-              <div className="mb-4 p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-400 text-center">
+              <div role="alert" className="mb-4 p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-400 text-center">
                 Mensagem enviada com sucesso! Entrarei em contato em breve.
               </div>
             )}
 
             {submitStatus === "error" && (
-              <div className="mb-4 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 text-center">
+              <div role="alert" className="mb-4 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 text-center">
                 Erro ao enviar mensagem. Tente novamente ou entre em contato
                 diretamente por email.
               </div>
@@ -90,8 +90,9 @@ export const Contato = () => {
 
             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
               <div className="space-y-2">
-                <Label className="text-foreground font-medium">Nome</Label>
+                <Label htmlFor="nome" className="text-foreground font-medium">Nome</Label>
                 <Input
+                  id="nome"
                   name="nome"
                   required
                   placeholder="Ex: João da Silva"
@@ -101,8 +102,9 @@ export const Contato = () => {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-foreground font-medium">Email</Label>
+                <Label htmlFor="email" className="text-foreground font-medium">Email</Label>
                 <Input
+                  id="email"
                   name="email"
                   type="email"
                   required
@@ -113,11 +115,11 @@ export const Contato = () => {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-foreground font-medium">
+                <Label htmlFor="objetivo" className="text-foreground font-medium">
                   Objetivo do contato
                 </Label>
                 <Select name="objetivo" disabled={isSubmitting}>
-                  <SelectTrigger className="w-full bg-foreground/20 border-foreground/30 text-foreground">
+                  <SelectTrigger id="objetivo" className="w-full bg-foreground/20 border-foreground/30 text-foreground">
                     <SelectValue placeholder="Objetivo" />
                   </SelectTrigger>
                   <SelectContent>
@@ -133,8 +135,9 @@ export const Contato = () => {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-foreground font-medium">Assunto</Label>
+                <Label htmlFor="assunto" className="text-foreground font-medium">Assunto</Label>
                 <Input
+                  id="assunto"
                   name="assunto"
                   required
                   placeholder="Assunto"
@@ -144,8 +147,9 @@ export const Contato = () => {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-foreground font-medium">Descrição</Label>
+                <Label htmlFor="mensagem" className="text-foreground font-medium">Descrição</Label>
                 <Textarea
+                  id="mensagem"
                   name="mensagem"
                   required
                   placeholder="Mensagem"
@@ -159,19 +163,19 @@ export const Contato = () => {
                 disabled={isSubmitting}
                 className="w-full bg-foreground/20 hover:bg-foreground/30 text-foreground border border-foreground/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isSubmitting ? "Enviando..." : "Enviar"}
+                {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
               </Button>
             </form>
           </div>
 
           {/* Ícones de contato */}
-          <div className="w-full flex items-start justify-center gap-6 md:gap-8">
-            <Link href="mailto:joaoufelipe@hotmail.com">
+          <div className="w-full flex items-start justify-center gap-6 md:gap-8 mt-4">
+            <Link href="mailto:joaoufelipe@hotmail.com" aria-label="Enviar email para João Felipe">
               <Card className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
                 <Mail size={28} />
               </Card>
             </Link>
-            <Link href="https://github.com/joaofelipe-dev" target="_blank">
+            <Link href="https://github.com/joaofelipe-dev" target="_blank" aria-label="Ver perfil do GitHub de João Felipe">
               <Card className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
                 <Github size={28} />
               </Card>
@@ -179,6 +183,7 @@ export const Contato = () => {
             <Link
               href="https://www.linkedin.com/in/joao-felipedev"
               target="_blank"
+              aria-label="Ver perfil do LinkedIn de João Felipe"
             >
               <Card className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
                 <Linkedin size={28} />
@@ -194,10 +199,11 @@ export const Contato = () => {
           className="absolute inset-0 w-full h-full"
           viewBox="0 0 1440 213"
           preserveAspectRatio="none"
+          aria-hidden="true"
         >
           <path
             d="M0,192L80,170.7C160,149,320,107,480,112C640,117,800,171,960,192C1120,213,1280,203,1360,197.3L1440,192L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
-            fill="url(#grad1)"
+            fill="url(#waveGrad1)"
             className="shadow-lg shadow-blue-500/30"
           />
         </svg>
@@ -205,10 +211,11 @@ export const Contato = () => {
           className="absolute inset-0 w-full h-full"
           viewBox="0 0 1440 213"
           preserveAspectRatio="none"
+          aria-hidden="true"
         >
           <path
             d="M0,160L60,149.3C120,139,240,117,360,96C480,75,600,53,720,74.7C840,96,960,160,1080,160C1200,160,1320,96,1380,64L1440,32L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
-            fill="url(#grad2)"
+            fill="url(#waveGrad2)"
             className="blur-sm shadow-2xl shadow-purple-500"
           />
         </svg>
@@ -216,10 +223,11 @@ export const Contato = () => {
           className="absolute inset-0 w-full h-full"
           viewBox="0 0 1440 213"
           preserveAspectRatio="none"
+          aria-hidden="true"
         >
           <path
             d="M0,128L40,133.3C80,139,160,149,240,165.3C320,181,400,203,480,197.3C560,192,640,160,720,149.3C800,139,880,149,960,160C1040,171,1120,181,1200,181.3C1280,181,1360,171,1400,165.3L1440,160L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"
-            fill="url(#grad3)"
+            fill="url(#waveGrad3)"
             className="opacity-70 blur-[2px] shadow-lg shadow-indigo-400"
           />
         </svg>

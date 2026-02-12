@@ -26,7 +26,7 @@ export const Sobre = () => {
         </div>
         {/* Cabeçalho */}
         <div className="relative z-10 text-center mb-8 sm:mb-12 lg:mb-16 w-full max-w-6xl">
-          <motion.h1
+          <motion.h2
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, type: "spring" }}
@@ -34,16 +34,16 @@ export const Sobre = () => {
             className="text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-foreground"
           >
             Sobre Mim
-          </motion.h1>
-          <motion.h2
+          </motion.h2>
+          <motion.div
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
             viewport={{ once: true }}
-            className="text-lg md:text-xl text-primary max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-primary max-w-2xl mx-auto font-medium"
           >
             Desenvolvedor Frontend | React | Next.js | Tailwind CSS
-          </motion.h2>
+          </motion.div>
         </div>
 
         {/* Conteúdo Principal */}

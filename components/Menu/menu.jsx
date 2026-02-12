@@ -32,9 +32,10 @@ export const Menu = () => {
 
   const [hovered, setHovered] = useState(false);
   return (
-    <div
+    <nav
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      aria-label="Navegação lateral"
       className={`
         fixed top-[50%] right-3 transform -translate-y-1/2
         flex flex-col items-center gap-4
@@ -45,46 +46,48 @@ export const Menu = () => {
         z-50
       `}
     >
-      {pages.map((page) => {
-        const isActive = activeSection === page.id;
-        return (
-          <a
-            key={page.id}
-            href={page.href}
-            onClick={(e) => handleClick(e, page.id)}
-            className={`
-              flex items-center justify-start gap-3 w-full
-              text-secondary px-2 py-1 rounded-md
-              transition-all duration-300 cursor-pointer
-              ${
-                isActive
-                  ? "text-primary"
-                  : "text-muted-foreground hover:text-primary"
-              }
-            `}
-          >
-            <Circle
-              className={`min-w-3 transition-transform duration-300 ${
-                isActive ? "scale-125 fill-primary" : ""
-              }`}
-              size={10}
-            />
-            <span
-              className={`
-                whitespace-nowrap overflow-hidden
-                transition-all duration-300
-                ${
-                  hovered
-                    ? "opacity-100 translate-x-0"
-                    : "opacity-0 -translate-x-2"
-                }
-              `}
-            >
-              {page.nome}
-            </span>
-          </a>
-        );
-      })}
-    </div>
+      <ul className="flex flex-col items-center gap-4 w-full list-none p-0 m-0">
+        {pages.map((page) => {
+          const isActive = activeSection === page.id;
+          return (
+            <li key={page.id} className="w-full">
+              <a
+                href={page.href}
+                onClick={(e) => handleClick(e, page.id)}
+                aria-label={`Ir para seção ${page.nome}`}
+                aria-current={isActive ? "page" : undefined}
+                className={`
+                  flex items-center justify-start gap-3 w-full
+                  text-secondary px-2 py-1 rounded-md
+                  transition-all duration-300 cursor-pointer
+                  ${isActive
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-primary"
+                  }
+                `}
+              >
+                <Circle
+                  className={`min-w-3 transition-transform duration-300 ${isActive ? "scale-125 fill-primary" : ""
+                    }`}
+                  size={10}
+                />
+                <span
+                  className={`
+                    whitespace-nowrap overflow-hidden
+                    transition-all duration-300
+                    ${hovered
+                      ? "opacity-100 translate-x-0"
+                      : "opacity-0 -translate-x-2"
+                    }
+                  `}
+                >
+                  {page.nome}
+                </span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
 };

@@ -93,8 +93,17 @@ export const Skills = () => {
   return (
     <section
       id="skills"
-      className="min-h-screen w-full p-6 md:p-10 flex flex-col gap-8"
+      className="min-h-screen w-full p-6 md:p-10 flex flex-col gap-12"
     >
+      <div className="text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+          Minhas Habilidades
+        </h2>
+        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          Tecnologias e ferramentas que utilizo para construir produtos modernos e escaláveis.
+        </p>
+      </div>
+
       {/* Botões de filtro */}
       <div className="flex flex-wrap gap-3 justify-center">
         {tiposUnicos.map((tipo) => (

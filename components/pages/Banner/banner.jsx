@@ -54,6 +54,7 @@ export function Banner() {
           {/* Título */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left mb-8">
             <h1 className="text-3xl md:text-6xl font-bold leading-tight mb-4">
+              João Felipe | <br className="hidden md:block" />
               Transformando ideias em&nbsp;
             </h1>
             <span className="text-3xl md:text-6xl">
@@ -77,20 +78,20 @@ export function Banner() {
           {/* Subtítulo */}
           <div className="mb-8 text-center md:text-left">
             <h2 className="text-lg md:text-xl text-muted-foreground">
-              Desenvolvedor Frontend | React | Next.js | Tailwind CSS. Vamos
+              Desenvolvedor Frontend | React, Next.js e Tailwind CSS. Vamos
               criar algo incrível juntos!
             </h2>
           </div>
 
           {/* Botões */}
           <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 mb-16 md:mb-0">
-            <a href="#contato" className="w-full sm:w-auto">
+            <a href="#contato" className="w-full sm:w-auto" aria-label="Navegar para seção de contato">
               <Button className="flex items-center justify-center gap-2 w-full sm:w-40 h-12 md:w-56 md:h-12 lg:w-64">
                 <UserRound className="size-4 md:size-5" />
                 <span>Entre em contato</span>
               </Button>
             </a>
-            <a href="#projetos" className="w-full sm:w-auto">
+            <a href="#projetos" className="w-full sm:w-auto" aria-label="Ver meus projetos">
               <Button
                 className="flex items-center justify-center gap-2 w-full sm:w-40 h-12 md:w-52 md:h-12 lg:w-60"
                 variant="outline"
@@ -118,7 +119,7 @@ export function Banner() {
           <div className="flex flex-col items-center justify-center text-center gap-12 md:gap-16 py-8 w-full">
             {/* Título principal */}
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold">Experiências</h2>
+              <h2 className="text-2xl md:text-3xl font-bold">Experiência Profissional</h2>
             </div>
 
             {/* Números e estatísticas */}
@@ -147,7 +148,7 @@ export function Banner() {
 
             {/* Tecnologias */}
             <div className="flex flex-col items-center gap-y-20 w-full ">
-              <h2 className="text-2xl md:text-3xl font-bold">Tecnologias</h2>
+              <h2 className="text-2xl md:text-3xl font-bold">Stack de Tecnologias</h2>
               <div
                 className="w-full max-w-full overflow-hidden"
                 style={{ height: "120px", position: "relative" }}
@@ -161,7 +162,7 @@ export function Banner() {
                   copyCount={3}
                   pauseOnHover
                   scaleOnHover
-                  ariaLabel="Conhecimentos"
+                  ariaLabel="Tecnologias que utilizo: React, Next.js, Tailwind, Git e mais"
                 />
               </div>
             </div>
