@@ -37,7 +37,7 @@ export function Banner() {
   return (
     <section
       id="banner"
-      className="w-full min-h-screen md:grid md:grid-cols-2 bg-cover bg-center dark:bg-[url('/wallpaper-dark.png')] bg-[url('/wallpaper-light.jpg')] p-5 md:p-10 overflow-x-hidden"
+      className="w-full min-h-screen md:grid md:grid-cols-5 bg-cover bg-center dark:bg-[url('/wallpaper-dark.png')] bg-[url('/wallpaper-light.jpg')] p-5 md:p-10 overflow-x-hidden"
     >
       {/* Seção Esquerda - Conteúdo Principal (Visível em todas as telas) */}
       <motion.div
@@ -48,7 +48,7 @@ export function Banner() {
           transition: { duration: 0.8 },
         }}
         viewport={{ once: false, amount: 0.3 }}
-        className="h-full flex items-center"
+        className="h-full flex items-center col-span-3"
       >
         <div className="w-full max-w-4xl mx-auto">
           {/* Título */}
@@ -63,7 +63,7 @@ export function Banner() {
                   text={[
                     "engenharia de software",
                     "sistemas escaláveis",
-                    "experiências de alto impacto",
+                    "experiências de impacto",
                     "arquiteturas modernas",
                   ]}
                   typingSpeed={75}
@@ -113,7 +113,7 @@ export function Banner() {
           transition: { duration: 0.8, delay: 0.2 },
         }}
         viewport={{ once: false, amount: 0.3 }}
-        className="h-full flex items-center justify-center py-10 md:py-0"
+        className="h-full flex items-center justify-center py-10 md:py-0 col-span-2"
       >
         <div className="w-full max-w-2xl mx-auto">
           <div className="flex flex-col items-center justify-center text-center gap-12 md:gap-16 py-8 w-full">
