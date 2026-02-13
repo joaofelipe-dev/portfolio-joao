@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import ThemeToggle from "@/components/Menu/ThemeToggle";
 import "./globals.css";
 import { Menu } from "@/components/Menu";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -72,7 +73,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <main>{children}</main>
+        <main>
+          {children}
+          <SpeedInsights />
+        </main>
         <ThemeToggle />
         <Menu />
       </body>
