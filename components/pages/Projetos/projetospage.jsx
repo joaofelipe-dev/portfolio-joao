@@ -13,20 +13,20 @@ export const ProjetosPage = () => {
   const projetosArray = [
     {
       image: "/parallax.png",
-      title: "Parallax Creator",
-      description: "Criador de efeito Parallax",
+      title: "Parallax Creator Engine",
+      description: "Desenvolvimento de um motor de efeitos visuais de alta performance, utilizando manipulação direta de DOM e otimização de renderização para garantir 60 FPS em múltiplos dispositivos.",
       href: "./",
     },
     {
       image: "/painel-vendas.png",
-      title: "Painel de Vendas",
-      description: "Dashboard e Relatório de vendas",
+      title: "Smart Sales Analytics Dash",
+      description: "Arquitetura de dashboard corporativo com visualização de dados em tempo real. Implementação de persistência de estado e processamento de dados do lado do cliente para relatórios dinâmicos.",
       href: "./",
     },
     {
       image: "/pedido-papelaria.png",
-      title: "Pedido de Papelaria",
-      description: "Sistema de pedidos para papelaria",
+      title: "Enterprise ERP Flow",
+      description: "Solução completa de gestão de pedidos com foco em UX para alta produtividade. Sistema robusto de validação de dados e integração de fluxo de trabalho para redução de erros operacionais.",
       href: "./",
     },
 
@@ -134,7 +134,7 @@ export const ProjetosPage = () => {
               orientation="horizontal"
               setApi={setApi}
             >
-              <CarouselPrevious className="shrink-0 p-3 rounded-full z-20 border-none shadow-lg transition-colors" />
+              <CarouselPrevious className="hidden md:flex shrink-0 p-3 rounded-full z-20 border-none shadow-lg transition-colors" />
 
               <CarouselContent className="h-fit p-5">
                 {projetosArray.map((item, index) => (
@@ -146,7 +146,7 @@ export const ProjetosPage = () => {
                 ))}
               </CarouselContent>
 
-              <CarouselNext className="shrink-0 p-3 rounded-full z-20 border-none shadow-lg transition-colors" />
+              <CarouselNext className="hidden md:flex shrink-0 p-3 rounded-full z-20 border-none shadow-lg transition-colors" />
             </Carousel>
           </div>
         </div>

@@ -20,65 +20,65 @@ export const Skills = () => {
     {
       nome: "React",
       icone: <SiReact />,
-      nivel: "Intermediário",
-      tipo: "Frameworks & Bibliotecas",
+      nivel: "Arquitetura de Componentes",
+      tipo: "Core Stack",
       href: "https://react.dev",
-    },
-    {
-      nome: "Tailwind",
-      icone: <SiTailwindcss />,
-      nivel: "Intermediário",
-      tipo: "Frameworks & Bibliotecas",
-      href: "https://tailwindcss.com",
     },
     {
       nome: "Next.js",
       icone: <SiNextdotjs />,
-      nivel: "Básico",
-      tipo: "Frameworks & Bibliotecas",
+      nivel: "SSG, SSR e Otimização de Performance",
+      tipo: "Core Stack",
       href: "https://nextjs.org",
     },
     {
-      nome: "JavaScript",
+      nome: "JavaScript (ES6+)",
       icone: <SiJavascript />,
-      nivel: "Intermediário",
-      tipo: "Linguagens & Core",
+      nivel: "Manipulação de dados e Logica Assíncrona",
+      tipo: "Core Stack",
       href: "/",
     },
     {
-      nome: "Git",
-      icone: <SiGit />,
-      nivel: "Intermediário",
-      tipo: "Controle de Versão",
-      href: "https://git-scm.com",
+      nome: "Tailwind CSS",
+      icone: <SiTailwindcss />,
+      nivel: "Design e Responsividade",
+      tipo: "Visual & Experience",
+      href: "https://tailwindcss.com",
     },
     {
       nome: "Shadcn UI",
       icone: <SiShadcnui />,
-      nivel: "Intermediário",
-      tipo: "Estilização & UI",
+      nivel: "Componentização Escalável e Acessibilidade",
+      tipo: "Visual & Experience",
       href: "https://ui.shadcn.com",
     },
     {
-      nome: "Html5",
-      icone: <SiHtml5 />,
-      nivel: "Intermediário",
-      tipo: "Linguagens & Core",
-      href: "https://developer.mozilla.org/docs/Web/HTML",
+      nome: "CSS3 / GSAP",
+      icone: <SiCss3 />,
+      nivel: "Animações e Micro-interações",
+      tipo: "Visual & Experience",
+      href: "https://developer.mozilla.org/docs/Web/CSS",
     },
     {
-      nome: "Github",
+      nome: "Git",
+      icone: <SiGit />,
+      nivel: "Versionamento Estratégico e Fluxo de Trabalho",
+      tipo: "Tooling & Ecosystem",
+      href: "https://git-scm.com",
+    },
+    {
+      nome: "GitHub",
       icone: <SiGithub />,
-      nivel: "Intermediário",
-      tipo: "Controle de Versão",
+      nivel: "CI/CD",
+      tipo: "Tooling & Ecosystem",
       href: "https://github.com",
     },
     {
-      nome: "Css3",
-      icone: <SiCss3 />,
-      nivel: "Intermediário",
-      tipo: "Linguagens & Core",
-      href: "https://developer.mozilla.org/docs/Web/CSS",
+      nome: "HTML5 / Semantic",
+      icone: <SiHtml5 />,
+      nivel: "SEO e Estrutura Semântica de Dados",
+      tipo: "Core Stack",
+      href: "https://developer.mozilla.org/docs/Web/HTML",
     },
   ];
 
@@ -93,7 +93,7 @@ export const Skills = () => {
   return (
     <section
       id="skills"
-      className="min-h-screen w-full p-6 md:p-10 flex flex-col gap-12"
+      className="min-h-screen w-full p-6 md:p-10 flex flex-col gap-12 overflow-x-hidden"
     >
       <div className="text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
@@ -126,25 +126,26 @@ export const Skills = () => {
         "
       >
         {ferramentasFiltradas.map(({ nome, icone, nivel, href }) => (
+          // No loop de ferramentas filtradas:
           <a
             key={nome}
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="aspect-square w-full max-w-[140px] sm:max-w-40 md:max-w-[180px]"
+            className="w-full h-full max-w-[140px] sm:max-w-40 md:max-w-[180px] flex"
           >
             <Card
               className="
-                flex flex-col items-center justify-center 
-                text-xs sm:text-sm md:text-base text-center 
-                p-4 sm:p-5 aspect-square
-                dark:bg-slate-800 hover:scale-105 hover:shadow-lg 
-                transition-all duration-300
-              "
+      flex flex-col items-center justify-center 
+      text-xs sm:text-sm md:text-base text-center 
+      p-4 sm:p-5 w-full h-full
+      dark:bg-slate-800 hover:scale-105 hover:shadow-lg 
+      transition-all duration-300
+    "
             >
               <div className="text-4xl sm:text-5xl mb-2">{icone}</div>
               <h3 className="font-semibold">{nome}</h3>
-              <p className="text-xs sm:text-sm text-muted-foreground">
+              <p className="text-xs sm:text-sm text-muted-foreground mt-auto">
                 {nivel}
               </p>
             </Card>

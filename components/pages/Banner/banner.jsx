@@ -37,7 +37,7 @@ export function Banner() {
   return (
     <section
       id="banner"
-      className="w-full min-h-screen md:grid md:grid-cols-2 bg-cover bg-center dark:bg-[url('/wallpaper-dark.png')] bg-[url('/wallpaper-light.jpg')] p-5 md:p-10 "
+      className="w-full min-h-screen md:grid md:grid-cols-2 bg-cover bg-center dark:bg-[url('/wallpaper-dark.png')] bg-[url('/wallpaper-light.jpg')] p-5 md:p-10 overflow-x-hidden"
     >
       {/* Seção Esquerda - Conteúdo Principal (Visível em todas as telas) */}
       <motion.div
@@ -55,16 +55,16 @@ export function Banner() {
           <div className="flex flex-col items-center md:items-start text-center md:text-left mb-8">
             <h1 className="text-3xl md:text-6xl font-bold leading-tight mb-4">
               João Felipe | <br className="hidden md:block" />
-              Transformando ideias em&nbsp;
+              Desenvolvendo Soluções em&nbsp;
             </h1>
             <span className="text-3xl md:text-6xl">
-              <GradientText animationSpeed={120}>
+              <GradientText animationSpeed={150}>
                 <TextType
                   text={[
-                    "experiências únicas",
-                    "projetos funcionais",
-                    "aplicações web",
-                    "interfaces intuitivas",
+                    "engenharia de software",
+                    "sistemas escaláveis",
+                    "experiências de alto impacto",
+                    "arquiteturas modernas",
                   ]}
                   typingSpeed={75}
                   pauseDuration={1500}
@@ -78,8 +78,8 @@ export function Banner() {
           {/* Subtítulo */}
           <div className="mb-8 text-center md:text-left">
             <h2 className="text-lg md:text-xl text-muted-foreground">
-              Desenvolvedor Frontend | React, Next.js e Tailwind CSS. Vamos
-              criar algo incrível juntos!
+              Frontend Engineer especializado em ecossistemas React e Next.js.
+              Foco em performance, escalabilidade e na intersecção entre tecnologia e produto.
             </h2>
           </div>
 
@@ -88,7 +88,7 @@ export function Banner() {
             <a href="#contato" className="w-full sm:w-auto" aria-label="Navegar para seção de contato">
               <Button className="flex items-center justify-center gap-2 w-full sm:w-40 h-12 md:w-56 md:h-12 lg:w-64">
                 <UserRound className="size-4 md:size-5" />
-                <span>Entre em contato</span>
+                <span>Iniciar uma Conversa</span>
               </Button>
             </a>
             <a href="#projetos" className="w-full sm:w-auto" aria-label="Ver meus projetos">
@@ -97,7 +97,7 @@ export function Banner() {
                 variant="outline"
               >
                 <PanelsTopLeft className="size-4 md:size-5" />
-                <span>Ver Projetos</span>
+                <span>Explorar Projetos</span>
               </Button>
             </a>
           </div>
@@ -119,29 +119,29 @@ export function Banner() {
           <div className="flex flex-col items-center justify-center text-center gap-12 md:gap-16 py-8 w-full">
             {/* Título principal */}
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold">Experiência Profissional</h2>
+              <h2 className="text-2xl md:text-3xl font-bold">Indicadores de Maturidade</h2>
             </div>
 
             {/* Números e estatísticas */}
-            <div className="grid grid-cols-2 gap-8 md:gap-12 text-lg md:text-xl w-full max-w-sm">
+            <div className="grid grid-cols-2 gap-8 md:gap-12 text-lg md:text-xl w-full max-w-lg">
               <div className="flex flex-col items-center">
-                <span className="text-3xl md:text-4xl font-bold">1+</span>
+                <span className="text-3xl md:text-4xl font-bold">Clean Code</span>
                 <span className="text-muted-foreground text-sm md:text-base">
-                  Ano de Experiência
+                  Código organizado e escalável
                 </span>
               </div>
 
               <div className="flex flex-col items-center">
-                <span className="text-3xl md:text-4xl font-bold">37K+</span>
+                <span className="text-3xl md:text-4xl font-bold">Arquitetura</span>
                 <span className="text-muted-foreground text-sm md:text-base">
-                  Xícaras de Café
+                  Orientada a SOLID
                 </span>
               </div>
 
               <div className="flex flex-col items-center col-span-2">
-                <span className="text-4xl md:text-5xl font-bold">∞</span>
+                <span className="text-4xl md:text-5xl font-bold">Performance</span>
                 <span className="text-muted-foreground text-sm md:text-base">
-                  Linhas de Código
+                  Foco em UX e escalabilidade
                 </span>
               </div>
             </div>
@@ -169,6 +169,6 @@ export function Banner() {
           </div>
         </div>
       </motion.div>
-    </section>
+    </section >
   );
 }

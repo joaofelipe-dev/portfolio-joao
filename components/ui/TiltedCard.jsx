@@ -103,7 +103,7 @@ export default function TiltedCard({
             alt={altText}
             fill
             sizes="(max-width: 768px) 100vw, 350px"
-            className="object-cover will-change-transform [transform:translateZ(0)]"
+            className="object-fit will-change-transform [transform:translateZ(0)]"
             priority={false}
           />
         </div>

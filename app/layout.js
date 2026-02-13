@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "João Felipe | Desenvolvedor Frontend React & Next.js",
-  description: "Desenvolvedor Frontend especializado em criar interfaces modernas, rápidas e acessíveis com React, Next.js e Tailwind CSS. Veja meus projetos e vamos conversar!",
-  keywords: ["Desenvolvedor Frontend", "React", "Next.js", "Portfolio Dev", "JavaScript", "João Felipe"],
+  title: "João Felipe | Software Engineer & Strategic Frontend Specialist",
+  description: "Engenheiro de Software especializado em arquiteturas frontend escaláveis, performance e excelência em UX. Foco em soluções robustas com React e Next.js.",
+  keywords: ["Software Engineer", "Frontend Specialist", "React Architect", "Next.js", "Arquitetura Frontend", "João Felipe"],
   authors: [{ name: "João Felipe" }],
   creator: "João Felipe",
   metadataBase: new URL("https://joao-felipe.vercel.app"),
@@ -51,7 +51,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-BR" className="dark scroll-smooth">
+    <html lang="pt-BR" className="dark scroll-smooth overflow-x-hidden">
       <head>
         <script
           type="application/ld+json"
@@ -71,7 +71,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         <main>
           {children}

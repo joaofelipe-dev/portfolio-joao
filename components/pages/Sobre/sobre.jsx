@@ -9,7 +9,7 @@ export const Sobre = () => {
 
       <section
         id="sobre"
-        className="relative snap-start min-h-screen flex flex-col items-center justify-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8"
+        className="relative snap-start min-h-screen flex flex-col items-center justify-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 overflow-x-hidden"
       >
         {/* Fundo com partículas */}
         <div className="absolute inset-0 -z-10">
@@ -58,29 +58,23 @@ export const Sobre = () => {
           >
             <div className="flex items-center mb-4 sm:mb-6">
               <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl pr-2 text-foreground">
-                Meu
+                Visão
               </h3>
-              <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl`}>
-                Objetivo
+              <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary`}>
+                Estratégica
               </h3>
             </div>
             <div className=" backdrop-blur-sm">
               <p className="text-sm sm:text-base lg:text-lg text-foreground leading-relaxed sm:leading-loose text-justify">
-                Eu sou o João Felipe, tenho 21 anos e sou apaixonado por
-                desenvolvimento front-end. Trabalho criando aplicações web
-                modernas e funcionais, utilizando frameworks como React, Next.js
-                e Tailwind CSS. Aplicações front-end que unem design,
-                performance e usabilidade.
+                Atuo como Desenvolvedor Frontend com foco em arquiteturas robustas e escaláveis.
+                Minha missão é transcender a entrega de código, focando na resolução de problemas reais de negócio através de interfaces intuitivas e de alta performance.
+                Especialista em ecossistemas React, trabalho com a mentalidade de produto, garantindo que cada decisão técnica esteja alinhada aos objetivos estratégicos e à melhor experiência do usuário final.
                 <br />
                 <br />
-                Meu foco é transformar ideias em experiências digitais
-                intuitivas, eficientes e visualmente atraentes, ajudando
-                empresas e projetos a se destacarem no mundo digital.
+                Acredito na autonomia técnica e na colaboração proativa, entregando soluções que não apenas funcionam, mas que são fáceis de manter e preparadas para crescer.
                 <br />
                 <br />
-                Tem um projeto em mente ou quer saber mais sobre meus serviços e
-                valores? Vamos conversar e transformar suas ideias em soluções
-                web reais! 💻✨
+                Se você busca um profissional que conecta tecnologia de ponta com visão de mercado, vamos construir o próximo nível da sua aplicação.
               </p>
             </div>
           </motion.div>
@@ -93,30 +87,21 @@ export const Sobre = () => {
           >
             <div className=" flex items-center mb-4 sm:mb-6 ">
               <h3 className=" text-xl sm:text-2xl md:text-3xl lg:text-4xl pr-2 text-foreground ">
-                Minha
+                Trajetória
               </h3>
-              <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl`}>
-                Jornada
+              <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary`}>
+                Técnica
               </h3>
             </div>
             <div className=" backdrop-blur-sm ">
               <p className="text-sm sm:text-base lg:text-lg text-foreground leading-relaxed sm:leading-loose text-justify ">
-                Desde pequeno sempre fui apaixonado por computadores. A
-                curiosidade em entender como as coisas funcionavam me levou a
-                explorar diversas áreas da tecnologia. Participei por alguns
-                anos de projetos de robótica, competindo em torneios regionais e
-                estaduais, e também realizei cursos voltados principalmente para
-                hardware.
+                Minha base tecnológica começou na intersecção entre hardware e software, através de projetos de robótica competitiva e manutenção de sistemas.
+                Essa fundação me proporcionou uma compreensão profunda de como a tecnologia opera "por baixo dos panos", desenvolvendo um pensamento lógico rigoroso e capacidade analítica diferenciada.
                 <br />
                 <br />
-                Mais tarde, iniciei a faculdade de Análise e Desenvolvimento de
-                Sistemas, e atualmente atuo com automações e gestão de TI. Foi
-                nesse caminho que descobri minha verdadeira afinidade pela área
-                de frontend — tudo começou ao entender como funcionava um site
-                simples, e desde então, mergulhei de vez no desenvolvimento web.
-                Hoje, continuo aprimorando minhas habilidades e também crio
-                designs e interfaces para sites, unindo lógica e criatividade em
-                cada projeto.
+                Na transição para o desenvolvimento web, foquei em dominar as ferramentas que definem o mercado moderno (React, Next.js, JavaScript).
+                Atualmente, somo minha formação acadêmica em Análise e Desenvolvimento de Sistemas à experiência prática em automação e gestão de TI, entregando projetos que equilibram agilidade e solidez arquitetural.
+                Minha jornada é marcada pelo aprendizado contínuo e pela busca incessante por excelência técnica e usabilidade.
               </p>
             </div>
           </motion.div>

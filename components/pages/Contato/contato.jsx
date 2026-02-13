@@ -123,12 +123,12 @@ export const Contato = () => {
                     <SelectValue placeholder="Objetivo" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="contrato">Quero te contratar</SelectItem>
-                    <SelectItem value="sobre">
-                      Quero saber mais sobre
+                    <SelectItem value="projeto">Desenvolvimento de Projeto</SelectItem>
+                    <SelectItem value="consultoria">
+                      Consultoria Técnica / Code Review
                     </SelectItem>
-                    <SelectItem value="contato">
-                      Somente um contato breve
+                    <SelectItem value="parceria">
+                      Oportunidade de Carreira / Parceria
                     </SelectItem>
                   </SelectContent>
                 </Select>
