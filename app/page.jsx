@@ -1,16 +1,22 @@
-import { Banner } from "@/components/pages/Banner/";
-import { Contato } from "@/components/pages/Contato/contato";
-import { ProjetosPage } from "@/components/pages/Projetos/";
-import { Skills } from "@/components/pages/Skills/skills";
-import { Sobre } from "@/components/pages/Sobre/";
+import { Banner } from "@/app/pages/Banner";
+import { Contato } from "@/app/pages/Contato/contato";
+import { ProjetosPage } from "@/app/pages/Projetos";
+import { Skills } from "@/app/pages/Skills/skills";
+import { Sobre } from "@/app/pages/Sobre";
+import { BackgroundImage } from "@/components/BackgroundImage";
+import { Stack } from "@/components/Stack";
 export default function Home() {
   return (
     <>
-      <Banner />
-      <ProjetosPage />
-      <Skills/>
-      <Sobre />
-      <Contato />
+      <BackgroundImage src="/wallpaper-dark.png" alt="Imagem de fundo" />
+      <div className="px-10">
+        <Banner />
+        <Stack/>
+        <ProjetosPage />
+        <Skills />
+        <Sobre />
+        <Contato />
+      </div>
     </>
   );
 }

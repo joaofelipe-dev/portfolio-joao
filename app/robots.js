@@ -5,6 +5,6 @@ export default function robots() {
             allow: "/",
             disallow: "/private/",
         },
-        sitemap: "https://joao-felipe.vercel.app/sitemap.xml", // Substitua pelo seu domínio real
+        sitemap: "https://joao-felipe.vercel.app/sitemap.xml",
     };
 }

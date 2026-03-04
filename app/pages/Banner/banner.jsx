@@ -4,40 +4,12 @@ import TextType from "@/components/ui/TextType";
 import GradientText from "@/components/ui/GradientText";
 import { UserRound, PanelsTopLeft } from "lucide-react";
 import { motion } from "motion/react";
-import LogoLoop from "@/components/ui/LogoLoop";
-import {
-  SiReact,
-  SiNextdotjs,
-  SiTailwindcss,
-  SiGit,
-  SiShadcnui,
-  SiGithub,
-  SiHtml5,
-  SiCss3,
-  SiJavascript,
-} from "react-icons/si";
 
 export function Banner() {
-  const techLogos = [
-    { node: <SiReact />, title: "React", href: "https://react.dev" },
-    { node: <SiGithub />, title: "Github", href: "https://github.com" },
-    { node: <SiHtml5 />, title: "Html5", href: "" },
-    { node: <SiCss3 />, title: "Css3", href: "" },
-    { node: <SiJavascript />, title: "JavaScript", href: "" },
-    { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
-    {
-      node: <SiTailwindcss />,
-      title: "Tailwind CSS",
-      href: "https://tailwindcss.com",
-    },
-    { node: <SiShadcnui />, title: "Shadcn UI", href: "https://ui.shadcn.com" },
-    { node: <SiGit />, title: "Git", href: "https://git-scm.com" },
-  ];
-
   return (
     <section
       id="banner"
-      className="w-full min-h-screen md:grid md:grid-cols-5 bg-cover bg-center dark:bg-[url('/wallpaper-dark.png')] bg-[url('/wallpaper-light.jpg')] p-5 md:p-10 overflow-x-hidden"
+      className="w-full min-h-screen md:grid md:grid-cols-5 py-10 rounded-2xl overflow-x-hidden"
     >
       {/* Seção Esquerda - Conteúdo Principal (Visível em todas as telas) */}
       <motion.div
@@ -47,7 +19,7 @@ export function Banner() {
           opacity: 1,
           transition: { duration: 0.8 },
         }}
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.3 }}
         className="h-full flex items-center col-span-3"
       >
         <div className="w-full max-w-4xl mx-auto">
@@ -112,7 +84,7 @@ export function Banner() {
           opacity: 1,
           transition: { duration: 0.8, delay: 0.2 },
         }}
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.3 }}
         className="h-full flex items-center justify-center py-10 md:py-0 col-span-2"
       >
         <div className="w-full max-w-2xl mx-auto">
@@ -143,27 +115,6 @@ export function Banner() {
                 <span className="text-muted-foreground text-sm md:text-base">
                   Foco em UX e escalabilidade
                 </span>
-              </div>
-            </div>
-
-            {/* Tecnologias */}
-            <div className="flex flex-col items-center gap-y-20 w-full ">
-              <h2 className="text-2xl md:text-3xl font-bold">Stack de Tecnologias</h2>
-              <div
-                className="w-full max-w-full overflow-hidden"
-                style={{ height: "120px", position: "relative" }}
-              >
-                <LogoLoop
-                  logos={techLogos}
-                  speed={50}
-                  direction="right"
-                  logoHeight={60}
-                  gap={32}
-                  copyCount={3}
-                  pauseOnHover
-                  scaleOnHover
-                  ariaLabel="Tecnologias que utilizo: React, Next.js, Tailwind, Git e mais"
-                />
               </div>
             </div>
           </div>

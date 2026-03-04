@@ -1,8 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import ThemeToggle from "@/components/Menu/ThemeToggle";
+import ThemeToggle from "@/components/ThemeToggle";
 import "./globals.css";
 import { Menu } from "@/components/Menu";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import SmoothScroll from "@/components/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -79,6 +80,7 @@ export default function RootLayout({ children }) {
         </main>
         <ThemeToggle />
         <Menu />
+        <SmoothScroll/>
       </body>
     </html>
   );

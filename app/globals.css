@@ -78,7 +78,7 @@
 }
 
 .dark {
-  --background: oklch(26.374% 0.02356 248.771);
+  --background:oklch(15.405% 0.03477 302.934);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.21 0.006 285.885);
   --card-foreground: oklch(0.985 0 0);
@@ -109,7 +109,6 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.38 0.189 293.745);
-  
 }
 
 @layer base {

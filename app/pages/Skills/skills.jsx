@@ -1,5 +1,5 @@
 "use client";
-
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -14,6 +14,26 @@ import {
   SiShadcnui,
   SiTailwindcss,
 } from "react-icons/si";
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.3, // tempo entre cada item
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  },
+};
 
 export const Skills = () => {
   const tools = [
@@ -100,7 +120,8 @@ export const Skills = () => {
           Minhas Habilidades
         </h2>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          Tecnologias e ferramentas que utilizo para construir produtos modernos e escaláveis.
+          Tecnologias e ferramentas que utilizo para construir produtos modernos
+          e escaláveis.
         </p>
       </div>
 
@@ -119,29 +140,32 @@ export const Skills = () => {
       </div>
 
       {/* Cards filtrados */}
-      <div
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
         className="
-          grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 
-          gap-4 sm:gap-6 lg:gap-8 justify-items-center flex-1
-        "
+    grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 
+    gap-4 sm:gap-6 lg:gap-8 justify-items-center flex-1
+  "
       >
         {ferramentasFiltradas.map(({ nome, icone, nivel, href }) => (
-          // No loop de ferramentas filtradas:
-          <a
+          <motion.a
             key={nome}
             href={href}
             target="_blank"
             rel="noopener noreferrer"
+            variants={item}
             className="w-full h-full max-w-[140px] sm:max-w-40 md:max-w-[180px] flex"
           >
             <Card
               className="
-      flex flex-col items-center justify-center 
-      text-xs sm:text-sm md:text-base text-center 
-      p-4 sm:p-5 w-full h-full
-      dark:bg-slate-800 hover:scale-105 hover:shadow-lg 
-      transition-all duration-300
-    "
+          flex flex-col items-center justify-center 
+          text-xs sm:text-sm md:text-base text-center 
+          p-4 sm:p-5 w-full h-full hover:scale-105 hover:shadow-lg 
+          transition-all duration-300
+        "
             >
               <div className="text-4xl sm:text-5xl mb-2">{icone}</div>
               <h3 className="font-semibold">{nome}</h3>
@@ -149,9 +173,9 @@ export const Skills = () => {
                 {nivel}
               </p>
             </Card>
-          </a>
+          </motion.a>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };
