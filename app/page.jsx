@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <BackgroundImage src="/wallpaper-dark.png" alt="Imagem de fundo" />
-      <div className="px-10">
+      <div className="px-2 md:px-10">
         <Banner />
         <Stack/>
         <ProjetosPage />
