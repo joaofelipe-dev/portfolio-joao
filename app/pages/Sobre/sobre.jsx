@@ -14,7 +14,7 @@ export const Sobre = () => {
         {/* Fundo com partículas */}
         <div className="absolute inset-0 -z-10">
           <Particles
-            particleColors={["#9933ff", "#9933ff"]}
+            particleColors={["#7e42f5", "#7e42f5 ", "#2245f2"]}
             particleCount={200}
             particleSpread={10}
             speed={0.1}
@@ -64,7 +64,6 @@ export const Sobre = () => {
                 Estratégica
               </h3>
             </div>
-            <div className=" backdrop-blur-sm">
               <p className="text-sm sm:text-base lg:text-lg text-foreground leading-relaxed sm:leading-loose text-justify">
                 Atuo como Desenvolvedor Frontend com foco em arquiteturas robustas e escaláveis.
                 Minha missão é transcender a entrega de código, focando na resolução de problemas reais de negócio através de interfaces intuitivas e de alta performance.
@@ -76,7 +75,6 @@ export const Sobre = () => {
                 <br />
                 Se você busca um profissional que conecta tecnologia de ponta com visão de mercado, vamos construir o próximo nível da sua aplicação.
               </p>
-            </div>
           </motion.div>
           <motion.div
             initial={{ x: -50, opacity: 0 }}
@@ -93,7 +91,6 @@ export const Sobre = () => {
                 Técnica
               </h3>
             </div>
-            <div className=" backdrop-blur-sm ">
               <p className="text-sm sm:text-base lg:text-lg text-foreground leading-relaxed sm:leading-loose text-justify ">
                 Minha base tecnológica começou na intersecção entre hardware e software, através de projetos de robótica competitiva e manutenção de sistemas.
                 Essa fundação me proporcionou uma compreensão profunda de como a tecnologia opera "por baixo dos panos", desenvolvendo um pensamento lógico rigoroso e capacidade analítica diferenciada.
@@ -103,7 +100,6 @@ export const Sobre = () => {
                 Atualmente, somo minha formação acadêmica em Análise e Desenvolvimento de Sistemas à experiência prática em automação e gestão de TI, entregando projetos que equilibram agilidade e solidez arquitetural.
                 Minha jornada é marcada pelo aprendizado contínuo e pela busca incessante por excelência técnica e usabilidade.
               </p>
-            </div>
           </motion.div>
         </div>
       </section>

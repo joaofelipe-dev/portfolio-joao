@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Renderer, Camera, Geometry, Program, Mesh } from 'ogl';
+import { color } from 'motion';
 
 const defaultColors = ['#ffffff', '#ffffff', '#ffffff'];
 
@@ -87,7 +88,7 @@ const Particles = ({
   particleCount = 200,
   particleSpread = 10,
   speed = 0.1,
-  particleColors,
+  particleColors = '',
   moveParticlesOnHover = false,
   particleHoverFactor = 1,
   alphaParticles = false,
