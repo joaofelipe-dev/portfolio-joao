@@ -20,6 +20,12 @@ export const ProjetosPage = () => {
       href: "./",
     },
     {
+      image:"/travelgram.png",
+      title:"Travelgram - Perfil de Viagens",
+      description: "Desenvolvimento de um perfil de viagens com design responsivo e interativo.",
+      href: "https://joaofelipe-dev.github.io/Travelgram",
+    },
+    {
       image: "/painel-vendas.png",
       title: "Smart Sales Analytics Dash",
       description:
