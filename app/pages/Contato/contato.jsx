@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
+import { motion } from "motion/react";
 
 export const Contato = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -64,65 +65,98 @@ export const Contato = () => {
   return (
     <section
       id="contato"
-      className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden"
+      className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden py-12 md:py-16"
     >
-      {/* Conteúdo principal */}
+      {/* Main Content */}
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 py-8 flex flex-col items-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground text-center mb-2">
-          Entre em Contato
-        </h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-10 md:mb-16 w-full"
+        >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground text-center mb-4">
+            Entre em Contato
+          </h2>
+          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
+            Vamos conversar sobre seu projeto, oportunidade ou ideia. Estou sempre disponível para novas desafios.
+          </p>
+        </motion.div>
 
-        <div className="w-full flex flex-col md:w-[50%] gap-5 items-center justify-center ">
-          {/* Formulário */}
-          <div className="w-full justify-end bg-foreground/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-foreground/20">
+        <div className="w-full flex flex-col md:w-[550px] gap-8 items-center justify-center">
+          {/* Form Container */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="w-full backdrop-blur-md rounded-2xl p-6 md:p-10 border border-foreground/20 bg-foreground/5 shadow-xl hover:border-foreground/40 hover:bg-foreground/10 transition-all duration-300"
+          >
             {submitStatus === "success" && (
-              <div role="alert" className="mb-4 p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-400 text-center">
-                Mensagem enviada com sucesso! Entrarei em contato em breve.
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                role="alert"
+                className="mb-6 p-4 md:p-5 bg-green-500/15 border border-green-500/50 rounded-lg text-green-400 text-center text-sm md:text-base font-medium"
+              >
+                ✓ Mensagem enviada com sucesso! Entrarei em contato em breve.
+              </motion.div>
             )}
 
             {submitStatus === "error" && (
-              <div role="alert" className="mb-4 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 text-center">
-                Erro ao enviar mensagem. Tente novamente ou entre em contato
-                diretamente por email.
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                role="alert"
+                className="mb-6 p-4 md:p-5 bg-red-500/15 border border-red-500/50 rounded-lg text-red-400 text-center text-sm md:text-base font-medium"
+              >
+                ✗ Erro ao enviar mensagem. Tente novamente ou entre em contato direto por email.
+              </motion.div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
+              {/* Name Field */}
               <div className="space-y-2">
-                <Label htmlFor="nome" className="text-foreground font-medium">Nome</Label>
+                <Label htmlFor="nome" className="text-foreground font-semibold text-sm md:text-base">
+                  Nome Completo
+                </Label>
                 <Input
                   id="nome"
                   name="nome"
                   required
                   placeholder="Ex: João da Silva"
-                  className="bg-foreground/20 border-foreground/30 text-foreground placeholder:text-foreground/60"
+                  className="bg-foreground/10 border border-foreground/30 text-foreground placeholder:text-foreground/50 focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-lg h-12"
                   disabled={isSubmitting}
                 />
               </div>
 
+              {/* Email Field */}
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-foreground font-medium">Email</Label>
+                <Label htmlFor="email" className="text-foreground font-semibold text-sm md:text-base">
+                  Email
+                </Label>
                 <Input
                   id="email"
                   name="email"
                   type="email"
                   required
-                  placeholder="Ex: joaodasilva@email.com"
-                  className="bg-foreground/20 border-foreground/30 text-foreground placeholder:text-foreground/60"
+                  placeholder="seu@email.com"
+                  className="bg-foreground/10 border border-foreground/30 text-foreground placeholder:text-foreground/50 focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-lg h-12"
                   disabled={isSubmitting}
                 />
               </div>
 
+              {/* Objective Field */}
               <div className="space-y-2">
-                <Label htmlFor="objetivo" className="text-foreground font-medium">
-                  Objetivo do contato
+                <Label htmlFor="objetivo" className="text-foreground font-semibold text-sm md:text-base">
+                  Objetivo do Contato
                 </Label>
-                <Select name="objetivo" disabled={isSubmitting}>
-                  <SelectTrigger id="objetivo" className="w-full bg-foreground/20 border-foreground/30 text-foreground">
-                    <SelectValue placeholder="Objetivo" />
+                <Select name="objetivo" disabled={isSubmitting} defaultValue="">
+                  <SelectTrigger id="objetivo" className="w-full bg-foreground/10 border border-foreground/30 text-foreground focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-lg h-12">
+                    <SelectValue placeholder="Selecione uma opção" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-background border border-foreground/30">
                     <SelectItem value="projeto">Desenvolvimento de Projeto</SelectItem>
                     <SelectItem value="consultoria">
                       Consultoria Técnica / Code Review
@@ -130,70 +164,104 @@ export const Contato = () => {
                     <SelectItem value="parceria">
                       Oportunidade de Carreira / Parceria
                     </SelectItem>
+                    <SelectItem value="outro">Outro</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
+              {/* Subject Field */}
               <div className="space-y-2">
-                <Label htmlFor="assunto" className="text-foreground font-medium">Assunto</Label>
+                <Label htmlFor="assunto" className="text-foreground font-semibold text-sm md:text-base">
+                  Assunto
+                </Label>
                 <Input
                   id="assunto"
                   name="assunto"
                   required
-                  placeholder="Assunto"
-                  className="bg-foreground/20 border-foreground/30 text-foreground placeholder:text-foreground/60"
+                  placeholder="Resumo do assunto"
+                  className="bg-foreground/10 border border-foreground/30 text-foreground placeholder:text-foreground/50 focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-lg h-12"
                   disabled={isSubmitting}
                 />
               </div>
 
+              {/* Message Field */}
               <div className="space-y-2">
-                <Label htmlFor="mensagem" className="text-foreground font-medium">Descrição</Label>
+                <Label htmlFor="mensagem" className="text-foreground font-semibold text-sm md:text-base">
+                  Sua Mensagem
+                </Label>
                 <Textarea
                   id="mensagem"
                   name="mensagem"
                   required
-                  placeholder="Mensagem"
-                  className="min-h-32 bg-foreground/20 border-foreground/30 text-foreground placeholder:text-foreground/60 resize-none"
+                  placeholder="Descreva sua ideia ou necessidade..."
+                  className="min-h-36 md:min-h-40 bg-foreground/10 border border-foreground/30 text-foreground placeholder:text-foreground/50 focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-lg resize-none p-3 md:p-4"
                   disabled={isSubmitting}
                 />
               </div>
 
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-foreground/20 hover:bg-foreground/30 text-foreground border border-foreground/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
-              </Button>
+              {/* Submit Button */}
+              <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 md:py-4 text-base md:text-lg rounded-lg transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-primary-foreground border-t-transparent rounded-full animate-spin" />
+                      Enviando...
+                    </>
+                  ) : (
+                    <span>Enviar Mensagem</span>
+                  )}
+                </Button>
+              </motion.div>
             </form>
-          </div>
+          </motion.div>
 
-          {/* Ícones de contato */}
-          <div className="w-full flex items-start justify-center gap-6 md:gap-8 mt-4">
-            <Link href="mailto:joaoufelipe@hotmail.com" aria-label="Enviar email para João Felipe">
-              <Card className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
-                <Mail size={28} />
-              </Card>
-            </Link>
-            <Link href="https://github.com/joaofelipe-dev" target="_blank" aria-label="Ver perfil do GitHub de João Felipe">
-              <Card className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
-                <Github size={28} />
-              </Card>
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/joao-felipedev"
-              target="_blank"
-              aria-label="Ver perfil do LinkedIn de João Felipe"
-            >
-              <Card className="flex items-center justify-center text-foreground bg-foreground/20 hover:bg-foreground/30 p-4 min-h-16 w-16 aspect-square rounded-full backdrop-blur-sm border border-foreground/30 cursor-pointer transition-all duration-300">
-                <Linkedin size={28} />
-              </Card>
-            </Link>
-          </div>
+          {/* Contact Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="w-full flex flex-col items-center gap-6"
+          >
+            <div className="text-center text-sm text-muted-foreground">
+              Ou entre em contato através de:
+            </div>
+            <div className="flex items-center justify-center gap-4 md:gap-6">
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                <Link href="mailto:joaoufelipe@hotmail.com" aria-label="Enviar email para João Felipe">
+                  <Card className="flex items-center justify-center text-foreground bg-primary/15 hover:bg-primary/25 p-4 w-14 h-14 md:w-16 md:h-16 aspect-square rounded-full backdrop-blur-sm border border-primary/30 cursor-pointer transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20">
+                    <Mail size={24} />
+                  </Card>
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                <Link href="https://github.com/joaofelipe-dev" target="_blank" aria-label="Ver perfil do GitHub de João Felipe">
+                  <Card className="flex items-center justify-center text-foreground bg-primary/15 hover:bg-primary/25 p-4 w-14 h-14 md:w-16 md:h-16 aspect-square rounded-full backdrop-blur-sm border border-primary/30 cursor-pointer transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20">
+                    <Github size={24} />
+                  </Card>
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  href="https://www.linkedin.com/in/joao-felipedev"
+                  target="_blank"
+                  aria-label="Ver perfil do LinkedIn de João Felipe"
+                >
+                  <Card className="flex items-center justify-center text-foreground bg-primary/15 hover:bg-primary/25 p-4 w-14 h-14 md:w-16 md:h-16 aspect-square rounded-full backdrop-blur-sm border border-primary/30 cursor-pointer transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20">
+                    <Linkedin size={24} />
+                  </Card>
+                </Link>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* Waves do rodapé (invertidas) */}
+      {/* Footer Waves */}
       <div className="absolute bottom-0 w-full h-32 overflow-hidden z-0 pointer-events-none -scale-y-100">
         <svg
           className="absolute inset-0 w-full h-full"
