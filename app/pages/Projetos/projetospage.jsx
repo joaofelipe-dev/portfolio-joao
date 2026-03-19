@@ -39,12 +39,12 @@ const PROJETOS_DATA = [
   },
   {
     image: "/pedido-papelaria.png",
-    title: "Enterprise ERP Flow",
+    title: "Pedidos de Papelaria - Sistema de Gestão",
     description:
       "Solução completa de gestão de pedidos com foco em UX para alta produtividade. Sistema robusto de validação de dados e integração de fluxo de trabalho para redução de erros operacionais.",
     href: "./",
     tags: ["React", "UX", "Enterprise"],
-    category: "ERP System"
+    category: "Management System"
   },
 ];
 
