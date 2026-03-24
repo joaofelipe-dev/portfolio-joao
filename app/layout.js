@@ -17,70 +17,73 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: {
-    default: "João Felipe | Software Engineer & Strategic Frontend Specialist",
+    default: "João Felipe | Frontend Developer (React & Next.js)",
     template: "%s | João Felipe",
   },
-  description: "Engenheiro de Software especializado em arquiteturas frontend escaláveis, performance e excelência em UX. Foco em soluções robustas com React e Next.js.",
-  keywords: ["Software Engineer", "Frontend Specialist", "React Architect", "Next.js", "Arquitetura Frontend", "João Felipe", "Desenvolvedor Web", "JavaScript Specialist"],
+
+  description:
+    "Desenvolvedor Frontend especializado em React e Next.js. Crio aplicações completas com foco em performance, UX e integrações com APIs. Veja meus projetos.",
+
+  keywords: [
+    "Frontend Developer",
+    "React Developer",
+    "Next.js Developer",
+    "JavaScript",
+    "João Felipe",
+  ],
+
   authors: [{ name: "João Felipe", url: "https://github.com/joaofelipe-dev" }],
   creator: "João Felipe",
   publisher: "João Felipe",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
+
   metadataBase: new URL("https://joao-felipe.vercel.app"),
+
   alternates: {
     canonical: "/",
     languages: {
       "pt-BR": "/",
     },
   },
+
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
       { url: "/favicon.svg", sizes: "32x32" },
     ],
-    apple: [
-      { url: "/favicon.svg" }, // Idealmente seria um PNG 180x180
-    ],
-    shortcut: ["/favicon.svg"],
+    apple: [{ url: "/apple-touch-icon.png" }],
   },
+
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
+
   openGraph: {
-    title: "João Felipe | Software Engineer",
-    description: "Engenheiro de Software especializado em arquiteturas frontend escaláveis e performance.",
+    title: "João Felipe | Frontend Developer",
+    description:
+      "Projetos em React, Next.js e aplicações completas com foco em performance e experiência do usuário.",
     url: "https://joao-felipe.vercel.app",
     siteName: "João Felipe Portfolio",
     images: [
       {
-        url: "/og-image.png", // Recomendado criar esta imagem (1200x630)
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "João Felipe | Software Engineer Portfolio",
+        alt: "Portfólio João Felipe - Frontend Developer",
       },
     ],
     locale: "pt_BR",
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "João Felipe | Software Engineer",
-    description: "Interfaces modernas e performance web excepcional.",
-    creator: "@joaofelipe", // Se tiver twitter, ajustar aqui
+    title: "João Felipe | Frontend Developer",
+    description:
+      "Aplicações modernas com React, Next.js e foco em performance.",
     images: ["/og-image.png"],
   },
+
   category: "technology",
 };
 
@@ -88,7 +91,7 @@ export const viewport = {
   themeColor: "#0a0a0a",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 5, // Permite zoom para acessibilidade, mas mantém controle
+  maximumScale: 5,
 };
 
 export default function RootLayout({ children }) {
@@ -135,7 +138,7 @@ export default function RootLayout({ children }) {
         </main>
         <ThemeToggle />
         <Menu />
-        <SmoothScroll/>
+        <SmoothScroll />
       </body>
     </html>
   );
