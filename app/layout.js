@@ -56,6 +56,13 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 
   openGraph: {
@@ -124,6 +131,42 @@ export default function RootLayout({ children }) {
                 "url": "https://joao-felipe.vercel.app",
                 "author": "João Felipe",
                 "description": "Portfólio profissional de João Felipe, Engenheiro de Software e Especialista Frontend."
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://joao-felipe.vercel.app"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Projetos",
+                    "item": "https://joao-felipe.vercel.app#projetos"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Habilidades",
+                    "item": "https://joao-felipe.vercel.app#skills"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "name": "Sobre",
+                    "item": "https://joao-felipe.vercel.app#sobre"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 5,
+                    "name": "Contato",
+                    "item": "https://joao-felipe.vercel.app#contato"
+                  }
+                ]
               }
             ]),
           }}

@@ -3,62 +3,51 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, AlertCircle } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import { motion } from "motion/react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { contatoSchema } from "@/lib/schemas";
 
 export const Contato = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm({
+    resolver: zodResolver(contatoSchema),
+    mode: "onBlur",
+  });
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setIsSubmitting(true);
+  const onSubmit = async (data) => {
     setSubmitStatus(null);
 
-    const formData = new FormData(event.target);
-
     try {
-      const response = await fetch(
-        "https://formsubmit.co/ajax/e44555f41de2646eddab7a7928ce763f",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            nome: formData.get("nome"),
-            email: formData.get("email"),
-            objetivo: formData.get("objetivo"),
-            assunto: formData.get("assunto"),
-            mensagem: formData.get("mensagem"),
-            _subject: "📨 Novo contato pelo seu portfólio!",
-            _captcha: "false",
-            _template: "box",
-          }),
-        }
-      );
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
       if (response.ok) {
         setSubmitStatus("success");
-        event.target.reset();
+        reset();
+        setTimeout(() => setSubmitStatus(null), 5000);
       } else {
+        const errorData = await response.json();
         setSubmitStatus("error");
+        console.error("Erro:", errorData);
       }
     } catch (error) {
       setSubmitStatus("error");
-    } finally {
-      setIsSubmitting(false);
+      console.error("Erro ao enviar:", error);
     }
   };
 
@@ -109,42 +98,59 @@ export const Contato = () => {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 role="alert"
-                className="mb-6 p-4 md:p-5 bg-red-500/15 border border-red-500/50 rounded-lg text-red-400 text-center text-sm md:text-base font-medium"
+                className="mb-6 p-4 md:p-5 bg-red-500/15 border border-red-500/50 rounded-lg text-red-400 text-center text-sm md:text-base font-medium flex items-gap gap-2"
               >
-                ✗ Erro ao enviar mensagem. Tente novamente ou entre em contato direto por email.
+                <AlertCircle size={18} />
+                Erro ao enviar mensagem. Tente novamente ou entre em contato direto por email.
               </motion.div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 md:space-y-6">
               {/* Name Field */}
               <div className="space-y-2">
                 <Label htmlFor="nome" className="text-foreground font-semibold text-sm md:text-base">
-                  Nome Completo
+                  Nome Completo *
                 </Label>
                 <Input
                   id="nome"
-                  name="nome"
-                  required
                   placeholder="Ex: João da Silva"
-                  className="bg-foreground/10 border border-foreground/30 text-foreground placeholder:text-foreground/50 focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-lg h-12"
+                  className={`bg-foreground/10 border text-foreground placeholder:text-foreground/50 focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-lg h-12 ${
+                    errors.nome ? "border-red-500/70" : "border-foreground/30"
+                  }`}
                   disabled={isSubmitting}
+                  {...register("nome")}
+                  aria-invalid={errors.nome ? "true" : "false"}
+                  aria-describedby={errors.nome ? "nome-error" : undefined}
                 />
+                {errors.nome && (
+                  <p id="nome-error" className="text-red-400 text-xs md:text-sm flex items-center gap-1">
+                    <AlertCircle size={14} /> {errors.nome.message}
+                  </p>
+                )}
               </div>
 
               {/* Email Field */}
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-foreground font-semibold text-sm md:text-base">
-                  Email
+                  Email *
                 </Label>
                 <Input
                   id="email"
-                  name="email"
                   type="email"
-                  required
                   placeholder="seu@email.com"
-                  className="bg-foreground/10 border border-foreground/30 text-foreground placeholder:text-foreground/50 focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-lg h-12"
+                  className={`bg-foreground/10 border text-foreground placeholder:text-foreground/50 focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-lg h-12 ${
+                    errors.email ? "border-red-500/70" : "border-foreground/30"
+                  }`}
                   disabled={isSubmitting}
+                  {...register("email")}
+                  aria-invalid={errors.email ? "true" : "false"}
+                  aria-describedby={errors.email ? "email-error" : undefined}
                 />
+                {errors.email && (
+                  <p id="email-error" className="text-red-400 text-xs md:text-sm flex items-center gap-1">
+                    <AlertCircle size={14} /> {errors.email.message}
+                  </p>
+                )}
               </div>
 
               {/* Objective Field */}
@@ -152,51 +158,73 @@ export const Contato = () => {
                 <Label htmlFor="objetivo" className="text-foreground font-semibold text-sm md:text-base">
                   Objetivo do Contato
                 </Label>
-                <Select name="objetivo" disabled={isSubmitting} defaultValue="">
-                  <SelectTrigger id="objetivo" className="w-full bg-foreground/10 border border-foreground/30 text-foreground focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-lg h-12">
-                    <SelectValue placeholder="Selecione uma opção" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-background border border-foreground/30">
-                    <SelectItem value="projeto">Desenvolvimento de Projeto</SelectItem>
-                    <SelectItem value="consultoria">
-                      Consultoria Técnica / Code Review
-                    </SelectItem>
-                    <SelectItem value="parceria">
-                      Oportunidade de Carreira / Parceria
-                    </SelectItem>
-                    <SelectItem value="outro">Outro</SelectItem>
-                  </SelectContent>
-                </Select>
+                <select
+                  id="objetivo"
+                  {...register("objetivo")}
+                  className={`w-full bg-foreground/10 border text-foreground focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-lg h-12 px-3 ${
+                    errors.objetivo ? "border-red-500/70" : "border-foreground/30"
+                  }`}
+                  disabled={isSubmitting}
+                  aria-invalid={errors.objetivo ? "true" : "false"}
+                  aria-describedby={errors.objetivo ? "objetivo-error" : undefined}
+                >
+                  <option value="">Selecione uma opção</option>
+                  <option value="projeto">Desenvolvimento de Projeto</option>
+                  <option value="consultoria">Consultoria Técnica / Code Review</option>
+                  <option value="parceria">Oportunidade de Carreira / Parceria</option>
+                  <option value="outro">Outro</option>
+                </select>
+                {errors.objetivo && (
+                  <p id="objetivo-error" className="text-red-400 text-xs md:text-sm flex items-center gap-1">
+                    <AlertCircle size={14} /> {errors.objetivo.message}
+                  </p>
+                )}
               </div>
 
               {/* Subject Field */}
               <div className="space-y-2">
                 <Label htmlFor="assunto" className="text-foreground font-semibold text-sm md:text-base">
-                  Assunto
+                  Assunto *
                 </Label>
                 <Input
                   id="assunto"
-                  name="assunto"
-                  required
                   placeholder="Resumo do assunto"
-                  className="bg-foreground/10 border border-foreground/30 text-foreground placeholder:text-foreground/50 focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-lg h-12"
+                  className={`bg-foreground/10 border text-foreground placeholder:text-foreground/50 focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-lg h-12 ${
+                    errors.assunto ? "border-red-500/70" : "border-foreground/30"
+                  }`}
                   disabled={isSubmitting}
+                  {...register("assunto")}
+                  aria-invalid={errors.assunto ? "true" : "false"}
+                  aria-describedby={errors.assunto ? "assunto-error" : undefined}
                 />
+                {errors.assunto && (
+                  <p id="assunto-error" className="text-red-400 text-xs md:text-sm flex items-center gap-1">
+                    <AlertCircle size={14} /> {errors.assunto.message}
+                  </p>
+                )}
               </div>
 
               {/* Message Field */}
               <div className="space-y-2">
                 <Label htmlFor="mensagem" className="text-foreground font-semibold text-sm md:text-base">
-                  Sua Mensagem
+                  Sua Mensagem *
                 </Label>
                 <Textarea
                   id="mensagem"
-                  name="mensagem"
-                  required
                   placeholder="Descreva sua ideia ou necessidade..."
-                  className="min-h-36 md:min-h-40 bg-foreground/10 border border-foreground/30 text-foreground placeholder:text-foreground/50 focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-lg resize-none p-3 md:p-4"
+                  className={`min-h-36 md:min-h-40 bg-foreground/10 border text-foreground placeholder:text-foreground/50 focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-lg resize-none p-3 md:p-4 ${
+                    errors.mensagem ? "border-red-500/70" : "border-foreground/30"
+                  }`}
                   disabled={isSubmitting}
+                  {...register("mensagem")}
+                  aria-invalid={errors.mensagem ? "true" : "false"}
+                  aria-describedby={errors.mensagem ? "mensagem-error" : undefined}
                 />
+                {errors.mensagem && (
+                  <p id="mensagem-error" className="text-red-400 text-xs md:text-sm flex items-center gap-1">
+                    <AlertCircle size={14} /> {errors.mensagem.message}
+                  </p>
+                )}
               </div>
 
               {/* Submit Button */}
@@ -231,30 +259,66 @@ export const Contato = () => {
               Ou entre em contato através de:
             </div>
             <div className="flex items-center justify-center gap-4 md:gap-6">
-              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-                <Link href="mailto:joaoufelipe@hotmail.com" aria-label="Enviar email para João Felipe">
+              <motion.div
+                whileHover={{ scale: 1.1, y: -4 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative group"
+              >
+                <Link
+                  href="mailto:joaoufelipe@hotmail.com"
+                  title="Enviar email"
+                  aria-label="Enviar email para João Felipe"
+                  className="flex"
+                >
                   <Card className="flex items-center justify-center text-foreground bg-primary/15 hover:bg-primary/25 p-4 w-14 h-14 md:w-16 md:h-16 aspect-square rounded-full backdrop-blur-sm border border-primary/30 cursor-pointer transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20">
                     <Mail size={24} />
                   </Card>
                 </Link>
+                <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-foreground text-background px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  Email
+                </div>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-                <Link href="https://github.com/joaofelipe-dev" target="_blank" aria-label="Ver perfil do GitHub de João Felipe">
+              <motion.div
+                whileHover={{ scale: 1.1, y: -4 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative group"
+              >
+                <Link
+                  href="https://github.com/joaofelipe-dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Ver GitHub"
+                  aria-label="Ver perfil do GitHub de João Felipe"
+                  className="flex"
+                >
                   <Card className="flex items-center justify-center text-foreground bg-primary/15 hover:bg-primary/25 p-4 w-14 h-14 md:w-16 md:h-16 aspect-square rounded-full backdrop-blur-sm border border-primary/30 cursor-pointer transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20">
                     <Github size={24} />
                   </Card>
                 </Link>
+                <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-foreground text-background px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  GitHub
+                </div>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+              <motion.div
+                whileHover={{ scale: 1.1, y: -4 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative group"
+              >
                 <Link
                   href="https://www.linkedin.com/in/joao-felipedev"
                   target="_blank"
+                  rel="noopener noreferrer"
+                  title="Ver LinkedIn"
                   aria-label="Ver perfil do LinkedIn de João Felipe"
+                  className="flex"
                 >
                   <Card className="flex items-center justify-center text-foreground bg-primary/15 hover:bg-primary/25 p-4 w-14 h-14 md:w-16 md:h-16 aspect-square rounded-full backdrop-blur-sm border border-primary/30 cursor-pointer transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20">
                     <Linkedin size={24} />
                   </Card>
                 </Link>
+                <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-foreground text-background px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  LinkedIn
+                </div>
               </motion.div>
             </div>
           </motion.div>

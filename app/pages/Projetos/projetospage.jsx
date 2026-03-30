@@ -55,8 +55,6 @@ export const ProjetosPage = () => {
   useEffect(() => {
     if (!api) return;
 
-    setCurrentIndex(api.selectedScrollSnap());
-
     const onSelect = () => setCurrentIndex(api.selectedScrollSnap());
     api.on("select", onSelect);
 
@@ -122,7 +120,7 @@ export const ProjetosPage = () => {
 
         <div className="w-full max-w-6xl flex items-center justify-center">
 
-          <div className="w-full max-w-2xl">
+          <div className="w-full max-w-2xl relative">
             <Carousel
               className="w-full"
               opts={{
@@ -153,6 +151,22 @@ export const ProjetosPage = () => {
                 aria-label="Próximo projeto"
               />
             </Carousel>
+
+            {/* Mobile Swipe Hint */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.5, duration: 0.5 }}
+              className="md:hidden text-center mt-4 text-xs text-muted-foreground flex items-center justify-center gap-1"
+            >
+              <motion.div animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+                👉
+              </motion.div>
+              Deslize para explorar
+              <motion.div animate={{ x: [0, -4, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+                👈
+              </motion.div>
+            </motion.div>
           </div>
         </div>
 
