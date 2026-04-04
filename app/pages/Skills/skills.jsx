@@ -104,13 +104,17 @@ const TOOLS_DATA = [
 export const Skills = () => {
   const [filtroAtivo, setFiltroAtivo] = useState("Todos");
 
-  const tiposUnicos = useMemo(() => ["Todos", ...new Set(TOOLS_DATA.map((tool) => tool.tipo))], []);
+  const tiposUnicos = useMemo(
+    () => ["Todos", ...new Set(TOOLS_DATA.map((tool) => tool.tipo))],
+    [],
+  );
 
   const ferramentasFiltradas = useMemo(
-    () => filtroAtivo === "Todos"
-      ? TOOLS_DATA
-      : TOOLS_DATA.filter((tool) => tool.tipo === filtroAtivo),
-    [filtroAtivo]
+    () =>
+      filtroAtivo === "Todos"
+        ? TOOLS_DATA
+        : TOOLS_DATA.filter((tool) => tool.tipo === filtroAtivo),
+    [filtroAtivo],
   );
 
   return (
@@ -148,10 +152,10 @@ export const Skills = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setFiltroAtivo(tipo)}
-            className={`px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm lg:text-base rounded-full font-medium transition-all duration-300 ${
+            className={`px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm lg:text-base rounded-full font-medium transition-all cursor-pointer duration-300 ${
               filtroAtivo === tipo
                 ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30"
-                : "bg-muted text-muted-foreground hover:bg-muted/80 border border-muted-foreground/20"
+                : "bg-background text-muted-foreground hover:bg-background/80 border border-primary drop-shadow-md drop-shadow-primary hover:drop-shadow-lg hover:drop-shadow-primary"
             }`}
           >
             {tipo}
@@ -174,7 +178,7 @@ export const Skills = () => {
             target="_blank"
             rel="noopener noreferrer"
             variants={item}
-            className="w-full h-full flex"
+            className="w-full h-full max-h-80 flex"
             whileHover={{ y: -4 }}
           >
             <Card
