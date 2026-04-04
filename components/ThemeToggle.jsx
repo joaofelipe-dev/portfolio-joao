@@ -28,7 +28,7 @@ export default function ThemeToggle() {
       className="
         fixed top-6 right-3
         p-4 rounded-full
-        bg-foreground text-secondary
+        bg-secondary/20 text-primary
         shadow-lg hover:scale-110 transition-transform
         z-50 cursor-pointer
       "

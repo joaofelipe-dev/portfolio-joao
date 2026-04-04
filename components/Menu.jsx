@@ -21,7 +21,7 @@ export const Menu = () => {
       root: null,
       rootMargin: "0px",
       threshold: [0.4, 0.6],
-    }
+    },
   );
 
   const handleClick = (e, id) => {
@@ -55,7 +55,7 @@ export const Menu = () => {
       aria-label="Navegação"
       className={`
         fixed z-50 transition-all duration-500 ease-in-out
-        bg-foreground/90 backdrop-blur-xl shadow-2xl border border-white/10
+        bg-secondary/20 backdrop-blur-xl shadow-2xl border border-white/10
         
         /* Mobile: Bottom Dock */
         bottom-6 left-1/2 -translate-x-1/2 
@@ -70,16 +70,21 @@ export const Menu = () => {
         ${isOpen ? "sm:w-36" : "sm:w-14"}
       `}
     >
-      <ul className={`
+      <ul
+        className={`
         flex items-center gap-2 w-full list-none p-0 m-0
         ${isOpen ? "justify-between px-2" : "justify-center"}
         sm:flex-col sm:gap-4 sm:justify-center sm:px-0
-      `}>
+      `}
+      >
         {pages.map((page) => {
           const isActive = activeSection === page.id;
           const Icon = page.icon;
           return (
-            <li key={page.id} className={`${isOpen ? "flex-1" : "w-auto"} sm:w-full flex justify-center`}>
+            <li
+              key={page.id}
+              className={`${isOpen ? "flex-1" : "w-auto"} sm:w-full flex justify-center`}
+            >
               <a
                 href={page.href}
                 onClick={(e) => {
@@ -90,9 +95,10 @@ export const Menu = () => {
                   flex items-center rounded-xl
                   transition-all duration-300 cursor-pointer
                   ${isOpen ? "justify-start px-3 py-2 gap-3" : "justify-center p-2 gap-0"}
-                  ${isActive
-                    ? "bg-primary text-secondary shadow-lg shadow-primary/20"
-                    : "text-primary hover:bg-white/5"
+                  ${
+                    isActive
+                      ? "bg-primary text-secondary shadow-lg shadow-primary/20"
+                      : "text-primary hover:bg-white/5"
                   }
                 `}
               >
@@ -107,9 +113,10 @@ export const Menu = () => {
                     text-[10px] font-bold uppercase tracking-widest
                     whitespace-nowrap overflow-hidden
                     transition-all duration-300
-                    ${isOpen
-                      ? "opacity-100 w-auto ml-1"
-                      : "opacity-0 w-0 pointer-events-none"
+                    ${
+                      isOpen
+                        ? "opacity-100 w-auto ml-1"
+                        : "opacity-0 w-0 pointer-events-none"
                     }
                   `}
                 >
