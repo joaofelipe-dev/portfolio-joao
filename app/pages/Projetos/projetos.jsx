@@ -60,8 +60,15 @@ export const Projetos = () => {
       </p>
       <div className="flex flex-row flex-wrap w-full gap-6 justify-center">
         {PROJETOS_DATA.map((projeto, index) => (
-          <div
+          <motion.div
             className="flex flex-col items-center text-center justify-between max-w-2xl h-auto aspect-4/3"
+            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            transition={{
+              duration: 0.8,
+              delay: index * 0.2,
+              translate: { type: "tween", stiffness: 100, ease: "easeOut" },
+            }}
             key={index}
             {...projeto}
           >
@@ -74,7 +81,7 @@ export const Projetos = () => {
             <img
               src={projeto.image}
               alt={projeto.title}
-              className="w-full h-full object-cover rounded-2xl"
+              className="w-full h-full object-cover rounded-2xl hover:scale-105 transition-transform duration-300 cursor-default"
             />
             <div className="flex flex-wrap gap-2 mt-4">
               {projeto.tags.map((tag, tagIndex) => (
@@ -86,7 +93,7 @@ export const Projetos = () => {
                 </span>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
