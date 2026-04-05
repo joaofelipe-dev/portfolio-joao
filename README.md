@@ -37,7 +37,7 @@ Para este projeto, foquei em ferramentas que garantem alta performance (Core Web
 
 Se você gostou do meu trabalho ou quer bater um papo sobre tecnologia, sinta-se à vontade para entrar em contato:
 
-*   **LinkedIn:** [linkedin.com/in/joao-felipedev](linkedin.com/in/joao-felipedev/)
+*   **LinkedIn:** [linkedin.com/in/joao-felipedev](https://linkedin.com/in/joao-felipedev/)
 *   **Email:** [joaoufelipedev@gmail.com](mailto:joaofelipedev@gmail.com)
 
 ---
