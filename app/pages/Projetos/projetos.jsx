@@ -1,63 +1,101 @@
 "use client";
-import TiltedCard from "@/components/ui/TiltedCard";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { motion } from "motion/react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
-export const Projetos = ({ image, title, description, href, tags = [], category = "" }) => {
+const PROJETOS_DATA = [
+  {
+    image: "/parallax.png",
+    title: "Parallax Creator Engine",
+    description:
+      "Desenvolvimento de um motor de efeitos visuais parallax para imersão",
+    href: "./",
+    tags: ["React", "Performance", "3D"],
+    category: "Visual Effects",
+  },
+  {
+    image: "/painel-vendas.png",
+    title: "Painel de Vendas - Dashboard Corporativo",
+    description:
+      "Dashboard com visualização de dados em tempo real. Painel administrativo",
+    href: "./",
+    tags: ["React", "Analytics", "Real-time"],
+    category: "Dashboard",
+  },
+  {
+    image: "/travelgram.png",
+    title: "Travelgram - Perfil de Viagens",
+    description:
+      "Desenvolvimento de um perfil de viagens com design responsivo e interativo.",
+    href: "https://joaofelipe-dev.github.io/Travelgram",
+    tags: ["React", "Responsive", "Design"],
+    category: "Social Profile",
+  },
+  {
+    image: "/pedido-papelaria.png",
+    title: "Pedidos de Papelaria - Sistema de Gestão",
+    description:
+      "Sistema de gestão de pedidos para papelaria com foco em facilidade de uso.",
+    href: "./",
+    tags: ["React", "UX", "Enterprise"],
+    category: "Management System",
+  },
+];
+
+export const Projetos = () => {
   return (
-    <div className="flex flex-col gap-3">
-      <a href={href} target="_blank">
-
-        <TiltedCard
-          imageSrc={image}
-          altText={title}
-          captionText={title}
-          containerHeight="320px"
-          containerWidth="350px"
-          imageHeight="300px"
-          imageWidth="350px"
-          rotateAmplitude={12}
-          scaleOnHover={1.2}
-          showMobileWarning={false}
-          showTooltip={true}
-          displayOverlayContent={true}
-          overlayContent={
-            <div className="flex flex-col gap-2 px-3 py-2">
-              <p className="text-xs font-semibold text-center line-clamp-2">
-                {description}
-              </p>
+    <div className="w-full flex flex-col items-center justify-center mx-auto px-4 py-8">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-foreground">
+        Portfólio de Projetos
+      </h2>
+      <p className="text-sm md:text-base lg:text-lg text-muted-foreground text-center max-w-2xl mx-auto mb-6">
+        Uma seleção de projetos que demonstram minha experiência em
+        desenvolvimento
+      </p>
+      <div className="flex flex-row flex-wrap w-full gap-6 justify-center">
+        {PROJETOS_DATA.map((projeto, index) => (
+          <motion.div
+            className="flex flex-col items-center text-center justify-between max-w-2xl h-auto aspect-4/3"
+            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            transition={{
+              duration: 0.8,
+              delay: index * 0.2,
+              translate: { type: "tween", stiffness: 100, ease: "easeOut" },
+            }}
+            key={index}
+            {...projeto}
+          >
+            <h3 className="text-2xl font-semibold mb-2 text-foreground">
+              {projeto.title}
+            </h3>
+            <p className="text-lg text-muted-foreground mb-4">
+              {projeto.description}
+            </p>
+            <img
+              src={projeto.image}
+              alt={projeto.title}
+              className="w-full h-full object-cover rounded-2xl hover:scale-105 transition-transform duration-300 cursor-default"
+            />
+            <div className="flex flex-wrap gap-2 mt-4">
+              {projeto.tags.map((tag, tagIndex) => (
+                <span
+                  key={tagIndex}
+                  className="bg-background border text-muted-foreground px-3 py-1 rounded-full drop-shadow-primary drop-shadow-md hover:drop-shadow-lg hover:drop-shadow-primary hover:scale-105 cursor-default text-sm"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
-          }
-
-        />
-      </a>
-
-      {/* Project Info */}
-      <div className="px-2 py-2 flex flex-col gap-2">
-        {/* Category Badge */}
-        {category && (
-          <div className="inline-flex w-fit">
-            <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-primary/20 text-primary border border-primary/30">
-              {category}
-            </span>
-          </div>
-        )}
-
-        {/* Tags */}
-        {tags && tags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
-            {tags.map((tag, index) => (
-              <span
-                key={index}
-                className="text-xs px-2 py-1 rounded-lg bg-muted text-muted-foreground/80 border border-muted-foreground/20 transition-all hover:bg-muted-foreground/10 hover:border-muted-foreground/40"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+          </motion.div>
+        ))}
       </div>
     </div>
   );
 };
-
-
