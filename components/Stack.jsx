@@ -10,6 +10,10 @@ import {
   SiHtml5,
   SiCss3,
   SiJavascript,
+  SiTypescript,
+  SiNodedotjs,
+  SiPostgresql,
+  SiVercel,
 } from "react-icons/si";
 
 export const Stack = () => {
@@ -19,6 +23,7 @@ export const Stack = () => {
     { node: <SiHtml5 />, title: "Html5", href: "" },
     { node: <SiCss3 />, title: "Css3", href: "" },
     { node: <SiJavascript />, title: "JavaScript", href: "" },
+    { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
     { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
     {
       node: <SiTailwindcss />,
@@ -26,6 +31,9 @@ export const Stack = () => {
       href: "https://tailwindcss.com",
     },
     { node: <SiShadcnui />, title: "Shadcn UI", href: "https://ui.shadcn.com" },
+    { node: <SiNodedotjs />, title: "Node.js", href: "https://nodejs.org" },
+    { node: <SiPostgresql />, title: "PostgreSQL", href: "https://www.postgresql.org" },
+    { node: <SiVercel />, title: "Vercel", href: "https://vercel.com" },
     { node: <SiGit />, title: "Git", href: "https://git-scm.com" },
   ];
 
@@ -34,7 +42,7 @@ export const Stack = () => {
       <h2 className="text-2xl md:text-3xl font-bold">Stack de Tecnologias</h2>
       <div
         className="w-full max-w-full overflow-hidden"
-        style={{  position: "relative" }}
+        style={{ position: "relative" }}
       >
         <LogoLoop
           logos={techLogos}
@@ -45,7 +53,7 @@ export const Stack = () => {
           copyCount={3}
           pauseOnHover
           scaleOnHover
-          ariaLabel="Tecnologias que utilizo: React, Next.js, Tailwind, Git e mais"
+          ariaLabel="Tecnologias que utilizo: React, Next.js, TypeScript, JavaScript, Node.js, PostgreSQL, Tailwind CSS, Shadcn UI, Vercel, Git e mais"
         />
       </div>
     </div>
