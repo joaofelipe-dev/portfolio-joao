@@ -119,7 +119,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-BR" className="dark scroll-smooth overflow-hidden">
+    <html lang="pt-BR" className="dark scroll-smooth overflow-x-hidden">
       <head>
         <meta name="theme-color" content="#0a0a0a" />
         <script
@@ -201,7 +201,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className={`${spaceGrotesk.variable} ${manrope.variable} antialiased overflow-hidden`}
+        className={`${spaceGrotesk.variable} ${manrope.variable} antialiased overflow-y-auto overflow-x-hidden`}
       >
         <main>
           {children}
