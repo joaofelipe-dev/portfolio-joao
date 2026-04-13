@@ -6,27 +6,30 @@ export async function GET() {
   try {
     const username = "joaofelipe-dev";
     
-    const response = await fetch(
-      `https://api.github.com/users/${username}/events?per_page=50`,
-      {
-        headers: {
-          Accept: "application/vnd.github.v3+json",
-        },
+    const fetchEventsPage = async (page) => {
+      const response = await fetch(
+        `https://api.github.com/users/${username}/events?per_page=100&page=${page}`,
+        {
+          headers: {
+            Accept: "application/vnd.github.v3+json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error(`Failed to fetch page ${page}`);
       }
+      return response.json();
+    };
+
+    const pages = await Promise.all(
+      Array.from({ length: 10 }, (_, i) => fetchEventsPage(i + 1))
     );
+    const allEvents = pages.flat();
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch GitHub events");
-    }
-
-    const events = await response.json();
-
-    // Filtrar apenas eventos de contribuição (PushEvent, CreateEvent)
-    const contributionEvents = events.filter(
+    const contributionEvents = allEvents.filter(
       (event) => event.type === "PushEvent" || event.type === "CreateEvent"
     );
 
-    // Contar contribuições por dia (últimos 90 dias)
     const contributionsByDate = {};
     const today = new Date();
     const ninetyDaysAgo = new Date(today.getTime() - 90 * 24 * 60 * 60 * 1000);
@@ -35,17 +38,21 @@ export async function GET() {
       const date = new Date(event.created_at);
       if (date >= ninetyDaysAgo) {
         const dateStr = date.toISOString().split("T")[0];
-        contributionsByDate[dateStr] = (contributionsByDate[dateStr] || 0) + 1;
+        
+        let dayContribution = 1;
+        if (event.type === "PushEvent" && event.payload?.commits) {
+          dayContribution = event.payload.commits.length;
+        }
+        
+        contributionsByDate[dateStr] = (contributionsByDate[dateStr] || 0) + dayContribution;
       }
     });
 
-    // Calcular total
     const total = Object.values(contributionsByDate).reduce((a, b) => a + b, 0);
 
-    // Contar commits ( PushEvents = 1 commit por event)
-    const commits = contributionEvents.filter(
-      (e) => e.type === "PushEvent"
-    ).length;
+    const commits = contributionEvents
+      .filter((e) => e.type === "PushEvent")
+      .reduce((sum, e) => sum + (e.payload?.commits?.length || 1), 0);
 
     return NextResponse.json({
       total,
