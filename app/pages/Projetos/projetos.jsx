@@ -6,12 +6,32 @@ import { Chip } from "@/components/ui/chip";
 
 const PROJETOS_DATA = [
   {
-    image: "/centralizador.png",
+    image: "/promomaker.webp",
+    title: "PromoMaker",
+    description:
+      "Plataforma para criação de placas de ofertas. Interface intuitiva para gerar materiais promocionais.",
+    href: "#",
+    tags: ["React", "Next.js", "JavaScript", "Tailwind CSS", "Vercel"],
+    category: "Plataforma",
+    live: true,
+  },
+  {
+    image: "/centralizador.webp",
     title: "Centralizador de Pedidos",
     description:
       "Sistema Fullstack para gestão de pedidos empresariais. Interface React com Next.js, PostgreSQL, API REST e gestão em tempo real.",
     href: "https://github.com/joaofelipe-dev/centralizador",
-    tags: ["React", "Next.js", "TypeScript", "PostgreSQL", "Node.js"],
+    tags: ["React", "Next.js", "TypeScript", "PostgreSQL", "Node.js", "Vercel"],
+    category: "Sistema Corporativo",
+    live: true,
+  },
+  {
+    image: "/painel-vendas.webp",
+    title: "Painel de Vendas",
+    description:
+      "Dashboard para gestão de vendas. Visualização de métricas em tempo real com gráficos e relatórios.",
+    href: "#",
+    tags: ["React", "Next.js", "JavaScript", "Tailwind CSS", "Vercel"],
     category: "Sistema Corporativo",
     live: true,
   },
@@ -20,23 +40,13 @@ const PROJETOS_DATA = [
     title: "Firebroker",
     description:
       "Plataforma para análise de imóveis. Integração com APIs externas e visualização de dados em tempo real.",
-    href: "https://firebroker.vercel.app",
+    href: "#",
     tags: ["React", "Next.js", "JavaScript", "Tailwind CSS", "Vercel"],
     category: "Plataforma",
     live: true,
   },
   {
-    image: "/placeholder.svg",
-    title: "PCEasyBot",
-    description:
-      "Bot de automação para TikTok. Automatiza tarefas repetitivas e interações com usuários.",
-    href: "https://github.com/joaofelipe-dev/PCEasyBot",
-    tags: ["Python", "Automação", "Bot", "TikTok"],
-    category: "Automação",
-    live: false,
-  },
-  {
-    image: "/travelgram.png",
+    image: "/travelgram.webp",
     title: "Travelgram",
     description:
       "Website de perfil de viagens responsivo. Design mobile-first com integração Pages do GitHub.",
@@ -46,11 +56,11 @@ const PROJETOS_DATA = [
     live: true,
   },
   {
-    image: "/pedido-papelaria.png",
+    image: "/pedido-papelaria.webp",
     title: "Sistema de Papelaria",
     description:
       "Sistema de gestão para papelarias. Fluxo simplificado de pedidos com interface intuitiva.",
-    href: "https://pedidos-papelaria.vercel.app",
+    href: "#",
     tags: ["React", "JavaScript", "Tailwind CSS", "Vercel"],
     category: "Sistema Corporativo",
     live: true,
@@ -122,7 +132,7 @@ export const Projetos = () => {
                 <p className="text-sm text-on-surface-variant mb-4">
                   {projeto.description}
                 </p>
-                
+
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2">
                   {projeto.tags.map((tag, tagIndex) => (

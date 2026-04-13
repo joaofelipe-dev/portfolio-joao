@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import Particles from "@/components/ui/Particles";
 import { motion } from "motion/react";
 
@@ -14,12 +15,30 @@ const PARTICLES_CONFIG = {
 };
 
 export const Sobre = () => {
+  const [stats, setStats] = useState({ commits: 0, repos: 0, contributions: 0 });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/stats")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.commits !== undefined) {
+          setStats({
+            commits: data.commits,
+            repos: data.repos || 5,
+            contributions: data.contributions || data.commits,
+          });
+        }
+      })
+      .catch(() => { })
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <>
       <section
         id="sobre"
-        className="relative snap-start min-h-screen flex flex-col items-center justify-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 overflow-x-hidden"
+        className="relative snap-start min-h-screen flex flex-col items-center justify-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
       >
         {/* Background with Particles */}
         <div className="absolute inset-0 -z-10">
@@ -41,15 +60,6 @@ export const Sobre = () => {
           >
             Sobre Mim
           </motion.h2>
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
-            viewport={{ once: true }}
-            className="text-lg md:text-xl text-primary font-medium"
-          >
-            +20 repos • ~350 contribuições • +13 tecnologias
-          </motion.div>
         </div>
 
         {/* Main Content */}
@@ -83,9 +93,6 @@ export const Sobre = () => {
                 Minha abordagem: entender o problema primeiro, depois escolher a tecnologia
                 certa. Código limpo, escalável e que outros devs conseguem manter.
               </p>
-              <p className="text-sm sm:text-base lg:text-lg text-primary font-medium">
-                Procuro minha primeira vaga CLT onde possa aplicar e evoluir essas habilidades.
-              </p>
             </div>
           </motion.div>
 
@@ -112,9 +119,13 @@ export const Sobre = () => {
                 lógico e capacidade de resolver problemas.
               </p>
               <p className="text-sm sm:text-base lg:text-lg text-on-surface-variant leading-relaxed">
-                Comecei a programar em 2024 e desde então mantive um ritmo consistente:
-                462 contribuições e 15 repositórios públicos, incluindo sistemas
-                corporativos, plataformas web e aplicações com deploy em produção.
+                {loading ? "Carregando..." : (
+                  <>
+                    Comecei a programar em 2024 e desde então mantive um ritmo consistente:
+                    +{stats.contributions} contribuições e {stats.repos} repositórios públicos, incluindo sistemas
+                    corporativos, plataformas web e aplicações com deploy em produção.
+                  </>
+                )}
               </p>
               <p className="text-sm sm:text-base lg:text-lg text-on-surface-variant leading-relaxed">
                 Cada projeto foi uma oportunidade de aprender e entregar valor real.

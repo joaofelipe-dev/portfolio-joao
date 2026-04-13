@@ -63,10 +63,11 @@ export function Banner() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/github")
+    fetch("/api/stats")
       .then((res) => res.json())
       .then((data) => {
-        if (data.total !== undefined) setCommits(data.total);
+        if (data.commits !== undefined) setCommits(data.commits);
+        if (data.repos !== undefined) setProjects(String(data.repos));
       })
       .catch(() => { })
       .finally(() => setLoading(false));
@@ -146,7 +147,7 @@ export function Banner() {
                   size="lg"
                   className="w-full sm:w-56 h-12 text-base gap-2 shadow-lg shadow-primary/20 hover:shadow-primary/40"
                 >
-                  <span>Vamos Trabalhar</span>
+                  <span>Entre em Contato</span>
                   <ArrowRight className="size-4" />
                 </Button>
               </a>
@@ -191,7 +192,7 @@ export function Banner() {
                   <div className="bg-surface-container-low rounded-xl p-3 border border-outline-variant/10">
                     <p className="text-xs text-on-surface-variant mb-1">Commits</p>
                     <p className="text-xl font-bold text-primary">{loading ? "..." : commits}</p>
-                    <p className="text-[10px] text-secondary">Últimos 3 meses</p>
+                    <p className="text-[10px] text-secondary">Este ano</p>
                   </div>
                   <div className="bg-surface-container-low rounded-xl p-3 border border-outline-variant/10">
                     <p className="text-xs text-on-surface-variant mb-1">Projetos</p>

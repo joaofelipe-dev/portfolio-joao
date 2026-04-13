@@ -156,7 +156,7 @@ export const Skills = () => {
   return (
     <section
       id="skills"
-      className="min-h-screen w-full px-4 md:px-6 lg:px-10 py-12 md:py-16 lg:py-20 flex flex-col gap-10 md:gap-12 overflow-x-hidden relative"
+      className="min-h-screen w-full px-4 md:px-6 lg:px-10 py-12 md:py-16 lg:py-20 flex flex-col gap-10 md:gap-12 overflow-hidden relative"
     >
       {/* Background Blobs */}
       <div className="absolute left-0 top-0 w-72 h-72 bg-secondary/5 rounded-full blur-[150px] -z-10" />
