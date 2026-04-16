@@ -2,7 +2,8 @@ import { Space_Grotesk, Manrope } from "next/font/google";
 import ThemeToggle from "@/components/ThemeToggle";
 import "./globals.css";
 import { Menu } from "@/components/Menu";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import SmoothScroll from "@/components/SmoothScroll";
 
 const spaceGrotesk = Space_Grotesk({
@@ -206,6 +207,7 @@ export default function RootLayout({ children }) {
         <main>
           {children}
           <SpeedInsights />
+          <Analytics />
         </main>
         <ThemeToggle />
         <Menu />
