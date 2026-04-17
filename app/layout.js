@@ -90,7 +90,7 @@ export const metadata = {
     siteName: "Portfólio — João Felipe",
     images: [
       {
-        url: "/og-image.png",
+        url: "/image.png",
         width: 1200,
         height: 630,
         alt: "Portfólio de João Felipe — Desenvolvedor Frontend React e Next.js",
@@ -105,7 +105,7 @@ export const metadata = {
     title: "João Felipe | Desenvolvedor Frontend React e Next.js",
     description:
       "Interfaces modernas com React, Next.js e TypeScript. Código limpo, performance e projetos reais em produção.",
-    images: ["/og-image.png"],
+    images: ["/image.png"],
   },
 
   category: "tecnologia",
@@ -130,16 +130,17 @@ export default function RootLayout({ children }) {
               {
                 "@context": "https://schema.org",
                 "@type": "Person",
-                "name": "João Felipe",
-                "jobTitle": "Desenvolvedor Frontend",
-                "url": "https://joao-felipe.vercel.app",
-                "image": "https://joao-felipe.vercel.app/og-image.png",
-                "sameAs": [
+                name: "João Felipe",
+                jobTitle: "Desenvolvedor Frontend",
+                url: "https://joao-felipe.vercel.app",
+                image: "https://joao-felipe.vercel.app/image.png",
+                sameAs: [
                   "https://github.com/joaofelipe-dev",
-                  "https://linkedin.com/in/joao-felipedev"
+                  "https://linkedin.com/in/joao-felipedev",
                 ],
-                "description": "Desenvolvedor Frontend especializado em React, Next.js e TypeScript. Cria interfaces modernas e performáticas com deploy em produção.",
-                "knowsAbout": [
+                description:
+                  "Desenvolvedor Frontend especializado em React, Next.js e TypeScript. Cria interfaces modernas e performáticas com deploy em produção.",
+                knowsAbout: [
                   "Desenvolvimento Frontend",
                   "React",
                   "Next.js",
@@ -150,53 +151,54 @@ export default function RootLayout({ children }) {
                   "PostgreSQL",
                   "Vercel",
                   "Performance Web",
-                  "Acessibilidade Web"
-                ]
+                  "Acessibilidade Web",
+                ],
               },
               {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                "name": "Portfólio — João Felipe",
-                "url": "https://joao-felipe.vercel.app",
-                "author": "João Felipe",
-                "description": "Portfólio profissional de João Felipe, Desenvolvedor Frontend especializado em React e Next.js."
+                name: "Portfólio — João Felipe",
+                url: "https://joao-felipe.vercel.app",
+                author: "João Felipe",
+                description:
+                  "Portfólio profissional de João Felipe, Desenvolvedor Frontend especializado em React e Next.js.",
               },
               {
                 "@context": "https://schema.org",
                 "@type": "BreadcrumbList",
-                "itemListElement": [
+                itemListElement: [
                   {
                     "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://joao-felipe.vercel.app"
+                    position: 1,
+                    name: "Home",
+                    item: "https://joao-felipe.vercel.app",
                   },
                   {
                     "@type": "ListItem",
-                    "position": 2,
-                    "name": "Projetos",
-                    "item": "https://joao-felipe.vercel.app#projetos"
+                    position: 2,
+                    name: "Projetos",
+                    item: "https://joao-felipe.vercel.app#projetos",
                   },
                   {
                     "@type": "ListItem",
-                    "position": 3,
-                    "name": "Habilidades",
-                    "item": "https://joao-felipe.vercel.app#skills"
+                    position: 3,
+                    name: "Habilidades",
+                    item: "https://joao-felipe.vercel.app#skills",
                   },
                   {
                     "@type": "ListItem",
-                    "position": 4,
-                    "name": "Sobre",
-                    "item": "https://joao-felipe.vercel.app#sobre"
+                    position: 4,
+                    name: "Sobre",
+                    item: "https://joao-felipe.vercel.app#sobre",
                   },
                   {
                     "@type": "ListItem",
-                    "position": 5,
-                    "name": "Contato",
-                    "item": "https://joao-felipe.vercel.app#contato"
-                  }
-                ]
-              }
+                    position: 5,
+                    name: "Contato",
+                    item: "https://joao-felipe.vercel.app#contato",
+                  },
+                ],
+              },
             ]),
           }}
         />
