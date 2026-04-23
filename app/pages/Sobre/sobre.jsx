@@ -4,11 +4,11 @@ import Particles from "@/components/ui/Particles";
 import { motion } from "motion/react";
 
 const PARTICLES_CONFIG = {
-  particleColors: ["#ddb7ff", "#adc6ff", "#4ae176"],
+  particleColors: ["#a650f3ff", "#5181f0ff", "#aa4ae1ff"],
   particleCount: 150,
   particleSpread: 10,
   speed: 0.08,
-  particleBaseSize: 250,
+  particleBaseSize: 30,
   moveParticlesOnHover: false,
   alphaParticles: false,
   disableRotation: false,
