@@ -1,5 +1,4 @@
 import { Space_Grotesk, Manrope } from "next/font/google";
-import ThemeToggle from "@/components/ThemeToggle";
 import "./globals.css";
 import { Menu } from "@/components/Menu";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -209,7 +208,6 @@ export default function RootLayout({ children }) {
           <SpeedInsights />
           <Analytics />
         </main>
-        <ThemeToggle />
         <Menu />
         <SmoothScroll />
       </body>
