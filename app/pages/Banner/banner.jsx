@@ -58,8 +58,8 @@ const cardVariants = {
 };
 
 export function Banner() {
-  const [commits, setCommits] = useState(38);
-  const [projects, setProjects] = useState("5+");
+  const [commits, setCommits] = useState(300);
+  const [projects, setProjects] = useState("15+");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
