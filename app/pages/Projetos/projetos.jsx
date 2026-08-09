@@ -1,17 +1,28 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "motion/react";
 import { ExternalLink, Github } from "lucide-react";
 import { Chip } from "@/components/ui/chip";
+import Image from "next/image";
 
 const PROJETOS_DATA = [
   {
     image: "/promomaker.webp",
     title: "PromoMaker",
     description:
-      "Plataforma para criação de placas de ofertas. Interface intuitiva para gerar materiais promocionais.",
+    "Plataforma para criação de placas de ofertas. Interface intuitiva para gerar materiais promocionais.",
     href: "#",
     tags: ["React", "Next.js", "JavaScript", "Tailwind CSS", "Vercel"],
+    category: "Plataforma",
+    live: true,
+  },
+  {
+    image: "/design-system.webp",
+    title: "Design System",
+    description:
+      "Design system desenvolvido para padronizar interfaces e acelerar a construção de aplicações, com componentes reutilizáveis, regras de consistência visual, tokens de design e foco em escalabilidade e manutenção do front-end.",
+    href: "https://joaofelipe-dev.github.io/defaultdesignsystem",
+    tags: ["React", "TypeScript", "Tailwind CSS", "GitHub Pages"],
     category: "Plataforma",
     live: true,
   },
@@ -33,16 +44,6 @@ const PROJETOS_DATA = [
     href: "#",
     tags: ["React", "Next.js", "JavaScript", "Tailwind CSS", "Vercel"],
     category: "Sistema Corporativo",
-    live: true,
-  },
-  {
-    image: "/placeholder.svg",
-    title: "Firebroker",
-    description:
-      "Plataforma para análise de imóveis. Integração com APIs externas e visualização de dados em tempo real.",
-    href: "#",
-    tags: ["React", "Next.js", "JavaScript", "Tailwind CSS", "Vercel"],
-    category: "Plataforma",
     live: true,
   },
   {
@@ -69,7 +70,10 @@ const PROJETOS_DATA = [
 
 export const Projetos = () => {
   return (
-    <section id="projetos" className="w-full flex flex-col items-center justify-center mx-auto px-4 py-12 md:py-16 relative">
+    <section
+      id="projetos"
+      className="w-full flex flex-col items-center justify-center mx-auto px-4 py-12 md:py-16 relative"
+    >
       {/* Background Blobs */}
       <div className="absolute left-0 top-1/2 w-64 h-64 bg-primary/5 rounded-full blur-[150px] -z-10" />
       <div className="absolute right-0 top-1/3 w-64 h-64 bg-tertiary/5 rounded-full blur-[150px] -z-10" />
@@ -78,7 +82,8 @@ export const Projetos = () => {
         Projetos Entregues
       </h2>
       <p className="text-sm md:text-base text-on-surface-variant text-center max-w-2xl mx-auto mb-10">
-        Aplicações reais que entreguei para clientes. Cada projeto tem link para visualização.
+        Aplicações reais que entreguei para clientes. Cada projeto tem link para
+        visualização.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 w-full gap-6 justify-items-center">
@@ -100,10 +105,15 @@ export const Projetos = () => {
             <article className="group bg-surface-container-low rounded-xl overflow-hidden transition-all duration-300 hover:bg-surface-container-high hover:scale-[1.02]">
               {/* Image Container */}
               <div className="relative aspect-video overflow-hidden">
-                <img
+                <Image
                   src={projeto.image}
                   alt={projeto.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                  placeholder="blur"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
                 />
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-surface/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-end p-4">
@@ -114,7 +124,11 @@ export const Projetos = () => {
                     className="glass rounded-full p-3 hover:scale-110 transition-transform"
                     aria-label={`Ver ${projeto.title}`}
                   >
-                    {projeto.href.startsWith("http") ? <Github className="size-5" /> : <ExternalLink className="size-5" />}
+                    {projeto.href.startsWith("http") ? (
+                      <Github className="size-5" />
+                    ) : (
+                      <ExternalLink className="size-5" />
+                    )}
                   </a>
                 </div>
               </div>
@@ -125,9 +139,7 @@ export const Projetos = () => {
                   <h3 className="text-xl font-semibold text-on-surface font-[var(--font-space-grotesk)] tracking-tight">
                     {projeto.title}
                   </h3>
-                  {projeto.live && (
-                    <Chip variant="secondary">Live</Chip>
-                  )}
+                  {projeto.live && <Chip variant="secondary">Live</Chip>}
                 </div>
                 <p className="text-sm text-on-surface-variant mb-4">
                   {projeto.description}

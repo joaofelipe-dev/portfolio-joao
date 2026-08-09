@@ -9,14 +9,12 @@ export default function Home() {
   return (
     <>
       <BackgroundImage src="/wallpaper-dark.png" alt="Imagem de fundo" />
-      <div className="px-2 md:px-10">
-        <Banner />
-        <Stack />
-        <Projetos />
-        <Skills />
-        <Sobre />
-        <Contato />
-      </div>
+      <Banner />
+      <Stack />
+      <Projetos />
+      <Skills />
+      <Sobre />
+      <Contato />
     </>
   );
 }

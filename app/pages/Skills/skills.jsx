@@ -146,12 +146,12 @@ export const Skills = () => {
 
   const tiposUnicos = ["Todos", "Frontend", "Backend", "Ferramentas"];
 
-  const getFilteredTools = () => {
+  const filteredTools = useMemo(() => {
     if (filtroAtivo === "Todos") {
       return TOOLS_DATA;
     }
     return TOOLS_DATA.filter((tool) => tool.tipo === filtroAtivo);
-  };
+  }, [filtroAtivo]);
 
   return (
     <section
@@ -208,7 +208,7 @@ export const Skills = () => {
         className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5 lg:gap-6 justify-items-center flex-1"
       >
         <AnimatePresence mode="popLayout">
-          {getFilteredTools().map(({ nome, icone, nivel, href }) => (
+          {filteredTools.map(({ nome, icone, nivel, href }) => (
             <motion.a
               layout
               key={nome}
