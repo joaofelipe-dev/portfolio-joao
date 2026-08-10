@@ -7,7 +7,7 @@
 
 Este é o repositório do meu portfólio pessoal, desenvolvido com o objetivo de apresentar os meus projetos, competências técnicas e trajetória profissional de forma interativa e moderna.
 
-**Link para visualização:** [joao-felipe.vercel.app](https://joao-felipe.vercel.app)
+**Link para visualização:** [jfelipe.dev](https://jfelipe.dev)
 
 ---
 
