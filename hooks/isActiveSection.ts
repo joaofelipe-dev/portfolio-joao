@@ -1,9 +1,18 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 
-export function useActiveSection(ids, options) {
+interface UseActiveSectionOptions {
+  root?: Element | null;
+  rootMargin?: string;
+  threshold?: number | number[];
+}
+
+export function useActiveSection(
+  ids: string[],
+  options?: UseActiveSectionOptions
+): string {
   const [active, setActive] = useState("");
-  const observerRef = useRef(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -19,7 +28,7 @@ export function useActiveSection(ids, options) {
 
     observerRef.current = new IntersectionObserver(
       (entries) => {
-        let best = null;
+        let best: IntersectionObserverEntry | null = null;
         for (const e of entries) {
           if (!best || e.intersectionRatio > best.intersectionRatio) best = e;
         }
@@ -33,11 +42,11 @@ export function useActiveSection(ids, options) {
 
     ids.forEach((id) => {
       const el = document.getElementById(id);
-      if (el) observerRef.current.observe(el);
+      if (el) observerRef.current?.observe(el);
     });
 
     const missing = ids.some((id) => !document.getElementById(id));
-    let mo = null;
+    let mo: MutationObserver | null = null;
     if (missing) {
       mo = new MutationObserver(() => {
         ids.forEach((id) => {
@@ -52,7 +61,11 @@ export function useActiveSection(ids, options) {
       observerRef.current?.disconnect();
       if (mo) mo.disconnect();
     };
-  }, [JSON.stringify(ids), options?.rootMargin, JSON.stringify(options?.threshold || [])]);
+  }, [
+    JSON.stringify(ids),
+    options?.rootMargin,
+    JSON.stringify(options?.threshold || []),
+  ]);
 
   return active;
 }

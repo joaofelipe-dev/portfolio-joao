@@ -1,4 +1,5 @@
-'use client'
+"use client";
+import type { ReactNode } from "react";
 import LogoLoop from "@/components/ui/LogoLoop";
 import {
   SiReact,
@@ -16,14 +17,24 @@ import {
   SiVercel,
 } from "react-icons/si";
 
+interface TechLogo {
+  node: ReactNode;
+  title: string;
+  href: string;
+}
+
 export const Stack = () => {
-  const techLogos = [
+  const techLogos: TechLogo[] = [
     { node: <SiReact />, title: "React", href: "https://react.dev" },
     { node: <SiGithub />, title: "Github", href: "https://github.com" },
     { node: <SiHtml5 />, title: "Html5", href: "" },
     { node: <SiCss3 />, title: "Css3", href: "" },
     { node: <SiJavascript />, title: "JavaScript", href: "" },
-    { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+    {
+      node: <SiTypescript />,
+      title: "TypeScript",
+      href: "https://www.typescriptlang.org",
+    },
     { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
     {
       node: <SiTailwindcss />,
@@ -32,7 +43,11 @@ export const Stack = () => {
     },
     { node: <SiShadcnui />, title: "Shadcn UI", href: "https://ui.shadcn.com" },
     { node: <SiNodedotjs />, title: "Node.js", href: "https://nodejs.org" },
-    { node: <SiPostgresql />, title: "PostgreSQL", href: "https://www.postgresql.org" },
+    {
+      node: <SiPostgresql />,
+      title: "PostgreSQL",
+      href: "https://www.postgresql.org",
+    },
     { node: <SiVercel />, title: "Vercel", href: "https://vercel.com" },
     { node: <SiGit />, title: "Git", href: "https://git-scm.com" },
   ];

@@ -5,6 +5,12 @@ const chipVariants = {
   primary: "before:bg-primary",
   secondary: "before:bg-secondary",
   tertiary: "before:bg-tertiary",
+} as const;
+
+type ChipVariant = keyof typeof chipVariants;
+
+interface ChipProps extends React.HTMLAttributes<HTMLSpanElement> {
+  variant?: ChipVariant;
 }
 
 function Chip({
@@ -12,7 +18,7 @@ function Chip({
   variant = "primary",
   children,
   ...props
-}) {
+}: ChipProps) {
   return (
     <span
       data-slot="chip"

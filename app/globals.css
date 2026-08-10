@@ -37,6 +37,7 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-destructive-foreground: var(--destructive-foreground);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -54,6 +55,8 @@
   --color-on-surface-variant: var(--on-surface-variant);
   --color-primary-container: var(--primary-container);
   --color-secondary-container: var(--secondary-container);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-foreground: var(--tertiary-foreground);
   --color-tertiary-container: var(--tertiary-container);
   --color-outline-variant: var(--outline-variant);
 }
@@ -61,6 +64,7 @@
 :root {
   --radius: 0.75rem;
 
+  color-scheme: dark;
   --background: var(--surface);
   --foreground: var(--on-surface);
 
@@ -69,15 +73,21 @@
   --popover: var(--surface-container-high);
   --popover-foreground: var(--on-surface);
 
-  --primary: #8b5cf6;
+  --primary: #3b82f6;
   --primary-foreground: #05070f;
-  --primary-container: rgba(139, 92, 246, 0.15);
+  --primary-container: rgba(59, 130, 246, 0.15);
 
-  --secondary: #22d3ee;
+  --secondary: #8b5cf6;
   --secondary-foreground: #05070f;
-  --secondary-container: rgba(34, 211, 238, 0.12);
+  --secondary-container: rgba(139, 92, 246, 0.15);
 
-  --tertiary-container: rgba(167, 139, 250, 0.12);
+  --tertiary: #22d3ee;
+  --tertiary-foreground: #05070f;
+  --tertiary-container: rgba(34, 211, 238, 0.12);
+
+  --accent-violet: #ddb7ff;
+  --accent-blue: #adc6ff;
+  --accent-green: #4ae176;
 
   --muted: var(--surface-container-high);
   --muted-foreground: var(--on-surface-variant);
@@ -86,6 +96,7 @@
   --accent-foreground: var(--primary);
 
   --destructive: #ff6b6b;
+  --destructive-foreground: #ffffff;
 
   --border: rgba(255, 255, 255, 0.04);
   --input: var(--outline-variant);
@@ -99,7 +110,7 @@
 
   --sidebar: var(--surface);
   --sidebar-foreground: var(--on-surface);
-  --sidebar-primary: #8b5cf6;
+  --sidebar-primary: #3b82f6;
   --sidebar-primary-foreground: #05070f;
   --sidebar-accent: var(--surface-container-high);
   --sidebar-accent-foreground: var(--on-surface);
@@ -143,6 +154,25 @@ body {
   font-family: var(--font-manrope), sans-serif;
 }
 
+a,
+button,
+select,
+input,
+textarea {
+  touch-action: manipulation;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @layer utilities {
   .glass {
     @apply bg-surface-container/70 backdrop-blur-[30px] border border-outline-variant/15;
@@ -164,16 +194,8 @@ body {
     @apply absolute rounded-full bg-tertiary-container blur-[150px] -z-10;
   }
 
-  .glow-primary {
-    box-shadow: 0 0 20px rgba(221, 183, 255, 0.3);
-  }
-
-  .glow-primary-sm {
-    box-shadow: 0 0 10px rgba(221, 183, 255, 0.2);
-  }
-
   .gradient-overlay {
-    background: linear-gradient(135deg, rgba(221, 183, 255, 0.1) 0%, rgba(173, 198, 255, 0.1) 100%);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent-violet) 10%, transparent) 0%, color-mix(in srgb, var(--accent-blue) 10%, transparent) 100%);
   }
 
   .surface-elevated {
@@ -201,4 +223,27 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+}
+
+@utility glow-primary {
+  box-shadow: 0 0 20px color-mix(in srgb, var(--accent-violet) 30%, transparent);
+}
+
+@utility glow-primary-sm {
+  box-shadow: 0 0 15px color-mix(in srgb, var(--accent-violet) 20%, transparent);
+}
+
+@utility grid-overlay {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--accent-blue) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent-blue) 4%, transparent) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+@utility fade-edge-r {
+  background-image: linear-gradient(to right, color-mix(in srgb, var(--on-surface) 20%, transparent), transparent);
+}
+
+@utility fade-edge-l {
+  background-image: linear-gradient(to left, color-mix(in srgb, var(--on-surface) 20%, transparent), transparent);
 }

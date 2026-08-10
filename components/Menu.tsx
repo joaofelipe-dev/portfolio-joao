@@ -1,14 +1,28 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { useActiveSection } from "@/hooks/isActiveSection";
-import { Home, LayoutGrid, Cpu, UserRound, Mail } from "lucide-react";
+import {
+  Home,
+  LayoutGrid,
+  Cpu,
+  UserRound,
+  Mail,
+  type LucideIcon,
+} from "lucide-react";
+
+interface PageItem {
+  nome: string;
+  id: string;
+  href: string;
+  icon: LucideIcon;
+}
 
 export const Menu = () => {
-  const menuRef = useRef(null);
+  const menuRef = useRef<HTMLElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const pages = [
-    { nome: "Inicio", id: "banner", href: "#banner", icon: Home },
+  const pages: PageItem[] = [
+    { nome: "Início", id: "banner", href: "#banner", icon: Home },
     { nome: "Projetos", id: "projetos", href: "#projetos", icon: LayoutGrid },
     { nome: "Skills", id: "skills", href: "#skills", icon: Cpu },
     { nome: "Sobre", id: "sobre", href: "#sobre", icon: UserRound },
@@ -24,7 +38,7 @@ export const Menu = () => {
     },
   );
 
-  const handleClick = (e, id) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const el = document.getElementById(id);
     if (!el) return;
@@ -35,8 +49,8 @@ export const Menu = () => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
@@ -87,13 +101,15 @@ export const Menu = () => {
                   e.stopPropagation();
                   handleClick(e, page.id);
                 }}
+                aria-current={isActive ? "true" : undefined}
                 className={`
                   flex items-center rounded-xl
                   transition-all duration-200 cursor-pointer
+                  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary
                   ${isOpen ? "justify-start px-4 py-2.5 gap-3" : "justify-center p-2.5 gap-0"}
                   ${
                     isActive
-                      ? "bg-primary/20 text-primary shadow-[0_0_15px_rgba(221,183,255,0.2)]"
+                      ? "bg-primary/20 text-primary glow-primary-sm"
                       : "text-on-surface-variant hover:text-primary hover:bg-surface-container-high"
                   }
                 `}
@@ -112,7 +128,7 @@ export const Menu = () => {
                     ${
                       isOpen
                         ? "opacity-100 w-auto"
-                        : "opacity-0 w-0 pointer-events-none"
+                        : "sr-only"
                     }
                   `}
                 >

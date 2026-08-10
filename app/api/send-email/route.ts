@@ -1,8 +1,17 @@
+import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST(request) {
+interface SendEmailBody {
+  nome?: string;
+  email?: string;
+  objetivo?: string;
+  assunto?: string;
+  mensagem?: string;
+}
+
+export async function POST(request: NextRequest) {
   try {
     if (request.method !== 'POST') {
       return new Response(
@@ -11,7 +20,7 @@ export async function POST(request) {
       );
     }
 
-    const body = await request.json();
+    const body = (await request.json()) as SendEmailBody;
     const { nome, email, objetivo, assunto, mensagem } = body;
 
     if (!nome || !email || !assunto || !mensagem) {
@@ -40,8 +49,8 @@ export async function POST(request) {
     `;
 
     const { data, error } = await resend.emails.send({
-      from: process.env.RESEND_FROM,
-      to: process.env.CONTACT_EMAIL,
+      from: process.env.RESEND_FROM ?? "",
+      to: process.env.CONTACT_EMAIL ?? "",
       replyTo: email,
       subject: `📨 ${assunto} - ${nome}`,
       html: emailHtml,
@@ -60,7 +69,8 @@ export async function POST(request) {
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
   } catch (error) {
-    console.error('Erro ao processar requisição:', error);
+    const message = error instanceof Error ? error.message : 'Erro ao processar requisição';
+    console.error('Erro ao processar requisição:', message);
     return new Response(
       JSON.stringify({ error: 'Erro ao processar sua solicitação' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }

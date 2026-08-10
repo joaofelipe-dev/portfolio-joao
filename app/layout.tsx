@@ -1,8 +1,11 @@
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Manrope } from "next/font/google";
+import type { ReactNode } from "react";
 import "./globals.css";
 import { Menu } from "@/components/Menu";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { MotionConfig } from "motion/react";
 import SmoothScroll from "@/components/SmoothScroll";
 
 const spaceGrotesk = Space_Grotesk({
@@ -17,30 +20,29 @@ const manrope = Manrope({
   display: "swap",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: {
-    default: "João Felipe | Desenvolvedor Frontend React e Next.js",
-    template: "%s | João Felipe — Desenvolvedor Frontend",
+    default: "João Felipe | Engenheiro Frontend React e Next.js",
+    template: "%s | João Felipe — Engenheiro Frontend",
   },
 
   description:
-    "Desenvolvedor Frontend especializado em React, Next.js e TypeScript. Crio interfaces modernas, performáticas e acessíveis — do layout ao deploy em produção com Vercel.",
+    "Engenheiro Frontend especializado em React, Next.js e TypeScript. Crio interfaces modernas, performáticas e acessíveis — do layout ao deploy em produção com Vercel.",
 
   keywords: [
-    "Desenvolvedor Frontend",
-    "Frontend Developer",
+    "Engenheiro Frontend",
+    "Frontend Engineer",
     "Desenvolvedor React",
     "React Developer",
     "Desenvolvedor Next.js",
     "Next.js Developer",
     "Desenvolvedor TypeScript",
     "Desenvolvedor JavaScript",
-    "Frontend Engineer",
-    "Desenvolvedor Frontend Brasil",
-    "Desenvolvedor Frontend São Paulo",
-    "Contratar Desenvolvedor Frontend",
+    "Engenheiro Frontend Brasil",
+    "Engenheiro Frontend São Paulo",
+    "Contratar Engenheiro Frontend",
     "Vaga Frontend Junior",
-    "Portfólio Desenvolvedor Frontend",
+    "Portfólio Engenheiro Frontend",
     "João Felipe Desenvolvedor",
     "João Felipe Frontend",
     "React Next.js Tailwind",
@@ -52,7 +54,7 @@ export const metadata = {
   creator: "João Felipe",
   publisher: "João Felipe",
 
-  metadataBase: new URL("https://joao-felipe.vercel.app"),
+  metadataBase: new URL("https://jfelipe.dev"),
 
   alternates: {
     canonical: "/",
@@ -66,7 +68,6 @@ export const metadata = {
       { url: "/favicon.svg", type: "image/svg+xml" },
       { url: "/favicon.svg", sizes: "32x32" },
     ],
-    apple: [{ url: "/apple-touch-icon.png" }],
   },
 
   robots: {
@@ -82,17 +83,17 @@ export const metadata = {
   },
 
   openGraph: {
-    title: "João Felipe | Desenvolvedor Frontend React e Next.js",
+    title: "João Felipe | Engenheiro Frontend React e Next.js",
     description:
       "Interfaces modernas com React, Next.js e TypeScript. Projetos reais entregues em produção, código limpo e foco em performance.",
-    url: "https://joao-felipe.vercel.app",
+    url: "https://jfelipe.dev",
     siteName: "Portfólio — João Felipe",
     images: [
       {
         url: "/image.png",
         width: 1200,
         height: 630,
-        alt: "Portfólio de João Felipe — Desenvolvedor Frontend React e Next.js",
+        alt: "Portfólio de João Felipe — Engenheiro Frontend React e Next.js",
       },
     ],
     locale: "pt_BR",
@@ -101,7 +102,7 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "João Felipe | Desenvolvedor Frontend React e Next.js",
+    title: "João Felipe | Engenheiro Frontend React e Next.js",
     description:
       "Interfaces modernas com React, Next.js e TypeScript. Código limpo, performance e projetos reais em produção.",
     images: ["/image.png"],
@@ -110,18 +111,20 @@ export const metadata = {
   category: "tecnologia",
 };
 
-export const viewport = {
-  themeColor: "#0a0a0a",
+export const viewport: Viewport = {
+  themeColor: "#05070f",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="pt-BR" className="dark scroll-smooth overflow-x-hidden">
+    <html lang="pt-BR" className="dark overflow-x-hidden">
       <head>
-        <meta name="theme-color" content="#0a0a0a" />
+        <meta name="theme-color" content="#05070f" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -130,15 +133,15 @@ export default function RootLayout({ children }) {
                 "@context": "https://schema.org",
                 "@type": "Person",
                 name: "João Felipe",
-                jobTitle: "Desenvolvedor Frontend",
-                url: "https://joao-felipe.vercel.app",
-                image: "https://joao-felipe.vercel.app/image.png",
+                jobTitle: "Engenheiro Frontend",
+                url: "https://jfelipe.dev",
+                image: "https://jfelipe.dev/image.png",
                 sameAs: [
                   "https://github.com/joaofelipe-dev",
                   "https://linkedin.com/in/joao-felipedev",
                 ],
                 description:
-                  "Desenvolvedor Frontend especializado em React, Next.js e TypeScript. Cria interfaces modernas e performáticas com deploy em produção.",
+                  "Engenheiro Frontend especializado em React, Next.js e TypeScript. Cria interfaces modernas e performáticas com deploy em produção.",
                 knowsAbout: [
                   "Desenvolvimento Frontend",
                   "React",
@@ -157,10 +160,10 @@ export default function RootLayout({ children }) {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
                 name: "Portfólio — João Felipe",
-                url: "https://joao-felipe.vercel.app",
+                url: "https://jfelipe.dev",
                 author: "João Felipe",
                 description:
-                  "Portfólio profissional de João Felipe, Desenvolvedor Frontend especializado em React e Next.js.",
+                  "Portfólio profissional de João Felipe, Engenheiro Frontend especializado em React e Next.js.",
               },
               {
                 "@context": "https://schema.org",
@@ -170,31 +173,31 @@ export default function RootLayout({ children }) {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://joao-felipe.vercel.app",
+                    item: "https://jfelipe.dev",
                   },
                   {
                     "@type": "ListItem",
                     position: 2,
                     name: "Projetos",
-                    item: "https://joao-felipe.vercel.app#projetos",
+                    item: "https://jfelipe.dev#projetos",
                   },
                   {
                     "@type": "ListItem",
                     position: 3,
                     name: "Habilidades",
-                    item: "https://joao-felipe.vercel.app#skills",
+                    item: "https://jfelipe.dev#skills",
                   },
                   {
                     "@type": "ListItem",
                     position: 4,
                     name: "Sobre",
-                    item: "https://joao-felipe.vercel.app#sobre",
+                    item: "https://jfelipe.dev#sobre",
                   },
                   {
                     "@type": "ListItem",
                     position: 5,
                     name: "Contato",
-                    item: "https://joao-felipe.vercel.app#contato",
+                    item: "https://jfelipe.dev#contato",
                   },
                 ],
               },
@@ -205,10 +208,20 @@ export default function RootLayout({ children }) {
       <body
         className={`${spaceGrotesk.variable} ${manrope.variable} antialiased overflow-y-auto overflow-x-hidden`}
       >
-        <main>
-          {children}
-          <SpeedInsights />
-          <Analytics />
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-xl focus:bg-primary focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-primary-foreground focus:shadow-lg"
+        >
+          Pular para o conteúdo
+        </a>
+        <main id="main">
+          <MotionConfig reducedMotion="user">{children}</MotionConfig>
+          {process.env.VERCEL || process.env.NEXT_PUBLIC_VERCEL_ENV ? (
+            <>
+              <SpeedInsights />
+              <Analytics />
+            </>
+          ) : null}
         </main>
         <Menu />
         <SmoothScroll />

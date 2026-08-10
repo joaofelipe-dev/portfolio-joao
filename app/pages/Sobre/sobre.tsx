@@ -1,27 +1,22 @@
 "use client";
 import { useState, useEffect } from "react";
-import Particles from "@/components/ui/Particles";
 import { motion } from "motion/react";
+import SvgDraw from "@/components/ui/SvgDraw";
 
-const PARTICLES_CONFIG = {
-  particleColors: ["#a650f3ff", "#5181f0ff", "#aa4ae1ff"],
-  particleCount: 150,
-  particleSpread: 10,
-  speed: 0.08,
-  particleBaseSize: 30,
-  moveParticlesOnHover: false,
-  alphaParticles: false,
-  disableRotation: false,
-};
+interface StatsData {
+  commits: number;
+  repos: number;
+  contributions: number;
+}
 
 export const Sobre = () => {
-  const [stats, setStats] = useState({ commits: 0, repos: 0, contributions: 0 });
+  const [stats, setStats] = useState<StatsData>({ commits: 0, repos: 0, contributions: 0 });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/api/stats")
       .then((res) => res.json())
-      .then((data) => {
+      .then((data: StatsData) => {
         if (data.commits !== undefined) {
           setStats({
             commits: data.commits,
@@ -30,7 +25,7 @@ export const Sobre = () => {
           });
         }
       })
-      .catch(() => { })
+      .catch(() => {})
       .finally(() => setLoading(false));
   }, []);
 
@@ -40,9 +35,9 @@ export const Sobre = () => {
         id="sobre"
         className="relative snap-start min-h-screen flex flex-col items-center justify-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
       >
-        {/* Background with Particles */}
-        <div className="absolute inset-0 -z-10">
-          <Particles {...PARTICLES_CONFIG} />
+        {/* Background SVG draw */}
+        <div className="absolute inset-0 -z-10 hidden md:block" aria-hidden="true">
+          <SvgDraw />
         </div>
 
         {/* Background Blobs */}
@@ -82,7 +77,7 @@ export const Sobre = () => {
             </div>
             <div className="space-y-5 sm:space-y-6">
               <p className="text-sm sm:text-base lg:text-lg text-on-surface-variant leading-relaxed">
-                Desenvolvedor Frontend focado em React, Next.js e TypeScript. Construo
+                Engenheiro Frontend focado em React, Next.js e TypeScript. Construo
                 interfaces que resolvem problemas reais — do layout ao deploy em produção.
               </p>
               <p className="text-sm sm:text-base lg:text-lg text-on-surface-variant leading-relaxed">

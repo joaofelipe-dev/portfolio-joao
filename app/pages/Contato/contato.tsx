@@ -10,21 +10,23 @@ import React, { useState } from "react";
 import { motion } from "motion/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { contatoSchema } from "@/lib/schemas";
+import { contatoSchema, type ContatoFormData } from "@/lib/schemas";
+
+type SubmitStatus = null | "success" | "error";
 
 export const Contato = () => {
-  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(null);
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm({
+  } = useForm<ContatoFormData>({
     resolver: zodResolver(contatoSchema),
     mode: "onBlur",
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: ContatoFormData) => {
     setSubmitStatus(null);
 
     try {
@@ -115,6 +117,7 @@ export const Contato = () => {
                 <Input
                   id="nome"
                   placeholder="Ex: João da Silva"
+                  autoComplete="name"
                   className="bg-surface-container-low border border-outline-variant/30 text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-xl h-12"
                   disabled={isSubmitting}
                   {...register("nome")}
@@ -137,6 +140,8 @@ export const Contato = () => {
                   id="email"
                   type="email"
                   placeholder="seu@email.com"
+                  autoComplete="email"
+                  spellCheck={false}
                   className="bg-surface-container-low border border-outline-variant/30 text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-xl h-12"
                   disabled={isSubmitting}
                   {...register("email")}
@@ -157,6 +162,7 @@ export const Contato = () => {
                 </Label>
                 <select
                   id="objetivo"
+                  autoComplete="off"
                   {...register("objetivo")}
                   className="w-full bg-surface-container-low border border-outline-variant/30 text-on-surface focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-xl h-12 px-3"
                   disabled={isSubmitting}
@@ -184,6 +190,7 @@ export const Contato = () => {
                 <Input
                   id="assunto"
                   placeholder="Resumo do assunto"
+                  autoComplete="off"
                   className="bg-surface-container-low border border-outline-variant/30 text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-xl h-12"
                   disabled={isSubmitting}
                   {...register("assunto")}
@@ -205,6 +212,7 @@ export const Contato = () => {
                 <Textarea
                   id="mensagem"
                   placeholder="Descreva sua ideia ou necessidade..."
+                  autoComplete="off"
                   className="min-h-36 md:min-h-40 bg-surface-container-low border border-outline-variant/30 text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all rounded-xl resize-none p-3 md:p-4"
                   disabled={isSubmitting}
                   {...register("mensagem")}

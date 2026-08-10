@@ -1,16 +1,25 @@
 "use client";
-import React, { useState } from "react";
 import { motion } from "motion/react";
-import { ExternalLink, Github } from "lucide-react";
+import { Github } from "lucide-react";
 import { Chip } from "@/components/ui/chip";
 import Image from "next/image";
 
-const PROJETOS_DATA = [
+interface Projeto {
+  image: string;
+  title: string;
+  description: string;
+  href: string;
+  tags: string[];
+  category: string;
+  live: boolean;
+}
+
+const PROJETOS_DATA: Projeto[] = [
   {
     image: "/promomaker.webp",
     title: "PromoMaker",
     description:
-    "Plataforma para criação de placas de ofertas. Interface intuitiva para gerar materiais promocionais.",
+      "Plataforma para criação de placas de ofertas. Interface intuitiva para gerar materiais promocionais.",
     href: "#",
     tags: ["React", "Next.js", "JavaScript", "Tailwind CSS", "Vercel"],
     category: "Plataforma",
@@ -70,10 +79,7 @@ const PROJETOS_DATA = [
 
 export const Projetos = () => {
   return (
-    <section
-      id="projetos"
-      className="w-full flex flex-col items-center justify-center mx-auto px-4 py-12 md:py-16 relative"
-    >
+    <section id="projetos" className="w-full flex flex-col items-center justify-center mx-auto px-4 py-12 md:py-16 relative">
       {/* Background Blobs */}
       <div className="absolute left-0 top-1/2 w-64 h-64 bg-primary/5 rounded-full blur-[150px] -z-10" />
       <div className="absolute right-0 top-1/3 w-64 h-64 bg-tertiary/5 rounded-full blur-[150px] -z-10" />
@@ -82,14 +88,13 @@ export const Projetos = () => {
         Projetos Entregues
       </h2>
       <p className="text-sm md:text-base text-on-surface-variant text-center max-w-2xl mx-auto mb-10">
-        Aplicações reais que entreguei para clientes. Cada projeto tem link para
-        visualização.
+        Aplicações reais que entreguei para clientes. Cada projeto tem link para visualização.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 w-full gap-6 justify-items-center">
         {PROJETOS_DATA.map((projeto, index) => (
           <motion.div
-            key={index}
+            key={projeto.title}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{
@@ -115,22 +120,20 @@ export const Projetos = () => {
                   placeholder="blur"
                   blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
                 />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-surface/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-end p-4">
-                  <a
-                    href={projeto.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="glass rounded-full p-3 hover:scale-110 transition-transform"
-                    aria-label={`Ver ${projeto.title}`}
-                  >
-                    {projeto.href.startsWith("http") ? (
+                {/* Overlay — só quando há URL real; visível também no teclado */}
+                {projeto.href.startsWith("http") && (
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface/90 to-transparent opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 flex items-end justify-end p-4">
+                    <a
+                      href={projeto.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="glass rounded-full p-3 hover:scale-110 focus-visible:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-transform"
+                      aria-label={`Ver ${projeto.title}`}
+                    >
                       <Github className="size-5" />
-                    ) : (
-                      <ExternalLink className="size-5" />
-                    )}
-                  </a>
-                </div>
+                    </a>
+                  </div>
+                )}
               </div>
 
               {/* Content */}
@@ -139,7 +142,9 @@ export const Projetos = () => {
                   <h3 className="text-xl font-semibold text-on-surface font-[var(--font-space-grotesk)] tracking-tight">
                     {projeto.title}
                   </h3>
-                  {projeto.live && <Chip variant="secondary">Live</Chip>}
+                  {projeto.live && (
+                    <Chip variant="secondary">Live</Chip>
+                  )}
                 </div>
                 <p className="text-sm text-on-surface-variant mb-4">
                   {projeto.description}

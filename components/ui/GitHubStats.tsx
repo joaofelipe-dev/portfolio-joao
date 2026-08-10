@@ -1,10 +1,12 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 
+type ContributionGraph = typeof import("@raulcanodev/react-github-dots").default;
+
 export default function GitHubStats() {
   const [isVisible, setIsVisible] = useState(false);
-  const [Component, setComponent] = useState(null);
-  const ref = useRef(null);
+  const [Component, setComponent] = useState<ContributionGraph | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,7 +37,7 @@ export default function GitHubStats() {
   if (!isVisible) {
     return (
       <div ref={ref} className="mb-4 h-[140px] flex items-center justify-center">
-        <span className="text-xs text-on-surface-variant">Carregando dados do GitHub...</span>
+        <span className="text-xs text-on-surface-variant">Carregando dados do GitHub…</span>
       </div>
     );
   }
@@ -43,7 +45,7 @@ export default function GitHubStats() {
   if (!Component) {
     return (
       <div className="mb-4 h-[140px] flex items-center justify-center">
-        <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+        <span className="text-xs text-on-surface-variant">Carregando dados do GitHub…</span>
       </div>
     );
   }
@@ -52,7 +54,7 @@ export default function GitHubStats() {
     <div className="mb-4">
       <Component
         username="joaofelipe-dev"
-        token={process.env.NEXT_PUBLIC_GITHUB_PERSONAL_ACCESS_TOKEN}
+        token={process.env.NEXT_PUBLIC_GITHUB_PERSONAL_ACCESS_TOKEN ?? ""}
         theme="dark"
         cacheTime="1d"
       />

@@ -1,6 +1,6 @@
 "use client";
-import { motion, AnimatePresence } from "motion/react";
-import { useState, useMemo } from "react";
+import { motion, AnimatePresence, type Variants } from "motion/react";
+import { useState, useMemo, type ReactNode } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,7 +19,15 @@ import {
   SiVercel,
 } from "react-icons/si";
 
-const container = {
+interface Tool {
+  nome: string;
+  icone: ReactNode;
+  nivel: string;
+  tipo: string;
+  href: string;
+}
+
+const container: Variants = {
   hidden: {},
   show: {
     transition: {
@@ -28,7 +36,7 @@ const container = {
   },
 };
 
-const item = {
+const item: Variants = {
   hidden: { opacity: 0, scale: 0.9 },
   show: {
     opacity: 1,
@@ -47,7 +55,7 @@ const item = {
   },
 };
 
-const TOOLS_DATA = [
+const TOOLS_DATA: Tool[] = [
   {
     nome: "React",
     icone: <SiReact />,
@@ -144,7 +152,7 @@ const TOOLS_DATA = [
 export const Skills = () => {
   const [filtroAtivo, setFiltroAtivo] = useState("Todos");
 
-  const tiposUnicos = ["Todos", "Frontend", "Backend", "Ferramentas"];
+  const tiposUnicos: string[] = ["Todos", "Frontend", "Backend", "Ferramentas"];
 
   const filteredTools = useMemo(() => {
     if (filtroAtivo === "Todos") {
@@ -230,7 +238,10 @@ export const Skills = () => {
               cursor-pointer
               group
             ">
-              <div className="text-4xl sm:text-5xl md:text-6xl mb-3 transition-all group-hover:scale-110 group-hover:text-primary duration-200">
+              <div
+                aria-hidden="true"
+                className="text-4xl sm:text-5xl md:text-6xl mb-3 transition-all group-hover:scale-110 group-hover:text-primary duration-200"
+              >
                 {icone}
               </div>
               <h3 className="font-semibold text-on-surface group-hover:text-primary transition-colors text-xs sm:text-sm md:text-base">

@@ -2,8 +2,15 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-let cachedData = null;
-let cacheDate = null;
+interface StatsData {
+  commits: number;
+  repos: number;
+  contributions: number;
+  lastUpdated: string;
+}
+
+let cachedData: StatsData | null = null;
+let cacheDate: string | null = null;
 
 function getDateStr(date = new Date()) {
   return date.toISOString().split("T")[0];
@@ -86,7 +93,7 @@ export async function GET() {
       }
     }
 
-    const result = {
+    const result: StatsData = {
       commits: commitsThisYear,
       repos,
       contributions: commitsThisYear,
@@ -98,9 +105,10 @@ export async function GET() {
 
     return NextResponse.json(result);
   } catch (error) {
-    console.error("Stats API error:", error.message);
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("Stats API error:", message);
     return NextResponse.json(
-      { error: "Failed to fetch stats", detail: error.message },
+      { error: "Failed to fetch stats", detail: message },
       { status: 500 }
     );
   }
