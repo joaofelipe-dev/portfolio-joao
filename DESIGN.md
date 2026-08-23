@@ -11,10 +11,16 @@ The goal is to visualize code not as text, but as a living, architectural force.
 This system uses a sophisticated dark-mode palette where color is treated as a light source rather than a fill.
 
 ### The Palette (Material Design Convention)
-- **Primary (`#adc6ff`):** Used for core interactive elements and brand accents.
-- **Secondary (`#4ae176`):** Reserved for "success" states or to highlight "Live" project deployments.
-- **Tertiary (`#ddb7ff`):** Used for logic-based metaphors (e.g., API routes, backend architecture).
-- **Surface (`#0b1326`):** The foundational void upon which all elements sit.
+- **Primary (`#3b82f6`):** Used for core interactive elements and brand accents.
+- **Secondary (`#8b5cf6`):** Violet reserved for secondary emphasis, hover states, and "Live" project deployment chips.
+- **Tertiary (`#22d3ee`):** Cyan used for tertiary highlights and contact links.
+- **Surface (`#05070f`):** The foundational void upon which all elements sit.
+
+### The Accent Layer
+Raw accent variables power glows, gradients, and success feedback. They are not general-purpose fills:
+- **Accent Violet (`#ddb7ff`):** Success-state text (e.g., form confirmation) and `glow-primary` shadows.
+- **Accent Blue (`#adc6ff`):** Gradient overlays and grid textures.
+- **Accent Green (`#4ae176`):** Reserved success green, available as `text-accent-green`.
 
 ### The "No-Line" Rule
 Traditional 1px borders are strictly prohibited for sectioning. Section boundaries must be defined through:
@@ -84,10 +90,10 @@ In this design system, shadows are not black; they are "Ambient Light Occlusions
 ### Do:
 *   **Use Asymmetry:** Place a floating terminal window partially overlapping a headline to create depth.
 *   **Focus on Micro-interactions:** Every button press should have a subtle 200ms spring animation.
-*   **Leverage Color for Logic:** Use `secondary` (Green) for "Functional/Logic" sections and `tertiary` (Purple) for "Creative/UI" sections.
+*   **Leverage Color for Logic:** Use `tertiary` (Cyan) for technical/logic accents and `secondary` (Violet) for expressive emphasis moments.
 
 ### Don't:
-*   **Don't use 100% white text:** Always use `on_surface` (`#dae2fd`) to prevent eye strain.
+*   **Don't use 100% white text:** Always use `on_surface` (`#dbe2ff`) to prevent eye strain.
 *   **Don't use hard corners:** Stick to the `xl` (0.75rem) or `full` roundedness scale to maintain the "SaaS-Modern" feel.
 *   **Don't use stock photos:** Use abstract SVG shapes or CSS-generated blobs to represent complex backend concepts.
 *   **Don't use high-contrast dividers:** If you must separate items, use a 48px vertical gap instead of a line.
