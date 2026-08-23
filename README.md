@@ -1,44 +1,37 @@
-# 💻 João Felipe | Full Stack Developer Portfolio
+# João Felipe | Portfólio Frontend
 
 <p align="center">
   <img src="https://img.shields.io/github/languages/top/joaofelipe-dev/portfolio-joao?style=for-the-badge" alt="Top Language">
   <img src="https://img.shields.io/github/last-commit/joaofelipe-dev/portfolio-joao?style=for-the-badge" alt="Last Commit">
 </p>
 
-Este é o repositório do meu portfólio pessoal, desenvolvido com o objetivo de apresentar os meus projetos, competências técnicas e trajetória profissional de forma interativa e moderna.
+Repositório do meu portfólio pessoal. Frontend com Next.js, priorizando performance real (Core Web Vitals) em vez de só aparência.
 
-**Link para visualização:** [jfelipe.dev](https://jfelipe.dev)
+**Link:** [jfelipe.dev](https://jfelipe.dev)
 
 ---
 
-## 🛠️ Stack Tecnológica
-
-Para este projeto, foquei em ferramentas que garantem alta performance (Core Web Vitals) e uma experiência de utilizador (UX) fluida:
+## Stack
 
 - **Framework:** [Next.js 14+](https://nextjs.org/) (App Router)
 - **Estilização:** [Tailwind CSS](https://tailwindcss.com/)
 - **Linguagem:** TypeScript
 - **Componentes de UI:** Radix UI / Shadcn UI
 - **Ícones:** Lucide React
-- **Deployment:** Vercel
+- **Deploy:** Vercel
 
 ---
 
-## 🎨 Funcionalidades Principais
+## Decisões técnicas
 
-- **Design Responsivo:** Adaptado para dispositivos móveis, tablets e desktop.
-- **Tema Escuro:** Interface dark-only, projetada para legibilidade e conforto visual.
-- **Otimização de Performance:** Uso de `next/font` e carregamento otimizado de imagens.
-- **Seções Dinâmicas:** Apresentação de projetos, experiência profissional e formulário de contacto.
+- **Responsivo:** Adaptado para dispositivos móveis, tablets e desktop.
+- **Tema escuro:** Interface dark-only, projetada para legibilidade e conforto visual.
+- **Performance:** Uso de `next/font` e carregamento otimizado de imagens.
+- **Dados reais:** Estatísticas do GitHub via API própria — sem métricas fictícias.
 
 ---
 
-## 📫 Contato
-
-Se você gostou do meu trabalho ou quer bater um papo sobre tecnologia, sinta-se à vontade para entrar em contato:
+## Contato
 
 *   **LinkedIn:** [linkedin.com/in/joao-felipedev](https://linkedin.com/in/joao-felipedev/)
-*   **Email:** [joaofelipedev@gmail.com](mailto:joaofelipedev@gmail.com)
-
----
-<p align="center">Conecte-se comigo e vamos construir algo incrível!</p>
+*   **Email:** [joaoufelipedev@gmail.com](mailto:joaoufelipedev@gmail.com)
