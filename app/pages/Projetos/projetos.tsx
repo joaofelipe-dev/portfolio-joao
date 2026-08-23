@@ -23,7 +23,7 @@ const PROJETOS_DATA: Projeto[] = [
     href: "#",
     tags: ["React", "Next.js", "JavaScript", "Tailwind CSS", "Vercel"],
     category: "Plataforma",
-    live: true,
+    live: false,
   },
   {
     image: "/design-system.webp",
@@ -53,7 +53,7 @@ const PROJETOS_DATA: Projeto[] = [
     href: "#",
     tags: ["React", "Next.js", "JavaScript", "Tailwind CSS", "Vercel"],
     category: "Sistema Corporativo",
-    live: true,
+    live: false,
   },
   {
     image: "/travelgram.webp",
@@ -73,7 +73,7 @@ const PROJETOS_DATA: Projeto[] = [
     href: "#",
     tags: ["React", "JavaScript", "Tailwind CSS", "Vercel"],
     category: "Sistema Corporativo",
-    live: true,
+    live: false,
   },
 ];
 
@@ -88,7 +88,7 @@ export const Projetos = () => {
         Projetos Entregues
       </h2>
       <p className="text-sm md:text-base text-on-surface-variant text-center max-w-2xl mx-auto mb-10">
-        Aplicações reais que entreguei para clientes. Cada projeto tem link para visualização.
+        Projetos que desenvolvi, de plataformas web a sistemas corporativos.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 w-full gap-6 justify-items-center">
@@ -142,8 +142,8 @@ export const Projetos = () => {
                   <h3 className="text-xl font-semibold text-on-surface font-[var(--font-space-grotesk)] tracking-tight">
                     {projeto.title}
                   </h3>
-                  {projeto.live && (
-                    <Chip variant="secondary">Live</Chip>
+                  {projeto.live && projeto.href.startsWith("http") && (
+                    <Chip variant="secondary">Ao vivo</Chip>
                   )}
                 </div>
                 <p className="text-sm text-on-surface-variant mb-4">
