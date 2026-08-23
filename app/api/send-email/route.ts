@@ -1,56 +1,111 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { contatoSchema } from '@/lib/schemas';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-interface SendEmailBody {
-  nome?: string;
-  email?: string;
-  objetivo?: string;
-  assunto?: string;
-  mensagem?: string;
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX_REQUESTS = 5;
+const RATE_BUCKET_PRUNE_THRESHOLD = 500;
+
+const rateBuckets = new Map<string, number[]>();
+
+function isRateLimited(key: string): boolean {
+  const now = Date.now();
+  const windowStart = now - RATE_LIMIT_WINDOW_MS;
+  const hits = (rateBuckets.get(key) ?? []).filter((t) => t > windowStart);
+  hits.push(now);
+  rateBuckets.set(key, hits);
+
+  if (rateBuckets.size > RATE_BUCKET_PRUNE_THRESHOLD) {
+    for (const [bucketKey, timestamps] of rateBuckets) {
+      if (timestamps.every((t) => t <= windowStart)) {
+        rateBuckets.delete(bucketKey);
+      }
+    }
+  }
+
+  return hits.length > RATE_LIMIT_MAX_REQUESTS;
 }
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+const OBJETIVO_LABELS: Record<string, string> = {
+  projeto: 'Desenvolvimento de Projeto',
+  consultoria: 'Consultoria Técnica / Code Review',
+  parceria: 'Oportunidade de Carreira / Parceria',
+  outro: 'Outro',
+};
+
 export async function POST(request: NextRequest) {
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    request.headers.get('x-real-ip') ||
+    'unknown';
+
+  if (isRateLimited(ip)) {
+    return NextResponse.json(
+      { error: 'Muitas tentativas. Aguarde um minuto antes de enviar novamente.' },
+      { status: 429 }
+    );
+  }
+
+  let body: unknown;
   try {
-    if (request.method !== 'POST') {
-      return new Response(
-        JSON.stringify({ error: 'Método não permitido' }),
-        { status: 405, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
+    body = await request.json();
+  } catch {
+    return NextResponse.json(
+      { error: 'Requisição inválida.' },
+      { status: 400 }
+    );
+  }
 
-    const body = (await request.json()) as SendEmailBody;
-    const { nome, email, objetivo, assunto, mensagem } = body;
+  const parsed = contatoSchema.safeParse(body);
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: 'Dados inválidos. Verifique os campos e tente novamente.' },
+      { status: 400 }
+    );
+  }
 
-    if (!nome || !email || !assunto || !mensagem) {
-      return new Response(
-        JSON.stringify({ error: 'Campos obrigatórios não preenchidos' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
+  const { nome, email, objetivo, assunto, mensagem } = parsed.data;
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return new Response(
-        JSON.stringify({ error: 'Email inválido' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
+  const from = process.env.RESEND_FROM;
+  const to = process.env.CONTACT_EMAIL;
+  if (!from || !to) {
+    console.error(
+      'Env de email não configurado: defina RESEND_FROM e CONTACT_EMAIL.'
+    );
+    return NextResponse.json(
+      { error: 'Serviço de email temporariamente indisponível.' },
+      { status: 500 }
+    );
+  }
 
-    const emailHtml = `
-      <h2>Novo Contato via Portfólio</h2>
-      <p><strong>Nome:</strong> ${nome}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Objetivo:</strong> ${objetivo || 'Não especificado'}</p>
-      <p><strong>Assunto:</strong> ${assunto}</p>
-      <p><strong>Mensagem:</strong></p>
-      <p>${mensagem.replace(/\n/g, '<br>')}</p>
-    `;
+  const objetivoLabel =
+    (objetivo && OBJETIVO_LABELS[objetivo]) || 'Não especificado';
 
-    const { data, error } = await resend.emails.send({
-      from: process.env.RESEND_FROM ?? "",
-      to: process.env.CONTACT_EMAIL ?? "",
+  const emailHtml = `
+    <h2>Novo Contato via Portfólio</h2>
+    <p><strong>Nome:</strong> ${escapeHtml(nome)}</p>
+    <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+    <p><strong>Objetivo:</strong> ${escapeHtml(objetivoLabel)}</p>
+    <p><strong>Assunto:</strong> ${escapeHtml(assunto)}</p>
+    <p><strong>Mensagem:</strong></p>
+    <p>${escapeHtml(mensagem).replace(/\n/g, '<br>')}</p>
+  `;
+
+  try {
+    const { error } = await resend.emails.send({
+      from,
+      to,
       replyTo: email,
       subject: `📨 ${assunto} - ${nome}`,
       html: emailHtml,
@@ -58,22 +113,24 @@ export async function POST(request: NextRequest) {
 
     if (error) {
       console.error('Erro Resend:', error);
-      return new Response(
-        JSON.stringify({ error: error.message || 'Erro ao enviar email' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
+      return NextResponse.json(
+        {
+          error:
+            'Não foi possível enviar sua mensagem agora. Tente novamente ou use o email direto.',
+        },
+        { status: 502 }
       );
     }
 
-    return new Response(
-      JSON.stringify({ success: true, message: 'Email enviado com sucesso', id: data?.id }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
-    );
+    return NextResponse.json({ success: true });
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Erro ao processar requisição';
-    console.error('Erro ao processar requisição:', message);
-    return new Response(
-      JSON.stringify({ error: 'Erro ao processar sua solicitação' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    console.error(
+      'Erro ao processar requisição:',
+      error instanceof Error ? error.message : 'Erro desconhecido'
+    );
+    return NextResponse.json(
+      { error: 'Erro ao processar sua solicitação. Tente novamente.' },
+      { status: 500 }
     );
   }
 }
