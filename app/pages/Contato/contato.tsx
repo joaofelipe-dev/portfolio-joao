@@ -24,7 +24,7 @@ import { contatoSchema, type ContatoFormData } from "@/lib/schemas";
 
 type SubmitStatus = null | "success" | "error";
 
-const EMAIL = "joaofelipedev@gmail.com";
+const EMAIL = "joaoufelipedev@gmail.com";
 
 const fieldClass =
   "w-full h-12 rounded-lg bg-surface-container-lowest border border-outline-variant/20 px-4 text-sm md:text-base text-on-surface placeholder:text-on-surface-variant transition-colors duration-150 hover:border-outline-variant/40 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/25 disabled:opacity-50";

@@ -25,7 +25,7 @@ Early-career frontend engineer who owns his trajectory: started programming in 2
 - Language: Brazilian Portuguese (pt-BR); an English version is planned but does not exist yet.
 - Evaluation scene: quick recruiter pass-through; sections are Banner → Stack → Projetos → Skills → Sobre → Contato on one scrolling page.
 - Live data: GitHub stats (commits, repos, contributions) come from `/api/stats`, which proxies the public GitHub API; the UI degrades honestly ("—") when the API fails.
-- Contact: form submitted server-side through Resend (`/api/send-email`), delivering to joaoufelipe@hotmail.com; the publicly displayed email is joaofelipedev@gmail.com (confirmed split by João). GitHub stats are served exclusively through `/api/stats`; no token may reach the browser bundle.
+- Contact: form submitted server-side through Resend (`/api/send-email`), delivering to joaoufelipe@hotmail.com; the publicly displayed email is joaoufelipedev@gmail.com (confirmed split by João). GitHub stats are served exclusively through `/api/stats`; no token may reach the browser bundle.
 - Deployment: Vercel, with Speed Insights and Analytics enabled in production.
 
 ## Capabilities and Constraints
@@ -39,7 +39,7 @@ Early-career frontend engineer who owns his trajectory: started programming in 2
 ## Brand Commitments
 
 - Name: João Felipe; identity as "Engenheiro Frontend".
-- Domain jfelipe.dev; GitHub github.com/joaofelipe-dev; LinkedIn linkedin.com/in/joao-felipedev; email joaofelipedev@gmail.com.
+- Domain jfelipe.dev; GitHub github.com/joaofelipe-dev; LinkedIn linkedin.com/in/joao-felipedev; email joaoufelipedev@gmail.com.
 - Voice: direct, concrete, technically literate pt-BR copy — states what was done without inflating seniority; avoids unverifiable self-praise ("não promete o que não dá pra provar").
 - Honest-data rule: metrics shown must come from real APIs; never fabricate numbers, testimonials, or clients.
 
