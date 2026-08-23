@@ -64,6 +64,15 @@ export const Menu = () => {
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
       onClick={() => setIsOpen(!isOpen)}
+      onFocus={() => setIsOpen(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+          setIsOpen(false);
+        }
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") setIsOpen(false);
+      }}
       aria-label="Navegação"
       className={`
         fixed z-50 transition-all duration-300 ease-out
@@ -106,7 +115,7 @@ export const Menu = () => {
                   flex items-center rounded-xl
                   transition-all duration-200 cursor-pointer
                   focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary
-                  ${isOpen ? "justify-start px-4 py-2.5 gap-3" : "justify-center p-2.5 gap-0"}
+                  ${isOpen ? "justify-start px-4 py-3 gap-3" : "justify-center p-3 gap-0"}
                   ${
                     isActive
                       ? "bg-primary/20 text-primary glow-primary-sm"
