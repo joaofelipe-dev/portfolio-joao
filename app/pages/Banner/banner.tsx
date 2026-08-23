@@ -13,6 +13,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import GitHubStats from "@/components/ui/GitHubStats";
+import { fetchSiteStats } from "@/lib/stats-client";
 
 const GITHUB_USER = "joaofelipe-dev";
 
@@ -56,14 +57,16 @@ export function Banner() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/stats")
-      .then((res) => res.json())
-      .then((data: { commits?: number; repos?: number }) => {
-        if (data.commits !== undefined) setCommits(data.commits);
-        if (data.repos !== undefined) setRepos(data.repos);
-      })
-      .catch(() => {})
-      .finally(() => setLoading(false));
+    let active = true;
+    fetchSiteStats().then((data) => {
+      if (!active) return;
+      setCommits(data.commits);
+      setRepos(data.repos);
+      setLoading(false);
+    });
+    return () => {
+      active = false;
+    };
   }, []);
 
   return (

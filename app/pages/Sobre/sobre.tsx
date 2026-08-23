@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import SvgDraw from "@/components/ui/SvgDraw";
+import { fetchSiteStats } from "@/lib/stats-client";
 
 interface StatsData {
   commits: number;
@@ -14,19 +15,19 @@ export const Sobre = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/stats")
-      .then((res) => res.json())
-      .then((data: StatsData) => {
-        if (data.commits !== undefined) {
-          setStats({
-            commits: data.commits,
-            repos: data.repos || 5,
-            contributions: data.contributions || data.commits,
-          });
-        }
-      })
-      .catch(() => {})
-      .finally(() => setLoading(false));
+    let active = true;
+    fetchSiteStats().then((data) => {
+      if (!active) return;
+      setStats({
+        commits: data.commits ?? 0,
+        repos: data.repos || 5,
+        contributions: data.contributions || data.commits || 0,
+      });
+      setLoading(false);
+    });
+    return () => {
+      active = false;
+    };
   }, []);
 
   return (
