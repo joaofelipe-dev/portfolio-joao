@@ -59,6 +59,9 @@
   --color-tertiary-foreground: var(--tertiary-foreground);
   --color-tertiary-container: var(--tertiary-container);
   --color-outline-variant: var(--outline-variant);
+  --color-accent-green: var(--accent-green);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-violet: var(--accent-violet);
 }
 
 :root {
