@@ -176,11 +176,30 @@ const useAnimationLoop = (
       rafRef.current = requestAnimationFrame(animate);
     };
 
-    rafRef.current = requestAnimationFrame(animate);
-    return () => {
+    const startLoop = () => {
+      if (rafRef.current !== null) return;
+      lastTimestampRef.current = null;
+      rafRef.current = requestAnimationFrame(animate);
+    };
+
+    const stopLoop = () => {
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
       lastTimestampRef.current = null;
+    };
+
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) startLoop();
+        else stopLoop();
+      },
+      { rootMargin: '100px' }
+    );
+    intersectionObserver.observe(track);
+
+    return () => {
+      intersectionObserver.disconnect();
+      stopLoop();
     };
   }, [targetVelocity, seqWidth, isHovered, pauseOnHover, trackRef]);
 };
