@@ -2,11 +2,24 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
+interface StatsDay {
+  date: string;
+  contributionCount: number;
+}
+
+interface StatsWeek {
+  contributionDays: StatsDay[];
+}
+
 interface StatsData {
   commits: number;
   repos: number;
   contributions: number;
   lastUpdated: string;
+  calendar: {
+    totalContributions: number;
+    weeks: StatsWeek[];
+  };
 }
 
 let cachedData: StatsData | null = null;
@@ -16,9 +29,25 @@ function getDateStr(date = new Date()) {
   return date.toISOString().split("T")[0];
 }
 
+function resolveToken() {
+  const serverToken = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
+  if (serverToken) return { token: serverToken, legacy: false };
+
+  const legacyToken = process.env.NEXT_PUBLIC_GITHUB_PERSONAL_ACCESS_TOKEN;
+  if (legacyToken) {
+    console.warn(
+      "Usando NEXT_PUBLIC_GITHUB_PERSONAL_ACCESS_TOKEN como fallback. " +
+        "Variáveis NEXT_PUBLIC_ ficam expostas no bundle do navegador — " +
+        "renomeie para GITHUB_PERSONAL_ACCESS_TOKEN e revogue o token antigo."
+    );
+    return { token: legacyToken, legacy: true };
+  }
+
+  return { token: null, legacy: false };
+}
+
 export async function GET() {
   try {
-    const token = process.env.NEXT_PUBLIC_GITHUB_PERSONAL_ACCESS_TOKEN;
     const today = getDateStr();
 
     if (cachedData && cacheDate === today) {
@@ -28,6 +57,7 @@ export async function GET() {
       });
     }
 
+    const { token } = resolveToken();
     if (!token) {
       throw new Error("GitHub token not configured");
     }
@@ -98,6 +128,10 @@ export async function GET() {
       repos,
       contributions: commitsThisYear,
       lastUpdated: new Date().toISOString(),
+      calendar: {
+        totalContributions: calendar.totalContributions,
+        weeks: calendar.weeks,
+      },
     };
 
     cachedData = result;
@@ -105,10 +139,12 @@ export async function GET() {
 
     return NextResponse.json(result);
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Unknown error";
-    console.error("Stats API error:", message);
+    console.error(
+      "Stats API error:",
+      error instanceof Error ? error.message : "Unknown error"
+    );
     return NextResponse.json(
-      { error: "Failed to fetch stats", detail: message },
+      { error: "Failed to fetch stats" },
       { status: 500 }
     );
   }
