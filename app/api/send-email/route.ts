@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { contatoSchema } from '@/lib/schemas';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
 const RATE_BUCKET_PRUNE_THRESHOLD = 500;
@@ -103,6 +101,7 @@ export async function POST(request: NextRequest) {
   `;
 
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const { error } = await resend.emails.send({
       from,
       to,
