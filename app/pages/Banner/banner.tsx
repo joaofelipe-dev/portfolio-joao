@@ -3,29 +3,27 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion, type Variants } from "motion/react";
 import {
-  Accessibility,
   ArrowRight,
-  Boxes,
   ArrowUpRight,
   FolderKanban,
   Gauge,
-  FileCode2,
   type LucideIcon,
+  EyeOff,
+  Wand,
+  Code,
 } from "lucide-react";
 import GitHubStats from "@/components/ui/GitHubStats";
 import { fetchSiteStats } from "@/lib/stats-client";
 
 const GITHUB_USER = "joaofelipe-dev";
 
-// Static data fora do componente — nunca recriados
 const PILLS: { icon: LucideIcon; label: string; color: string }[] = [
   { icon: Gauge, label: "Performance · CWV", color: "text-primary" },
-  { icon: Accessibility, label: "Acessibilidade", color: "text-tertiary" },
-  { icon: Boxes, label: "Design System", color: "text-secondary" },
-  { icon: FileCode2, label: "TypeScript", color: "text-tertiary" },
+  { icon: EyeOff, label: "Acessibilidade", color: "text-tertiary" },
+  { icon: Wand, label: "Design System", color: "text-secondary" },
+  { icon: Code, label: "TypeScript", color: "text-tertiary" },
 ];
 
-// Variants centralizados — stagger automático, sem delays manuais
 const containerVariants: Variants = {
   hidden: {},
   visible: {
@@ -74,7 +72,7 @@ export function Banner() {
       id="banner"
       className="w-full min-h-screen flex items-center py-16 lg:py-20 relative overflow-hidden"
     >
-      {/* Background Effects — reduzido a 2 blobs, discreto */}
+      {/* Background Effects */}
       <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-primary/8 rounded-full blur-[200px] -z-10" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-tertiary/6 rounded-full blur-[180px] -z-10" />
 
@@ -97,10 +95,10 @@ export function Banner() {
               </span>
             </motion.div>
 
-            {/* Main Headline — específica, não promete o que não dá pra provar no primeiro scroll */}
+            {/* Main Headline */}
             <motion.h1
               variants={itemVariants}
-              className="font-[var(--font-space-grotesk)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-5 tracking-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-5 tracking-tight"
             >
               <span className="sr-only">Engenheiro Frontend</span>
               <span className="block text-on-surface mb-1">
@@ -111,17 +109,16 @@ export function Banner() {
               </span>
             </motion.h1>
 
-            {/* Value Proposition — concreta, sem adjetivo de efeito */}
+            {/* Value Proposition */}
             <motion.p
               variants={itemVariants}
               className="text-lg sm:text-xl text-on-surface-variant max-w-xl mx-auto lg:mx-0 mb-6 leading-relaxed"
             >
-              Componentes, performance e acessibilidade — não só porque
-              funcionam, mas porque entendi como funcionam. Do primeiro commit
-              ao deploy.
+              Componentes, performance e acessibilidade. Não só porque
+              funcionam, mas porque entendi como funcionam.
             </motion.p>
 
-            {/* Feature Pills — áreas de foco, não veredito sobre mim mesmo */}
+            {/* Feature Pills */}
             <motion.div
               variants={itemVariants}
               className="flex flex-wrap justify-center lg:justify-start gap-2 mb-8"
@@ -166,7 +163,7 @@ export function Banner() {
             </motion.div>
           </motion.div>
 
-          {/* Right Visual Area — terminal honesto, só com dados reais */}
+          {/* Right Visual Area */}
           <motion.div
             variants={cardVariants}
             initial="hidden"

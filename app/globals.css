@@ -178,7 +178,7 @@ textarea {
 
 @layer utilities {
   .glass {
-    @apply bg-surface-container/70 backdrop-blur-[30px] border border-outline-variant/15;
+    @apply bg-surface-container/70 backdrop-blur-[30px] border border-outline-variant;
   }
 
   .glass-sm {

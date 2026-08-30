@@ -166,9 +166,6 @@ export const Skills = () => {
       id="skills"
       className="min-h-screen w-full px-4 md:px-6 lg:px-10 py-12 md:py-16 lg:py-20 flex flex-col gap-10 md:gap-12 overflow-hidden relative"
     >
-      {/* Background Blobs */}
-      <div className="absolute left-0 top-0 w-72 h-72 bg-secondary/5 rounded-full blur-[150px] -z-10" />
-      <div className="absolute right-0 bottom-0 w-72 h-72 bg-tertiary/5 rounded-full blur-[150px] -z-10" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -177,7 +174,7 @@ export const Skills = () => {
         viewport={{ once: true }}
         className="text-center w-full"
       >
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-on-surface font-[var(--font-space-grotesk)] tracking-tight">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-on-surface tracking-tight">
           Tech Stack
         </h2>
         <p className="text-sm md:text-base text-on-surface-variant max-w-2xl mx-auto">
@@ -196,7 +193,7 @@ export const Skills = () => {
         {tiposUnicos.map((tipo) => (
           <Button
             key={tipo}
-            size={filtroAtivo === tipo ? "default" : "sm"}
+            size="default"
             variant={filtroAtivo === tipo ? "default" : "outline"}
             onClick={() => setFiltroAtivo(tipo)}
             className="cursor-pointer"
@@ -235,7 +232,7 @@ export const Skills = () => {
               text-xs sm:text-sm md:text-base text-center
               p-5 sm:p-6 md:p-7 w-full h-full
               transition-all duration-200
-              cursor-pointer
+              cursor-pointer border border-accent
               group
             ">
               <div

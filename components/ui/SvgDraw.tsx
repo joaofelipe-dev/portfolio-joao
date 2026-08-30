@@ -47,7 +47,7 @@ export default function SvgDraw() {
       aria-hidden="true"
       focusable="false"
     >
-      {/* Orbit central — grande e sutil, atrás do texto */}
+      {/* Orbit central */}
       <DrawGroup
         transform="translate(500 350) scale(8)"
         colorClass="stroke-[var(--secondary)]"
@@ -62,7 +62,7 @@ export default function SvgDraw() {
         ]}
       />
 
-      {/* GitBranch — topo esquerda */}
+      {/* GitBranch */}
       <DrawGroup
         transform="translate(110 140) scale(2.6)"
         colorClass="stroke-[var(--primary)]"
@@ -75,7 +75,7 @@ export default function SvgDraw() {
         ]}
       />
 
-      {/* Cpu — topo direita */}
+      {/* Cpu */}
       <DrawGroup
         transform="translate(760 140) scale(2.6)"
         colorClass="stroke-[var(--secondary)]"
@@ -94,7 +94,7 @@ export default function SvgDraw() {
         ]}
       />
 
-      {/* GitCommit — baixo esquerda */}
+      {/* GitCommit */}
       <DrawGroup
         transform="translate(140 480) scale(2.4)"
         colorClass="stroke-[var(--secondary)]"
@@ -106,7 +106,7 @@ export default function SvgDraw() {
         ]}
       />
 
-      {/* Database — baixo direita */}
+      {/* Database */}
       <DrawGroup
         transform="translate(740 480) scale(2.4)"
         colorClass="stroke-[var(--tertiary)]"
@@ -118,7 +118,7 @@ export default function SvgDraw() {
         ]}
       />
 
-      {/* GitMerge — meio esquerda */}
+      {/* GitMerge */}
       <DrawGroup
         transform="translate(250 300) scale(2.2)"
         colorClass="stroke-[var(--tertiary)]"
@@ -130,7 +130,7 @@ export default function SvgDraw() {
         ]}
       />
 
-      {/* Server — meio direita */}
+      {/* Server */}
       <DrawGroup
         transform="translate(690 300) scale(2.2)"
         colorClass="stroke-[var(--primary)]"

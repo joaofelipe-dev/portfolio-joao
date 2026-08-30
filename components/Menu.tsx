@@ -76,7 +76,7 @@ export const Menu = () => {
       aria-label="Navegação"
       className={`
         fixed z-50 transition-all duration-300 ease-out
-        glass
+        glass 
         
         bottom-6 left-1/2 -translate-x-1/2 
         flex flex-row items-center gap-2

@@ -16,16 +16,6 @@ interface Projeto {
 
 const PROJETOS_DATA: Projeto[] = [
   {
-    image: "/promomaker.webp",
-    title: "PromoMaker",
-    description:
-      "Plataforma para criação de placas de ofertas. Interface intuitiva para gerar materiais promocionais.",
-    href: "#",
-    tags: ["React", "Next.js", "JavaScript", "Tailwind CSS", "Vercel"],
-    category: "Plataforma",
-    live: false,
-  },
-  {
     image: "/design-system.webp",
     title: "Design System",
     description:
@@ -36,6 +26,16 @@ const PROJETOS_DATA: Projeto[] = [
     live: true,
   },
   {
+    image: "/pedido-papelaria.webp",
+    title: "Sistema de Papelaria",
+    description:
+      "Sistema de gestão para papelarias. Fluxo simplificado de pedidos com interface intuitiva.",
+    href: "#",
+    tags: ["React", "JavaScript", "Tailwind CSS", "Vercel"],
+    category: "Sistema Corporativo",
+    live: false,
+  },
+  {
     image: "/centralizador.webp",
     title: "Centralizador de Pedidos",
     description:
@@ -44,6 +44,16 @@ const PROJETOS_DATA: Projeto[] = [
     tags: ["React", "Next.js", "TypeScript", "PostgreSQL", "Node.js", "Vercel"],
     category: "Sistema Corporativo",
     live: true,
+  },
+  {
+    image: "/promomaker.webp",
+    title: "PromoMaker",
+    description:
+      "Plataforma para criação de placas de ofertas. Interface intuitiva para gerar materiais promocionais.",
+    href: "#",
+    tags: ["React", "Next.js", "JavaScript", "Tailwind CSS", "Vercel"],
+    category: "Plataforma",
+    live: false,
   },
   {
     image: "/painel-vendas.webp",
@@ -65,16 +75,6 @@ const PROJETOS_DATA: Projeto[] = [
     category: "Website",
     live: true,
   },
-  {
-    image: "/pedido-papelaria.webp",
-    title: "Sistema de Papelaria",
-    description:
-      "Sistema de gestão para papelarias. Fluxo simplificado de pedidos com interface intuitiva.",
-    href: "#",
-    tags: ["React", "JavaScript", "Tailwind CSS", "Vercel"],
-    category: "Sistema Corporativo",
-    live: false,
-  },
 ];
 
 export const Projetos = () => {
@@ -84,7 +84,7 @@ export const Projetos = () => {
       <div className="absolute left-0 top-1/2 w-64 h-64 bg-primary/5 rounded-full blur-[150px] -z-10" />
       <div className="absolute right-0 top-1/3 w-64 h-64 bg-tertiary/5 rounded-full blur-[150px] -z-10" />
 
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-on-surface font-[var(--font-space-grotesk)] tracking-tight">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-on-surface tracking-tight">
         Projetos Entregues
       </h2>
       <p className="text-sm md:text-base text-on-surface-variant text-center max-w-2xl mx-auto mb-10">
@@ -105,7 +105,7 @@ export const Projetos = () => {
               damping: 20,
             }}
             viewport={{ once: true }}
-            className="w-full max-w-md"
+            className="w-full max-w-md border-2 border-accent hover:shadow-2xl rounded-xl"
           >
             <article className="group bg-surface-container-low rounded-xl overflow-hidden transition-all duration-300 hover:bg-surface-container-high hover:scale-[1.02]">
               {/* Image Container */}
@@ -120,7 +120,7 @@ export const Projetos = () => {
                   placeholder="blur"
                   blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
                 />
-                {/* Overlay — só quando há URL real; visível também no teclado */}
+                {/* Overlay */}
                 {projeto.href.startsWith("http") && (
                   <div className="absolute inset-0 bg-gradient-to-t from-surface/90 to-transparent opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 flex items-end justify-end p-4">
                     <a

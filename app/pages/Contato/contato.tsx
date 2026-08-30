@@ -27,7 +27,7 @@ type SubmitStatus = null | "success" | "error";
 const EMAIL = "joaoufelipedev@gmail.com";
 
 const fieldClass =
-  "w-full h-12 rounded-lg bg-surface-container-lowest border border-outline-variant/20 px-4 text-sm md:text-base text-on-surface placeholder:text-on-surface-variant transition-colors duration-150 hover:border-outline-variant/40 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/25 disabled:opacity-50";
+  "w-full h-12 rounded-lg bg-surface-container-lowest border px-4 text-sm md:text-base text-on-surface placeholder:text-on-surface-variant transition-colors duration-150 hover:border-outline-variant/40 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/25 disabled:opacity-50";
 
 export const Contato = () => {
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(null);
@@ -96,7 +96,7 @@ export const Contato = () => {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-tertiary mb-4">
               Contato
             </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-on-surface mb-4 font-[var(--font-space-grotesk)] tracking-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-on-surface mb-4 tracking-tight">
               Boas ideias merecem bom código.
             </h2>
             <p className="text-sm md:text-base text-on-surface-variant leading-relaxed max-w-md mb-10">
@@ -107,7 +107,7 @@ export const Contato = () => {
 
             <ul className="space-y-1">
               <li className="flex items-center gap-4 rounded-lg p-2 -m-2">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-surface-container-high text-on-surface-variant">
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-surface-container-high text-on-surface-variant border border-accent">
                   <Mail size={18} />
                 </span>
                 <div className="min-w-0 flex-1">
@@ -145,7 +145,7 @@ export const Contato = () => {
                   rel="noopener noreferrer"
                   className="group flex items-center gap-4 rounded-lg p-2 -m-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
-                  <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-surface-container-high text-on-surface-variant group-hover:text-on-surface transition-colors">
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-surface-container-high text-on-surface-variant group-hover:text-on-surface transition-colors border border-accent">
                     <Github size={18} />
                   </span>
                   <div className="min-w-0 flex-1">
@@ -170,7 +170,7 @@ export const Contato = () => {
                   rel="noopener noreferrer"
                   className="group flex items-center gap-4 rounded-lg p-2 -m-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
-                  <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-surface-container-high text-on-surface-variant group-hover:text-on-surface transition-colors">
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-surface-container-high text-on-surface-variant group-hover:text-on-surface transition-colors border border-accent">
                     <Linkedin size={18} />
                   </span>
                   <div className="min-w-0 flex-1">
@@ -298,7 +298,10 @@ export const Contato = () => {
                       htmlFor="objetivo"
                       className="text-xs font-medium uppercase tracking-[0.05em] text-on-surface-variant"
                     >
-                      Objetivo
+                      Objetivo{" "}
+                      <span aria-hidden="true" className="text-primary">
+                        *
+                      </span>
                     </Label>
                     <div className="relative">
                       <select
