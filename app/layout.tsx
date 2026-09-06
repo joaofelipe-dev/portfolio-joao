@@ -112,7 +112,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#05070f",
+  themeColor: "#07080d",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -124,7 +124,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="dark overflow-x-hidden">
       <head>
-        <meta name="theme-color" content="#05070f" />
+        <meta name="theme-color" content="#07080d" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -62,12 +62,70 @@
   --color-accent-green: var(--accent-green);
   --color-accent-blue: var(--accent-blue);
   --color-accent-violet: var(--accent-violet);
+  --color-ink: var(--ink);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+  --color-primary-focus: var(--primary-focus);
+  --color-primary-disabled: var(--primary-disabled);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-active: var(--secondary-active);
+  --color-tertiary-hover: var(--tertiary-hover);
+  --color-success: var(--success);
+  --color-info: var(--info);
+  --color-warning: var(--warning);
 }
 
 :root {
   --radius: 0.75rem;
 
   color-scheme: dark;
+
+  --primary: hsl(217.2 91.2% 59.8%);
+  --secondary: hsl(258.3 89.5% 66.3%);
+  --tertiary: hsl(187.9 85.7% 53.3%);
+
+  --primary-container: color-mix(in srgb, var(--primary) 16%, transparent);
+  --secondary-container: color-mix(in srgb, var(--secondary) 15%, transparent);
+  --tertiary-container: color-mix(in srgb, var(--tertiary) 12%, transparent);
+
+  --primary-hover: color-mix(in srgb, var(--primary) 82%, white);
+  --primary-active: color-mix(in srgb, var(--primary) 76%, black);
+  --primary-focus: color-mix(in srgb, var(--primary) 92%, white);
+  --primary-disabled: color-mix(in srgb, var(--primary) 45%, var(--surface));
+
+  --secondary-hover: color-mix(in srgb, var(--secondary) 82%, white);
+  --secondary-active: color-mix(in srgb, var(--secondary) 76%, black);
+  --tertiary-hover: color-mix(in srgb, var(--tertiary) 88%, white);
+
+  --ink: hsl(228 32% 4%);
+  --primary-foreground: var(--ink);
+  --secondary-foreground: var(--ink);
+  --tertiary-foreground: var(--ink);
+
+  --surface: hsl(228 30% 4%);
+  --surface-container-lowest: hsl(232 34% 2.5%);
+  --surface-container-low: hsl(226 28% 5%);
+  --surface-container: hsl(224 26% 6.5%);
+  --surface-container-high: hsl(222 25% 8.5%);
+  --surface-container-highest: hsl(220 24% 11%);
+  --surface-bright: hsl(217 26% 15%);
+
+  --on-surface: hsl(229 100% 93%);
+  --on-surface-variant: hsl(225 11% 56%);
+
+  --outline-variant: color-mix(in srgb, var(--on-surface) 12%, transparent);
+  --border: color-mix(in srgb, var(--on-surface) 5%, transparent);
+
+  --success: #4ae176;
+  --info: #7dd3fc;
+  --warning: #fbbf24;
+  --destructive: #ff6b6b;
+  --destructive-foreground: hsl(0 0% 97%);
+
+  --accent-violet: #ddb7ff;
+  --accent-blue: #adc6ff;
+  --accent-green: var(--success);
+
   --background: var(--surface);
   --foreground: var(--on-surface);
 
@@ -76,32 +134,12 @@
   --popover: var(--surface-container-high);
   --popover-foreground: var(--on-surface);
 
-  --primary: #3b82f6;
-  --primary-foreground: #05070f;
-  --primary-container: rgba(59, 130, 246, 0.15);
-
-  --secondary: #8b5cf6;
-  --secondary-foreground: #05070f;
-  --secondary-container: rgba(139, 92, 246, 0.15);
-
-  --tertiary: #22d3ee;
-  --tertiary-foreground: #05070f;
-  --tertiary-container: rgba(34, 211, 238, 0.12);
-
-  --accent-violet: #ddb7ff;
-  --accent-blue: #adc6ff;
-  --accent-green: #4ae176;
-
   --muted: var(--surface-container-high);
   --muted-foreground: var(--on-surface-variant);
 
   --accent: var(--primary-container);
   --accent-foreground: var(--primary);
 
-  --destructive: #ff6b6b;
-  --destructive-foreground: #ffffff;
-
-  --border: rgba(255, 255, 255, 0.04);
   --input: var(--outline-variant);
   --ring: var(--primary);
 
@@ -113,26 +151,12 @@
 
   --sidebar: var(--surface);
   --sidebar-foreground: var(--on-surface);
-  --sidebar-primary: #3b82f6;
-  --sidebar-primary-foreground: #05070f;
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--ink);
   --sidebar-accent: var(--surface-container-high);
   --sidebar-accent-foreground: var(--on-surface);
   --sidebar-border: var(--outline-variant);
   --sidebar-ring: var(--primary);
-
-  --surface: #05070f;
-  --surface-container-lowest: #02030a;
-  --surface-container-low: #040611;
-
-  --surface-container: #060914;
-  --surface-container-high: #080c18;
-  --surface-container-highest: #0b1020;
-
-  --surface-bright: #0f1629;
-  --on-surface: #dbe2ff;
-  --on-surface-variant: #7c8599;
-
-  --outline-variant: rgba(255, 255, 255, 0.08);
 }
 
 @layer base {
